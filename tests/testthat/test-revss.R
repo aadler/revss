@@ -113,3 +113,10 @@ test_that("Error Trapping", {
                regexp = "There are NAs in the data yet na.rm is FALSE")
   expect_equal(robScale(c(x5, NA), na.rm = TRUE), robScale(x5))
 })
+
+context("Package Maintenance")
+test_that("Version", {
+  expect_match(toBibtex(citation('revss')),
+               as.character(packageVersion('revss')), fixed = TRUE, all = FALSE)
+})
+
