@@ -1,8 +1,8 @@
 Package: revss
 Type: Package
 Title: Robust Estimation in Very Small Samples
-Version: 0.0.1.9000
-Date: 2020-05-26
+Version: 0.0.1
+Date: 2020-05-28
 Authors@R: c(person(given = "Avraham", family = "Adler",
     role = c("aut", "cph", "cre"), email = "Avraham.Adler@gmail.com",
     comment = c(ORCID = "0000-0002-3039-0703")))
