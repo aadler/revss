@@ -1,6 +1,7 @@
 <!-- badges: start -->
 [![](https://www.r-pkg.org/badges/version-last-release/revss)]
 [![](https://cranlogs.r-pkg.org/badges/revss)]
+[![Travis build status](https://travis-ci.com/aadler/revss.svg?branch=master)](https://travis-ci.com/aadler/revss)
 <!-- badges: end -->
 
 # revss
