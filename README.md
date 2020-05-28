@@ -2,6 +2,7 @@
 [![](https://www.r-pkg.org/badges/version-last-release/revss)]
 [![](https://cranlogs.r-pkg.org/badges/revss)]
 [![Travis build status](https://travis-ci.com/aadler/revss.svg?branch=master)](https://travis-ci.com/aadler/revss)
+[![Codecov test coverage](https://codecov.io/gh/aadler/revss/branch/master/graph/badge.svg)](https://codecov.io/gh/aadler/revss?branch=master)
 <!-- badges: end -->
 
 # revss
