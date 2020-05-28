@@ -66,7 +66,7 @@ samples. \emph{Computational Statistics & Data Analysis}, \bold{40}, (4),
 \code{\link{adm}} and \code{\link{mad}} as basic robust estimators of scale.
 
 \code{\link[robustbase]{Qn}} and \code{\link[robustbase]{Sn}} in the
-\href{https://CRAN.R-project.org/package=robustbase}{\code{robustbase}} package
+\href{https://CRAN.R-project.org/package=robustbase}{\pkg{robustbase}} package
 which are specialized robust scale estimators for larger samples. The latter two
 are based on code written by Peter Rousseeuw.
 }
