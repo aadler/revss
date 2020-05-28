@@ -1,14 +1,14 @@
 Package: revss
 Type: Package
 Title: Robust Estimation in Very Small Samples
-Version: 0.0.1
+Version: 0.0.2
 Date: 2020-05-28
 Authors@R: c(person(given = "Avraham", family = "Adler",
     role = c("aut", "cph", "cre"), email = "Avraham.Adler@gmail.com",
     comment = c(ORCID = "0000-0002-3039-0703")))
-Description: The package implements the estimation techniques described in 
-    'Rousseeuw' & 'Verboven' (2002) \doi{10.1016/S0167-9473(02)00078-6} for the
-    location and scale of very small samples.
+Description: Implements the estimation techniques described in Rousseeuw &
+    Verboven (2002) <doi:10.1016/S0167-9473(02)00078-6> for the location and
+    scale of very small samples.
 License: BSD_2_clause + file LICENSE
 URL: https://github.com/aadler/revss
 BugReports: https://github.com/aadler/revss/issues
