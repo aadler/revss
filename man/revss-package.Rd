@@ -19,4 +19,5 @@ The DESCRIPTION file:
 
 Maintainer: \packageMaintainer{revss}
 }
-\keyword{ package }
+\keyword{package}
+\keyword{robust}
