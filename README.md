@@ -3,6 +3,7 @@
 [![](https://cranlogs.r-pkg.org/badges/revss)]
 [![Travis build status](https://travis-ci.com/aadler/revss.svg?branch=master)](https://travis-ci.com/aadler/revss)
 [![Codecov test coverage](https://codecov.io/gh/aadler/revss/branch/master/graph/badge.svg)](https://codecov.io/gh/aadler/revss?branch=master)
+[![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/aadler/revss?branch=master&svg=true)](https://ci.appveyor.com/project/aadler/revss)
 <!-- badges: end -->
 
 # revss
