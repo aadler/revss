@@ -16,7 +16,7 @@ for the location and scale of very small samples.
 If you use the package, please cite it as:
 
   Avraham Adler (2020). revss: Robust Estimation in Very Small Samples.
-  R package version 0.0.2.
+  R package version 0.0.3.
   https://CRAN.R-project.org/package=revss
 
 A BibTeX entry for LaTeX users is:
@@ -27,7 +27,7 @@ A BibTeX entry for LaTeX users is:
     author = {Avraham Adler},
     year = {2020},
     url = {https://CRAN.R-project.org/package=revss},
-    note = {R package version 0.0.2},
+    note = {R package version 0.0.3},
   }
 ```
 
