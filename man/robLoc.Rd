@@ -3,11 +3,9 @@
 \title{Robust Estimate of Location}
 
 \description{Compute the robust estimate of location for very small samples.}
-
 \usage{
-robLoc(x, scale = NULL, na.rm = FALSE, maxit = 60, tol = sqrt(.Machine$double.eps))
+robLoc(x, scale = NULL, na.rm = FALSE, maxit = 80, tol = sqrt(.Machine$double.eps))
 }
-
 \arguments{
   \item{x}{A numeric vector.}
   \item{scale}{The scale, if known, can be used to enhance the estimate for
@@ -17,7 +15,6 @@ robLoc(x, scale = NULL, na.rm = FALSE, maxit = 60, tol = sqrt(.Machine$double.ep
   \item{maxit}{The maximum number of iterations; defaults to 60.}
   \item{tol}{The desired accuracy.}
 }
-
 \details{
 Computes the M-estimator for location using the logistic \eqn{\psi} function of
 Rousseeuw & Verboven (2002, 4.1). If there are three or fewer entries, the
@@ -34,31 +31,27 @@ before computation takes place.  If this is not done then an \code{NA} value in
 The tolerance and number of iterations are similar to those in existing base R
 functions.
 }
-
 \value{
 Solves for the robust estimate of location, \eqn{T_n}{Tn}, which is the solution
-to\deqn{\frac{1}{n}\sum_{i = 1}^n\psi\left(\frac{x_i - T_n}{S_n}\right) = 0
-}{mean(\psi((xi - Tn)/Sn)) = 0}
+to
+\deqn{\frac{1}{n}\sum_{i = 1}^n\psi\left(\frac{x_i - T_n}{S_n}\right) = 0}{mean(\psi((xi - Tn)/Sn)) = 0}
+
 where \eqn{S_n}{Sn} is fixed at \code{mad(x)}. The \eqn{\psi}-function selected
-by Rousseeuw & Verboven is
-\deqn{\psi_{log}(x) = \frac{e^x - 1}{e^x + 1}}{
-\psi(x) = (exp(x) - 1) / (exp(x) + 1)}
+by Rousseeuw & Verboven is:
 
-This is equivalent to \code{2 * plogit(x) - 1}.
+\deqn{\psi_{log}(x) = \frac{e^x - 1}{e^x + 1}}{\psi(x) = (exp(x) - 1) / (exp(x) + 1)}
+
+This is equivalent to \code{2 * plogis(x) - 1}.
 }
-
 \references{
 Rousseeuw, Peter J. and Verboven, Sabine (2002) Robust estimation in very small
 samples. \emph{Computational Statistics & Data Analysis}, \bold{40}, (4),
 741--758. \doi{10.1016/S0167-9473(02)00078-6}
 }
-
 \author{Avraham Adler \email{Avraham.Adler@gmail.com}}
-
 \seealso{
 \code{\link{median}}
 }
-
 \examples{
 robLoc(c(1:9))
 x <- c(1,2,3,5,7,8)

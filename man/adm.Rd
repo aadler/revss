@@ -28,17 +28,16 @@ deviation (\acronym{MAD}), which is the median equivalent of this function.
 
 The default is to adjust the factor for asymptotically normal consistency.  In
 large samples this approaches \eqn{\sqrt{\frac{2}{\pi}}}{\code{sqrt(2 / pi)}},
-which is the default.  In smaller samples, simulation studies suggest for
-samples of up to approximately length \eqn{n = 50}, it behaves more akin to
-\eqn{1.296816 e^{n \times -e^{7.647996}} + 0.2757346 e^{n \times -e^{-1.664514}}
-}{1.296816 * exp(n * -exp(7.647996)) + 0.2757346 * exp(n * -exp(-1.664514))}.
+which is the default. This may not hold with the smaller sample sizes for which
+this package is intended.
 
 If \code{na.rm} is \code{TRUE} then \code{NA} values are stripped from \code{x}
-before computation takes place.  If this is not done then an \code{NA} value in
+before computation takes place. If this is not done then an \code{NA} value in
 \code{x} will cause \code{mad} to return \code{NA}.
 }
-\value{\deqn{ADM = C\frac{1}{n}\sum_{i=1}^n{|x_i - median(x)}}{ADM = C *
-mean(sum(abs(x - median(x))))}
+\value{
+\deqn{ADM = C\frac{1}{n}\sum_{i=1}^n{|x_i - \textrm{median}(x)|}}{ADM = C * mean(sum(abs(x - median(x))))}
+
 where \eqn{C} is the consistency constant.}
 \references{
 Nair, K. R. (1947) A Note on the Mean Deviation from the Median.
@@ -46,12 +45,10 @@ Nair, K. R. (1947) A Note on the Mean Deviation from the Median.
 }
 
 \author{Avraham Adler \email{Avraham.Adler@gmail.com}}
-
 \seealso{
-\code{\link{mad}} for the median absolute deviation from the
+\code{\link[stats]{mad}} for the median absolute deviation from the
 \code{\link{median}}
 }
-
 \examples{
 adm(c(1:9))
 x <- c(1,2,3,5,7,8)

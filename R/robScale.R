@@ -1,6 +1,6 @@
 # Robust Scale Estimator found in Rousseeuw & Verboven (2002)
 
-robScale <- function(x, loc = NULL, implbound = 1e-4, na.rm = FALSE, maxit = 60,
+robScale <- function(x, loc = NULL, implbound = 1e-4, na.rm = FALSE, maxit = 80,
                    tol = sqrt(.Machine$double.eps)) {
   if (na.rm) {
     x <- x[!is.na(x)]

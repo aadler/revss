@@ -1,6 +1,6 @@
 # Robust Location Estimator found in Rousseeuw & Verboven (2002)
 
-robLoc <- function(x, scale = NULL, na.rm = FALSE, maxit = 60,
+robLoc <- function(x, scale = NULL, na.rm = FALSE, maxit = 80,
                    tol = sqrt(.Machine$double.eps)) {
   if (na.rm) {
     x <- x[!is.na(x)]

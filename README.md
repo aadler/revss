@@ -7,7 +7,6 @@
 <!-- badges: end -->
 
 # revss
-
 **revss** is an `R` package which implements the estimation techniques described
 in [Rousseeuw & Verboven (2002)](https://www.researchgate.net/publication/223864903_Robust_estimation_in_very_small_samples)
 for the location and scale of very small samples.
@@ -16,7 +15,7 @@ for the location and scale of very small samples.
 If you use the package, please cite it as:
 
   Avraham Adler (2020). revss: Robust Estimation in Very Small Samples.
-  R package version 0.0.3.
+  R package version 1.0.0.
   https://CRAN.R-project.org/package=revss
 
 A BibTeX entry for LaTeX users is:
@@ -27,7 +26,7 @@ A BibTeX entry for LaTeX users is:
     author = {Avraham Adler},
     year = {2020},
     url = {https://CRAN.R-project.org/package=revss},
-    note = {R package version 0.0.3},
+    note = {R package version 1.0.0},
   }
 ```
 

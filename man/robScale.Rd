@@ -5,8 +5,8 @@
 \description{Compute the robust estimate of scale for very small samples.}
 
 \usage{
-robScale(x, loc = NULL, implbound = 1e-4, na.rm = FALSE, maxit = 60,
-tol = sqrt(.Machine$double.eps))
+robScale(x, loc = NULL, implbound = 1e-4, na.rm = FALSE, maxit = 80,
+         tol = sqrt(.Machine$double.eps))
 }
 
 \arguments{
