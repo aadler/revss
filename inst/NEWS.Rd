@@ -3,6 +3,14 @@
 
 \title{NEWS file for the revss package}
 
+\section{Version 1.0.1 (2020-11-10)}{
+  \subsection{Fixed}{
+    \itemize{
+      \item Corrected CRAN requests
+    }
+  }
+}
+
 \section{Version 1.0.0 (2020-11-08)}{
   \subsection{Changed}{
     \itemize{
