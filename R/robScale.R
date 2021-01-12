@@ -1,3 +1,6 @@
+# Copyright (c) 2020, Avraham Adler All rights reserved
+# SPDX-License-Identifier: BSD-2-Clause
+
 # Robust Scale Estimator found in Rousseeuw & Verboven (2002)
 
 robScale <- function(x, loc = NULL, implbound = 1e-4, na.rm = FALSE, maxit = 80,

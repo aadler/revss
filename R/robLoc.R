@@ -1,3 +1,6 @@
+# Copyright (c) 2020, Avraham Adler All rights reserved
+# SPDX-License-Identifier: BSD-2-Clause
+
 # Robust Location Estimator found in Rousseeuw & Verboven (2002)
 
 robLoc <- function(x, scale = NULL, na.rm = FALSE, maxit = 80,
