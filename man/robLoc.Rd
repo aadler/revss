@@ -8,11 +8,11 @@ robLoc(x, scale = NULL, na.rm = FALSE, maxit = 80, tol = sqrt(.Machine$double.ep
 }
 \arguments{
   \item{x}{A numeric vector.}
-  \item{scale}{The scale, if known, can be used to enhance the estimate for
-  the location; defaults to unknown.}
+  \item{scale}{The scale, if known, can be used to enhance the estimate for the
+  location; defaults to unknown.}
   \item{na.rm}{If \code{TRUE} then \code{NA} values are stripped from \code{x}
   before computation takes place.}
-  \item{maxit}{The maximum number of iterations; defaults to 60.}
+  \item{maxit}{The maximum number of iterations; defaults to 80.}
   \item{tol}{The desired accuracy.}
 }
 \details{
@@ -34,12 +34,14 @@ functions.
 \value{
 Solves for the robust estimate of location, \eqn{T_n}{Tn}, which is the solution
 to
-\deqn{\frac{1}{n}\sum_{i = 1}^n\psi\left(\frac{x_i - T_n}{S_n}\right) = 0}{mean(\psi((xi - Tn)/Sn)) = 0}
+\deqn{\frac{1}{n}\sum_{i = 1}^n\psi\left(\frac{x_i - T_n}{S_n}\right) = 0}{
+mean(\psi((xi - Tn)/Sn)) = 0}
 
 where \eqn{S_n}{Sn} is fixed at \code{mad(x)}. The \eqn{\psi}-function selected
 by Rousseeuw & Verboven is:
 
-\deqn{\psi_{log}(x) = \frac{e^x - 1}{e^x + 1}}{\psi(x) = (exp(x) - 1) / (exp(x) + 1)}
+\deqn{\psi_{log}(x) = \frac{e^x - 1}{e^x + 1}}{\psi(x) = (exp(x) - 1) /
+(exp(x) + 1)}
 
 This is equivalent to \code{2 * plogis(x) - 1}.
 }

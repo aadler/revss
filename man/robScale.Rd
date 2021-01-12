@@ -17,24 +17,25 @@ robScale(x, loc = NULL, implbound = 1e-4, na.rm = FALSE, maxit = 80,
   considered too close to 0.}
   \item{na.rm}{If \code{TRUE} then \code{NA} values are stripped from \code{x}
   before computation takes place.}
-  \item{maxit}{The maximum number of iterations; defaults to 60.}
+  \item{maxit}{The maximum number of iterations; defaults to 80.}
   \item{tol}{The desired accuracy.}
 }
 
 \details{
 Computes the M-estimator for scale using a smooth \eqn{\rho}-function defined as
 the square of the logistic \eqn{\psi} function used in location estimation
-(Rousseeuw & Verboven, 2002, 4.2).  When the sequence of observations is too
+(Rousseeuw & Verboven, 2002, 4.2). When the sequence of observations is too
 short for a robust estimate, the scale estimate will default to \code{mad} so
 long as \code{mad} has not \dQuote{imploded}, i.e. it is greater than
-\code{implbound} which defaults to 0.0001.
+\code{implbound} which defaults to 0.0001. When \code{mad} has imploded,
+\code{adm} is used instead.
 
 If the location is known and passed through \code{loc}, the algorithm uses the
-suggestion in Rousseeuw & Verboven section 5 (2002), converting the observations
+suggestion in Rousseeuw & Verboven section 5 (2002) converting the observations
 to distances from 0 and iterating on the adjusted sequence.
 
 If \code{na.rm} is \code{TRUE} then \code{NA} values are stripped from \code{x}
-before computation takes place.  If this is not done then an \code{NA} value in
+before computation takes place. If this is not done then an \code{NA} value in
 \code{x} will cause \code{mad} to return \code{NA}.
 
 The tolerance and number of iterations are similar to those in existing base R
@@ -46,11 +47,10 @@ Solves for the robust estimate of scale, \eqn{S_n}{Sn}, which is the solution
 to\deqn{\frac{1}{n}\sum_{i = 1}^n\rho\left(\frac{x_i - T_n}{S_n}\right) = \beta
 }{mean(\rho((xi - Tn)/Sn)) = \beta}
 where \eqn{T_n}{Tn} is fixed at \code{median(x)} and \eqn{\beta} is fixed at
-0.5.  The \eqn{\rho}-function
-selected by Rousseeuw & Verboven is based on the square of the
-\eqn{\psi}-function used in \code{\link{robLoc}}. Specifically
-\deqn{\rho_{log}(x) = \psi_{log}^2\left(\frac{x}{0.3739}\right)}{
-\rho(x) = \psi^2(x / 0.3739)}
+0.5. The \eqn{\rho}-function selected by Rousseeuw & Verboven is based on the
+square of the \eqn{\psi}-function used in \code{\link{robLoc}}. Specifically
+\deqn{\rho_{log}(x) = \psi_{log}^2\left(\frac{x}{0.3739}\right)}{\rho(x) =
+\psi^2(x / 0.3739)}
 The 0.3739 is needed for \eqn{\beta} to be 0.5.
 }
 
