@@ -15,6 +15,5 @@ BugReports: https://github.com/aadler/revss/issues
 Encoding: UTF-8
 Suggests: testthat, covr
 Imports: stats
-LazyData: true
 NeedsCompilation: no
 Config/testthat/edition: 3
