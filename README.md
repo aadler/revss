@@ -2,7 +2,7 @@
 [![CRAN version](https://www.r-pkg.org/badges/version-last-release/revss)](https://www.r-pkg.org/badges/version-last-release/revss)
 [![](https://cranlogs.r-pkg.org/badges/last-month/revss)](https://cran.r-project.org/package=revss)
 [![R build status](https://github.com/aadler/revss/workflows/R-CMD-check/badge.svg)](https://github.com/aadler/revss/actions)
-[![Codecov test coverage](https://codecov.io/gh/aadler/revss/branch/master/graph/badge.svg)](https://codecov.io/gh/aadler/revss?branch=master)
+[![Codecov test coverage](https://codecov.io/gh/aadler/revss/branch/master/graph/badge.svg)](https://app.codecov.io/gh/aadler/revss?branch=master)
 <!-- badges: end -->
 
 # revss
