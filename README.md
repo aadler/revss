@@ -60,7 +60,7 @@ character lines, two-space indentations).
 Please provide valid .Rd files and **not** roxygen-style documentation.
 
 ### Tests
-Please review the current test suite and supply similar `testthat`-compatible
+Please review the current test suite and supply similar `tinytest`-compatible
 unit tests for all added functionality.
 
 ### Submission

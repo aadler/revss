@@ -13,7 +13,6 @@ License: BSD_2_clause + file LICENSE
 URL: https://github.com/aadler/revss
 BugReports: https://github.com/aadler/revss/issues
 Encoding: UTF-8
-Suggests: testthat, covr
+Suggests: covr, tinytest
 Imports: stats
 NeedsCompilation: no
-Config/testthat/edition: 3
