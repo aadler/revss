@@ -2,6 +2,15 @@
 \alias{NEWS}
 \title{NEWS file for the revss package}
 
+\section{Version 1.0.3 (2022-01-19)}{
+  \subsection{Changed}{
+    \itemize{
+      \item Converted test suite to \code{tinytest} to reduce dependencies
+      \item Augmented citation with DOI
+    }
+  }
+}
+
 \section{Version 1.0.2 (2021-01-12)}{
   \subsection{Fixed}{
     \itemize{
