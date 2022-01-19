@@ -1,6 +1,7 @@
 <!-- badges: start -->
 [![CRAN version](https://www.r-pkg.org/badges/version-last-release/revss)](https://www.r-pkg.org/badges/version-last-release/revss)
 [![](https://cranlogs.r-pkg.org/badges/last-month/revss)](https://cran.r-project.org/package=revss)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.5874911.svg)](https://doi.org/10.5281/zenodo.5874911)
 [![R build status](https://github.com/aadler/revss/workflows/R-CMD-check/badge.svg)](https://github.com/aadler/revss/actions)
 [![Codecov test coverage](https://codecov.io/gh/aadler/revss/branch/master/graph/badge.svg)](https://app.codecov.io/gh/aadler/revss?branch=master)
 <!-- badges: end -->
@@ -15,6 +16,7 @@ If you use the package, please cite it as:
 
   Avraham Adler (2020). revss: Robust Estimation in Very Small Samples.
   R package version 1.0.2.
+  doi: 10.5281/zenodo.5874911
   https://CRAN.R-project.org/package=revss
 
 A BibTeX entry for LaTeX users is:
@@ -25,6 +27,7 @@ A BibTeX entry for LaTeX users is:
     author = {Avraham Adler},
     year = {2020},
     url = {https://CRAN.R-project.org/package=revss},
+    doi = {10.5281/zenodo.5874911},
     note = {R package version 1.0.2},
   }
 ```
