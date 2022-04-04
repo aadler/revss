@@ -2,13 +2,13 @@
 # CITATION file created with {cffr} R package, v0.2.1
 # See also: https://docs.ropensci.org/cffr/
 # -----------------------------------------------------------
- 
+
 cff-version: 1.2.0
 message: 'To cite package "revss" in publications use:'
 type: software
 license: BSD-2-Clause
 title: 'revss: Robust Estimation in Very Small Samples'
-version: 1.0.3
+version: 1.0.4
 doi: 10.5281/zenodo.5874911
 abstract: Implements the estimation techniques described in Rousseeuw & Verboven (2002)
   <doi:10.1016/S0167-9473(02)00078-6> for the location and scale of very small samples.
@@ -28,11 +28,11 @@ preferred-citation:
   year: '2020'
   url: https://CRAN.R-project.org/package=revss
   doi: 10.5281/zenodo.5874911
-  notes: R package version 1.0.3
+  notes: R package version 1.0.4
 repository: https://CRAN.R-project.org/package=revss
 repository-code: https://github.com/aadler/revss
 url: https://github.com/aadler/revss
-date-released: '2022-01-19'
+date-released: '2022-04-03'
 contact:
 - family-names: Adler
   given-names: Avraham
