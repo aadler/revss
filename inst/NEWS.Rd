@@ -2,6 +2,21 @@
 \alias{NEWS}
 \title{NEWS file for the revss package}
 
+\section{Version 1.0.4 (2022-04-03)}{
+  \subsection{Changed}{
+    \itemize{
+      \item Explictly use integers in count and lengths
+      \item Use singleton logical comparisons for short-circuit
+      \item Updated README for Best Practice
+    }
+  }
+  \subsection{Added}{
+    \itemize{
+      \item Added Best Practice badge to README
+    }
+  }
+}
+
 \section{Version 1.0.3 (2022-01-19)}{
   \subsection{Changed}{
     \itemize{
