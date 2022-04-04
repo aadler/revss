@@ -16,7 +16,7 @@ for the location and scale of very small samples.
 If you use the package, please cite it as:
 
   Avraham Adler (2020). revss: Robust Estimation in Very Small Samples.
-  R package version 1.0.3.
+  R package version 1.0.4.
   doi: 10.5281/zenodo.5874911
   https://CRAN.R-project.org/package=revss
 
@@ -29,7 +29,7 @@ A BibTeX entry for LaTeX users is:
     year = {2020},
     url = {https://CRAN.R-project.org/package=revss},
     doi = {10.5281/zenodo.5874911},
-    note = {R package version 1.0.3},
+    note = {R package version 1.0.4},
   }
 ```
 
@@ -69,8 +69,35 @@ If you would like to contribute to the project, it may be prudent to first
 contact the maintainer via email. A request or suggestion may be raised as an
 issue as well. To supply a pull request (PR), please:
 
- 1. Fork the project into your own local repository
+ 1. Fork the project and then clone into your own local repository
  2. Create a branch in your repository in which you will make your changes
- 3. Push that branch to Bitbucket and then create a pull request
+ 3. Ideally use -s to sign-off on commits under the
+ [Developer Certificate of Origin](https://developercertificate.org/).
+ 4. If possible, sign commits using a GPG key.
+ 5. Push that branch and then create a pull request
+ 
+At this point, the PR will be discussed and eventually accepted or rejected by
+the lead maintainer.
 
-At this point, the PR will be discussed and eventually accepted or rejected.
+## Roadmap
+### Major
+
+ * There are no plans for major changes in 2022
+ 
+### Minor
+ * Achieve OpenSSF Best Practices
+ [silver](https://bestpractices.coreinfrastructure.org/en/criteria/1) status
+ 
+## Security
+### Expectations
+This package is a calculation engine and requires no secrets or private
+information. It is checked for memory leaks prior to releases to CRAN using
+ASAN/UBSBAN. Dissemination is handled by CRAN. Bugs are reported via the tracker
+and handled as soon as possible.
+
+### Assurance
+The threat model is that a malicious actor would "poison" the package code by
+adding in elements having nothing to do with the package's purpose but which
+would be used for malicious purposes. This is protected against by having the
+email account of the maintainer—used for verification by CRAN—protected by a
+physical 2FA device (Yubikey) which is carried by the lead maintainer.
