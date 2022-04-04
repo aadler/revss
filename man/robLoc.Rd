@@ -4,7 +4,7 @@
 
 \description{Compute the robust estimate of location for very small samples.}
 \usage{
-robLoc(x, scale = NULL, na.rm = FALSE, maxit = 80, tol = sqrt(.Machine$double.eps))
+robLoc(x, scale = NULL, na.rm = FALSE, maxit = 80L, tol = sqrt(.Machine$double.eps))
 }
 \arguments{
   \item{x}{A numeric vector.}

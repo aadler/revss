@@ -3,7 +3,7 @@
 
 # Robust Location Estimator found in Rousseeuw & Verboven (2002)
 
-robLoc <- function(x, scale = NULL, na.rm = FALSE, maxit = 80,
+robLoc <- function(x, scale = NULL, na.rm = FALSE, maxit = 80L,
                    tol = sqrt(.Machine$double.eps)) {
   if (na.rm) {
     x <- x[!is.na(x)]
@@ -13,10 +13,10 @@ robLoc <- function(x, scale = NULL, na.rm = FALSE, maxit = 80,
     }
   }
   if (!is.null(scale)) {
-    minobs <- 3
+    minobs <- 3L
     s <- scale
   } else {
-    minobs <- 4
+    minobs <- 4L
     s <- mad(x)
   }
   if (length(x) < minobs) {
@@ -24,9 +24,9 @@ robLoc <- function(x, scale = NULL, na.rm = FALSE, maxit = 80,
   } else {
     t <- median(x)
     converged <- FALSE
-    k <- 0
-    while (!converged & k < maxit) {
-      k <- k + 1
+    k <- 0L
+    while (!converged && k < maxit) {
+      k <- k + 1L
       v <- s * mean((2 * plogis((x - t) / s) - 1) / 0.413241928283814)
       converged <- abs(v) <= tol
       t <- t + v
