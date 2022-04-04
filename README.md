@@ -54,8 +54,9 @@ This project intends to have as few dependancies as possible. Please consider
 that when writing code.
 
 ### Style
-Please review and conform to the current code stylistic choices (e.g. 80
-character lines, two-space indentations).
+Please conform to this
+[coding style guide](https://www.avrahamadler.com/coding-style-guide/) as best
+possible.
 
 ### Documentation
 Please provide valid .Rd files and **not** roxygen-style documentation.
