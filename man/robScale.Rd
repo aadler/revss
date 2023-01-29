@@ -40,6 +40,10 @@ before computation takes place. If this is not done then an \code{NA} value in
 
 The tolerance and number of iterations are similar to those in existing base R
 functions.
+
+Rousseeuw & Verboven suggest using this function when there are 3--8 samples.
+It is implied that having more than 8 samples allows the use of more standard
+estimators.
 }
 
 \value{

@@ -26,9 +26,9 @@ Unfortunately, this shares the same acronym as the median absolute deviation
 
 General practice is to adjust the factor for asymptotically normal consistency.
 In large samples this approaches \eqn{\sqrt{\frac{2}{\pi}}}{\sqrt(2 / \pi)}. The
-default is to multiple the results by the reciprocal, but the asymptotic
-behavior may not hold with the smaller sample sizes for which this package is
-intended.
+default is to multiple the results by the reciprocal. However, it is important
+to note that this asymptotic behavior may \strong{not} hold with the smaller
+sample sizes for which this package is intended.
 
 If \code{na.rm} is \code{TRUE} then \code{NA} values are stripped from \code{x}
 before computation takes place. If this is not done then an \code{NA} value in
