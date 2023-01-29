@@ -10,6 +10,11 @@
       samples
     }
   }
+  \subsection{Changed}{
+    \itemize{
+      \item Updated README
+    }
+  }
 }
 
 \section{Version 1.0.4 (2022-04-03)}{

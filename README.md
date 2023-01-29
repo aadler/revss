@@ -35,8 +35,8 @@ A BibTeX entry for LaTeX users is:
 
 ## Acknowledgements
 The author is grateful Dr. Peter Rousseeuw for his response to this
-[MathExchange](https://math.stackexchange.com/questions/2447019/source-for-claim-by-rousseeuw-verboven-regarding-robust-newton-raphson)
-question about the implementation.
+[MathExchange](https://math.stackexchange.com/q/2447019) question about the
+implementation.
 
 ## Contributions
 Please ensure that all contributions comply with both
@@ -50,7 +50,7 @@ This project attempts to follow the changelog system at
 [Keep a CHANGELOG](https://keepachangelog.com/)
 
 ### Dependancies
-This project intends to have as few dependancies as possible. Please consider
+This project intends to have as few dependencies as possible. Please consider
 that when writing code.
 
 ### Style
@@ -83,11 +83,11 @@ the lead maintainer.
 ## Roadmap
 ### Major
 
- * There are no plans for major changes in 2022
+ * There are no plans for major changes at current
  
 ### Minor
- * Achieve OpenSSF Best Practices
- [silver](https://bestpractices.coreinfrastructure.org/en/criteria/1) status
+ 
+ * There are no plans for minor changes at current
  
 ## Security
 ### Expectations
