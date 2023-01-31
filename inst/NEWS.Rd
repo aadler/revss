@@ -2,7 +2,7 @@
 \alias{NEWS}
 \title{NEWS file for the revss package}
 
-\section{Version 1.0.4.9000 (2023-02-19)}{
+\section{Version 1.0.5 (2023-02-01)}{
   \subsection{Added}{
     \itemize{
       \item Explictly mention use case for package to be 3--8 samples
@@ -14,6 +14,7 @@
     \itemize{
       \item Update README
       \item Update Github actions
+      \item Make code more compliant with style guide
     }
   }
 }
