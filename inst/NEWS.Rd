@@ -12,7 +12,8 @@
   }
   \subsection{Changed}{
     \itemize{
-      \item Updated README
+      \item Update README
+      \item Update Github actions
     }
   }
 }
@@ -22,7 +23,7 @@
     \itemize{
       \item Explictly use integers in count and lengths
       \item Use singleton logical comparisons for short-circuit
-      \item Updated README for Best Practice
+      \item Update README for Best Practice
     }
   }
   \subsection{Added}{
