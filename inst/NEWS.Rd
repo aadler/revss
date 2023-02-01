@@ -15,6 +15,7 @@
       \item Update README
       \item Update Github actions
       \item Make code more compliant with style guide
+      \item CITATION updated to use \code{bibentry} per CRAN request
     }
   }
 }
