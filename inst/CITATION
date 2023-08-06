@@ -10,5 +10,5 @@ bibentry(bibtype     = "Manual",
          year         = "2020",
          url          = "https://CRAN.R-project.org/package=revss",
          doi          = "10.5281/zenodo.5874911",
-         note         = "R package version 1.0.5"
+         note         = "R package version 1.0.6"
 )
