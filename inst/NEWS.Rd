@@ -1,3 +1,6 @@
+% Copyright (c) 2020, Avraham Adler All rights reserved
+% SPDX-License-Identifier: BSD-2-Clause
+
 \name{NEWS}
 \alias{NEWS}
 \title{NEWS file for the revss package}

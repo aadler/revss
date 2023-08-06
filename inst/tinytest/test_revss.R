@@ -1,4 +1,8 @@
+# Copyright (c) 2020, Avraham Adler All rights reserved
+# SPDX-License-Identifier: BSD-2-Clause
+
 tol <- sqrt(.Machine$double.eps)
+
 ## Generate Test Data
 eff_seed <- sample(65536, 1)
 set.seed(eff_seed)

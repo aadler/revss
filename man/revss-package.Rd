@@ -1,3 +1,6 @@
+% Copyright (c) 2020, Avraham Adler All rights reserved
+% SPDX-License-Identifier: BSD-2-Clause
+
 \name{revss-package}
 \alias{revss-package}
 \alias{revss}
