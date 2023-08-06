@@ -50,7 +50,7 @@ This project attempts to follow [Semantic Versioning](https://semver.org/)
 This project attempts to follow the changelog system at
 [Keep a CHANGELOG](https://keepachangelog.com/)
 
-### Dependancies
+### Dependencies
 This project intends to have as few dependencies as possible. Please consider
 that when writing code.
 
@@ -94,7 +94,7 @@ the lead maintainer.
 ### Expectations
 This package is a calculation engine and requires no secrets or private
 information. It is checked for memory leaks prior to releases to CRAN using
-ASAN/UBSBAN. Dissemination is handled by CRAN. Bugs are reported via the tracker
+ASAN/UBSAN. Dissemination is handled by CRAN. Bugs are reported via the tracker
 and handled as soon as possible.
 
 ### Assurance
