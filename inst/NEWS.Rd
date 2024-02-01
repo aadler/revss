@@ -9,7 +9,7 @@
   \subsection{Changed}{
     \itemize{
       \item Add \acronym{SPDX} codes to source files.
-      \item Update README.
+      \item Update \file{README} and Github actions.
     }
   }
 }
@@ -37,12 +37,12 @@
     \itemize{
       \item Explictly use integers in count and lengths.
       \item Use singleton logical comparisons for short-circuit.
-      \item Update README for Best Practice.
+      \item Update \file{README} for Best Practice.
     }
   }
   \subsection{Added}{
     \itemize{
-      \item Added Best Practice badge to README.
+      \item Added Best Practice badge to \file{README}.
     }
   }
 }
