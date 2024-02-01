@@ -5,11 +5,11 @@
 \alias{NEWS}
 \title{NEWS file for the revss package}
 
-\section{Version 1.0.6 (2023-08-07)}{
+\section{Version 1.0.6 (2024-02-01)}{
   \subsection{Changed}{
     \itemize{
       \item Add \acronym{SPDX} codes to source files.
-      \item Update \file{README} and Github actions.
+      \item Update \file{README}, Github actions, and unit tests.
     }
   }
 }
