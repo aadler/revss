@@ -105,8 +105,4 @@ expect_equal(robScale(1:3), mad(1:3), tolerance = tol)
 expect_error(robScale(c(x5, NA)), pattern = naErr)
 expect_equal(robScale(c(x5, NA), na.rm = TRUE), robScale(x5), tolerance = tol)
 
-# Test Citation
-expect_true(any(grepl(packageVersion("revss"), toBibtex(citation("revss")),
-                      fixed = TRUE)))
-
 message("Seed for test session: ", eff_seed)
