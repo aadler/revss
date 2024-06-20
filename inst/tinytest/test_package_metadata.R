@@ -22,7 +22,7 @@ if (Sys.info()["nodename"] == "HOME") {
   nws <- news(package = thisPkg)
 
   # Test CITATION has most recent package version
-  expect_true(any(grepl(pV, cit), fixed = TRUE))
+  expect_true(any(grepl(pV, cit, fixed = TRUE)))
 
   # Test NEWS has most recent package version
   expect_true(any(grepl(pV, nws, fixed = TRUE)))
