@@ -12,7 +12,7 @@ title: Package revss
 
 ## Description
 **revss** is an `R` package which implements the estimation techniques described
-in [Rousseeuw & Verboven (2002)](https://www.researchgate.net/publication/223864903_Robust_estimation_in_very_small_samples)
+in [Rousseeuw & Verboven (2002)](https://www.researchgate.net/publication/223864903_Robust_estimation_in_very_small_samples#fullTextFileContent)
 for the location and scale of very small samples.
 
 ## Citation
