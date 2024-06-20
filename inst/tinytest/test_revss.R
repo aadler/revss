@@ -71,14 +71,14 @@ expect_error(robLoc(c(x5, NA)), pattern = naErr)
 expect_equal(robLoc(c(x5, NA), na.rm = TRUE), robLoc(x5), tolerance = tol)
 
 ## RobScale Tests
-expect_equal(robScale(y), 5.88048107946198, tolerance = tol)
+expect_equal(robScale(y), 5.8798343299206977, tolerance = tol)
 
 # Test Exception Handling
 expect_equal(robScale(y[1:3]), mad(y[1:3]), tolerance = tol)
 expect_equal(robScale(c(0.00001, 0, 4)), adm(c(0.00001, 0, 4)), tolerance = tol)
 expect_equal(robScale(c(0.0001, 0, 4)), mad(c(0.0001, 0, 4)), tolerance = tol)
 # Excel precision probably lacking here.
-expect_equal(robScale(c(0.0001, 0, 0, 4)), 0.000101541283431, tolerance = 1e-7)
+expect_equal(robScale(c(1e-4, 0, 0, 4)), 0.000101530115510382, tolerance = 1e-7)
 
 robScaleLocTest <- function(x, loc) {
   x <- x - loc
@@ -87,7 +87,7 @@ robScaleLocTest <- function(x, loc) {
   k <- 0
   while (!converged && k < 80) {
     k <- k + 1
-    v <- sqrt(2 * mean((2 * plogis(x / (s * 0.3739)) - 1) ^ 2))
+    v <- sqrt(2 * mean((2 * plogis(x / (s * 0.37394112142347236)) - 1) ^ 2))
     converged <- abs(v - 1) <= sqrt(.Machine$double.eps)
     s <- s * v
   }
