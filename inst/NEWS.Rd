@@ -19,6 +19,11 @@
       \item Use native \acronym{CRAN} \acronym{DOI}.
     }
   }
+  \subsection{Added}{
+    \itemize{
+      \item Added \pkg{rhub} checking.
+    }
+  }
 }
 
 \section{Version 1.0.6 (2024-02-01)}{
