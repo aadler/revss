@@ -5,6 +5,22 @@
 \alias{NEWS}
 \title{NEWS file for the revss package}
 
+\section{Version 2.0.0 (2024-06-20)}{
+  \subsection{Changed}{
+    \itemize{
+      \item \strong{Breaking:} In \code{robScale}, the constant representing
+      the denominator for \eqn{x} (see equation 26) which allows for
+      \eqn{\beta = \int{\rho(u)\;d\Phi(u)} = 0.5}{beta =
+      integral of rho(u) d Phi(u) = 0.5} was calculated to greater precision
+      than the four digits shown in the paper. This changes results slightly,
+      which is why the major version has been incremented.
+      \item Updated unit tests.
+      \item Expanded package metadata tests.
+      \item Use native \acronym{CRAN} \acronym{DOI}.
+    }
+  }
+}
+
 \section{Version 1.0.6 (2024-02-01)}{
   \subsection{Changed}{
     \itemize{
