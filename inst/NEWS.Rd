@@ -14,6 +14,7 @@
       integral of rho(u) d Phi(u) = 0.5} was calculated to greater precision
       than the four digits shown in the paper. This changes results slightly,
       which is why the major version has been incremented.
+      \item Updated documentation.
       \item Updated unit tests.
       \item Expanded package metadata tests.
       \item Use native \acronym{CRAN} \acronym{DOI}.
