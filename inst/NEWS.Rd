@@ -46,10 +46,11 @@
   }
   \subsection{Changed}{
     \itemize{
-      \item Update README.
+      \item Update \file{README}.
       \item Update Github actions.
       \item Make code more compliant with style guide.
-      \item CITATION updated to use \code{bibentry} per \acronym{CRAN} request.
+      \item \file{CITATION} updated to use \code{bibentry} per \acronym{CRAN}
+      request.
     }
   }
 }
@@ -72,7 +73,7 @@
 \section{Version 1.0.3 (2022-01-19)}{
   \subsection{Changed}{
     \itemize{
-      \item Converted test suite to \code{tinytest} to reduce dependencies.
+      \item Converted test suite to \pkg{tinytest} to reduce dependencies.
       \item Augmented citation with \acronym{DOI}.
     }
   }
@@ -86,7 +87,7 @@
   }
   \subsection{Changed}{
     \itemize{
-      \item Cleaned up help files and README.
+      \item Cleaned up help files and \file{README}.
       \item Cleaned up source code and added \acronym{SPDX} identifiers.
       \item Moved continuous integration to Github Actions.
     }
@@ -104,8 +105,8 @@
 \section{Version 1.0.0 (2020-11-08)}{
   \subsection{Changed}{
     \itemize{
-      \item Considered mature enough for official \dQuote{release}.
-      \item Changed tests to be \code{testthat} 3rd edition compliant.
+      \item Considered mature enough for official release.
+      \item Changed tests to be \pkg{testthat} 3rd edition compliant.
       \item Changed default \code{maxit} to 80.
     }
   }
@@ -117,7 +118,7 @@
   }
   \subsection{Fixed}{
     \itemize{
-      \item Updated README.
+      \item Updated \file{README}.
     }
   }
 }
