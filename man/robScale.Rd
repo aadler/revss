@@ -60,6 +60,7 @@ square of the \eqn{\psi}-function used in \code{\link{robLoc}}. Specifically
 }{\rho(x) = \psi^2(x / 0.37394112142347236)}
 The constant 0.37394112142347236 is necessary so that
 \deqn{\beta = \int\rho(u)\;d\Phi(u)=0.5}{\beta = Int\rho(u)d\Phi(u)=0.5}
+}
 
 \references{
 Rousseeuw, Peter J. and Verboven, Sabine (2002) Robust estimation in very small
