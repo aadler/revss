@@ -9,6 +9,6 @@ bibentry(bibtype     = "Manual",
          title        = "revss: Robust Estimation in Very Small Samples",
          year         = "2020",
          url          = "https://CRAN.R-project.org/package=revss",
-         doi          = "10.5281/zenodo.5874911",
+         doi          = "10.32614/CRAN.package.revss",
          note         = "R package version 1.0.6"
 )

@@ -8,7 +8,6 @@ title: Package revss
 [![R-CMD-check](https://github.com/aadler/revss/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/aadler/revss/actions/workflows/R-CMD-check.yaml)
 [![Codecov test coverage](https://codecov.io/gh/aadler/revss/branch/master/graph/badge.svg)](https://app.codecov.io/gh/aadler/revss?branch=master)
 [![OpenSSF Best Practices](https://bestpractices.coreinfrastructure.org/projects/5541/badge)](https://bestpractices.coreinfrastructure.org/projects/5541)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.5874911.svg)](https://doi.org/10.5281/zenodo.5874911)
 <!-- badges: end -->
 
 ## Description
