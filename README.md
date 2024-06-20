@@ -19,7 +19,7 @@ for the location and scale of very small samples.
 If you use the package, please cite it as per
 [CITATION](https://CRAN.R-project.org/package=minimaxApprox/citation.html).
 
-## Acknowledgements
+## Acknowledgment
 The author is grateful Dr. Peter Rousseeuw for his response to this
 [MathExchange](https://math.stackexchange.com/q/2447019) question about the
 implementation.
