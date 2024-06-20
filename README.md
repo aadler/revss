@@ -6,7 +6,7 @@ title: Package revss
 [![](http://cranlogs.r-pkg.org/badges/last-month/revss)](https://cran.r-project.org/package=revss)
 [![](https://cranlogs.r-pkg.org/badges/grand-total/revss)](https://cran.r-project.org/package=revss)
 [![R-CMD-check](https://github.com/aadler/revss/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/aadler/revss/actions/workflows/R-CMD-check.yaml)
-[![Codecov test coverage](https://codecov.io/gh/aadler/revss/branch/master/graph/badge.svg)](https://app.codecov.io/gh/aadler/revss?branch=master)
+[![codecov](https://codecov.io/gh/aadler/revss/graph/badge.svg?token=HbVHa1SFjv)](https://app.codecov.io/gh/aadler/revss)
 [![OpenSSF Best Practices](https://bestpractices.coreinfrastructure.org/projects/5541/badge)](https://bestpractices.coreinfrastructure.org/projects/5541)
 <!-- badges: end -->
 
