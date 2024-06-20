@@ -56,10 +56,10 @@ to\deqn{\frac{1}{n}\sum_{i = 1}^n\rho\left(\frac{x_i - T_n}{S_n}\right) = \beta
 where \eqn{T_n}{Tn} is fixed at \code{median(x)} and \eqn{\beta} is fixed at
 0.5. The \eqn{\rho}-function selected by Rousseeuw & Verboven is based on the
 square of the \eqn{\psi}-function used in \code{\link{robLoc}}. Specifically
-\deqn{\rho_{log}(x) = \psi_{log}^2\left(\frac{x}{0.3739}\right)}{\rho(x) =
-\psi^2(x / 0.3739)}
-The 0.3739 is needed for \eqn{\beta} to be 0.5.
-}
+\deqn{\rho_{log}(x) = \psi_{log}^2\left(\frac{x}{0.37394112142347236}\right)
+}{\rho(x) = \psi^2(x / 0.37394112142347236)}
+The constant 0.37394112142347236 is necessary so that
+\deqn{\beta = \int\rho(u)\;d\Phi(u)=0.5}{\beta = Int\rho(u)d\Phi(u)=0.5}
 
 \references{
 Rousseeuw, Peter J. and Verboven, Sabine (2002) Robust estimation in very small
