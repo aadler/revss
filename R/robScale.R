@@ -9,7 +9,7 @@ robScale <- function(x, loc = NULL, implbound = 1e-4, na.rm = FALSE,
     x <- x[!is.na(x)]
   } else {
     if (anyNA(x)) {
-      stop("There are NAs in the data yet na.rm is FALSE")
+      stop("There are NAs in the data yet na.rm is FALSE.")
     }
   }
   if (!is.null(loc)) {

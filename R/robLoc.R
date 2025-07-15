@@ -9,7 +9,7 @@ robLoc <- function(x, scale = NULL, na.rm = FALSE, maxit = 80L,
     x <- x[!is.na(x)]
   } else {
     if (anyNA(x)) {
-      stop("There are NAs in the data yet na.rm is FALSE")
+      stop("There are NAs in the data yet na.rm is FALSE.")
     }
   }
   if (!is.null(scale)) {
