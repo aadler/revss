@@ -14,7 +14,7 @@ robScale <- function(x, loc = NULL, implbound = 1e-4, na.rm = FALSE,
   }
   if (!is.null(loc)) {
     x <- x - loc
-    s <- 1.4826 * median(abs(x))
+    s <- 1.4826 * median(abs(x)) # Using four digits to match mad in stats.
     t <- 0
     minobs <- 3L
   } else {
