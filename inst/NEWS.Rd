@@ -9,9 +9,9 @@
   \subsection{Changed}{
     \itemize{
       \item \strong{Breaking:} In \code{robScale}, the constant representing
-      the denominator for \eqn{x} (see equation 26) which allows for
+      the denominator for \eqn{x} (see equation 26)---which allows for
       \eqn{\beta = \int{\rho(u)\;d\Phi(u)} = 0.5}{beta =
-      integral of rho(u) d Phi(u) = 0.5} was calculated to greater precision
+      integral of rho(u) d Phi(u) = 0.5}---was calculated to greater precision
       than the four digits shown in the paper. This changes results slightly,
       which is why the major version has been incremented.
       \item Updated documentation.
