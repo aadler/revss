@@ -3,7 +3,7 @@
 
 # Only test at home. rhub valgrind complains and it should not affect covr.
 
-if (Sys.info()["nodename"] == "HOME") {
+if (Sys.info()["nodename"] == "HOMEDESKTOP") {
 
   # Setup
   myPkgs <- c("Delaporte",
