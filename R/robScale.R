@@ -14,12 +14,12 @@ robScale <- function(x, loc = NULL, implbound = 1e-4, na.rm = FALSE,
   if (!is.null(loc)) {
     x <- x - loc
     s <- 1.4826 * median(abs(x)) # Using four digits to match mad in stats.
-    t <- 0
+    t <- 0         # nolint object_overwrite_linter
     minobs <- 3L
   } else {
     s <- mad(x)
-    t <- median(x)
-    minobs <- 4L
+    t <- median(x) # nolint object_overwrite_linter
+    minobs <- 4L   # nolint object_overwrite_linter
   }
   if (length(x) < minobs) {
     if (mad(x) <= implbound) {

@@ -21,14 +21,14 @@ robLoc <- function(x, scale = NULL, na.rm = FALSE, maxit = 80L,
   if (length(x) < minobs) {
     return(median(x))
   } else {
-    t <- median(x)
+    t <- median(x) # nolint object_overwrite_linter
     converged <- FALSE
     k <- 0L
     while (!converged && k < maxit) {
       k <- k + 1L
       v <- s * mean((2 * plogis((x - t) / s) - 1) / 0.413241928283814)
       converged <- abs(v) <= tol
-      t <- t + v
+      t <- t + v  # nolint object_overwrite_linter
     }
     return(t)
   }
