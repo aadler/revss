@@ -4,7 +4,7 @@
 tol <- sqrt(.Machine$double.eps)
 
 ## Generate Test Data
-eff_seed <- sample(65536, 1)
+eff_seed <- sample.int(65536, 1)
 set.seed(eff_seed)
 x5 <- runif(5, 0, 100)
 t5 <- median(x5)
