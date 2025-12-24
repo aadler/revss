@@ -5,6 +5,21 @@
 \alias{NEWS}
 \title{NEWS file for the revss package}
 
+\section{Version 2.0.1 (2025-12-25)}{
+  \subsection{Fixed}{
+    \itemize{
+      \item Corrected package metadata unit test and switched to using
+      \code{vapply} for type safety.
+      \item Other spelling and punctuation errors addressed.
+    }
+  }
+  \subsection{Changed}{
+    \itemize{
+      \item Updated Github-related files and workflows.
+    }
+  }
+}
+
 \section{Version 2.0.0 (2024-06-20)}{
   \subsection{Changed}{
     \itemize{
