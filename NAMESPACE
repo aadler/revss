@@ -1,2 +1,7 @@
-exportPattern("^[[:alpha:]]+")
-importFrom(stats, median, mad, plogis)
+importFrom(stats,
+           median,
+           mad,
+           plogis)
+export("adm",
+       "robLoc",
+       "robScale")
