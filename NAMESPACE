@@ -2,6 +2,7 @@ importFrom(stats,
            median,
            mad,
            plogis)
-export("adm",
-       "robLoc",
-       "robScale")
+
+export(adm,
+       robLoc,
+       robScale)
