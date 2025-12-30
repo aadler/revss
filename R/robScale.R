@@ -19,7 +19,7 @@ robScale <- function(x, loc = NULL, implbound = 1e-4, na.rm = FALSE,
   } else {
     s <- mad(x)
     t <- median(x) # nolint object_overwrite_linter
-    minobs <- 4L   # nolint object_overwrite_linter
+    minobs <- 4L
   }
   if (length(x) < minobs) {
     if (mad(x) <= implbound) {
