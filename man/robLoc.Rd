@@ -10,13 +10,14 @@
 robLoc(x, scale = NULL, na.rm = FALSE, maxit = 80L, tol = sqrt(.Machine$double.eps))
 }
 \arguments{
-  \item{x}{A numeric vector.}
-  \item{scale}{The scale, if known, can be used to enhance the estimate for the
-  location; defaults to unknown.}
-  \item{na.rm}{If \code{TRUE} then \code{NA} values are stripped from \code{x}
-  before computation takes place.}
-  \item{maxit}{The maximum number of iterations; defaults to 80.}
-  \item{tol}{The desired accuracy.}
+  \item{x}{\strong{numeric}; A vector of values.}
+  \item{scale}{\strong{numeric}; The scale, if known, can be used to enhance the
+  estimate for the location. Defaults to unknown.}
+  \item{na.rm}{\strong{logical}; If \code{TRUE} then \code{NA} values are
+  stripped from \code{x} before computation takes place.}
+  \item{maxit}{\strong{numeric}; The maximum number of iterations. Defaults to
+  80.}
+  \item{tol}{\strong{numeric}; The desired numeric tolerance.}
 }
 \details{
 Computes the M-estimator for location using the logistic \eqn{\psi} function of

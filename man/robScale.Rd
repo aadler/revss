@@ -13,15 +13,16 @@ robScale(x, loc = NULL, implbound = 1e-4, na.rm = FALSE, maxit = 80L,
 }
 
 \arguments{
-  \item{x}{A numeric vector.}
-  \item{loc}{The location, if known, can be used to enhance the estimate for
-  the scale; defaults to unknown.}
-  \item{implbound}{The smallest value that \code{mad} is allowed before being
-  considered too close to 0.}
-  \item{na.rm}{If \code{TRUE} then \code{NA} values are stripped from \code{x}
-  before computation takes place.}
-  \item{maxit}{The maximum number of iterations; defaults to 80.}
-  \item{tol}{The desired accuracy.}
+  \item{x}{\strong{numeric}; A vector of values.}
+  \item{loc}{\strong{numeric}; The location, if known, can be used to enhance
+  the estimate for the scale. Defaults to unknown.}
+  \item{implbound}{\strong{numeric}; The smallest value that \code{mad} is
+  allowed before being considered too close to 0.}
+  \item{na.rm}{\strong{logical}; If \code{TRUE} then \code{NA} values are
+  stripped from \code{x} before computation takes place.}
+  \item{maxit}{\strong{numeric}; The maximum number of iterations. Defaults to
+  80.}
+  \item{tol}{\strong{numeric}; The desired numeric tolerance.}
 }
 
 \details{

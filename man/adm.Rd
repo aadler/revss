@@ -11,13 +11,13 @@ default) adjust by a factor for asymptotically normal consistency.}
 \usage{adm(x, center = median(x), constant = sqrt(pi / 2), na.rm = FALSE)}
 
 \arguments{
-  \item{x}{A numeric vector.}
-  \item{center}{The central value from which to measure the average distance.
-  Defaults to the median.}
-  \item{constant}{A scale factor for asymptotic normality defaulting to
-  \eqn{\sqrt{\frac{\pi}{2}}}{\sqrt(\pi / 2)}.}
-  \item{na.rm}{If \code{TRUE} then \code{NA} values are stripped from \code{x}
-  before computation takes place.}
+  \item{x}{\strong{numeric}; A vector of values.}
+  \item{center}{\strong{numeric}; The central value from which to measure the
+  average distance. Defaults to the median.}
+  \item{constant}{\strong{numeric}; A scale factor for asymptotic normality
+  defaulting to \eqn{\sqrt{\frac{\pi}{2}}}{\sqrt(\pi / 2)}.}
+  \item{na.rm}{\strong{logical}; If \code{TRUE} then \code{NA} values are
+  stripped from \code{x} before computation takes place.}
 }
 
 \details{
