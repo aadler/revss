@@ -5,4 +5,5 @@ importFrom(stats,
 
 export(adm,
        robLoc,
-       robScale)
+       robScale,
+       mdm)
