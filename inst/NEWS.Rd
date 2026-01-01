@@ -5,18 +5,32 @@
 \alias{NEWS}
 \title{NEWS file for the revss package}
 
-\section{Version 2.0.1 (2026-01-07)}{
-  \subsection{Fixed}{
+\section{Version 3.0.0 (2026-01-07)}{
+  \subsection{Added}{
     \itemize{
-      \item Corrected package metadata unit test.
+      \item Added small-sample bias-corrected version of \code{mad}---called
+      \code{mdm}---found in Croux & Rousseeuw (1992)
+      (\href{https://github.com/aadler/revss/issues/1}{Issue #1}; thank you
+      \href{https://github.com/filiporn}{@filiporn}).
     }
   }
   \subsection{Changed}{
     \itemize{
+      \item \strong{Breaking:} Rousseeuw & Verboven (2002) actually use a
+      small sample bias-corrected version of \code{mad} found in Croux &
+      Rousseeuw (1992). The package now implements this as a new function,
+      \code{mdm}, and uses it inside \code{robLoc} and \code{robScale}
+      (\href{https://github.com/aadler/revss/issues/1}{Issue #1}; thank you
+      \href{https://github.com/filiporn}{@filiporn}).
       \item Switched package metadata unit test to use \code{vapply} for type
       safety.
       \item Updated Github-related files and workflows.
       \item Other spelling and punctuation errors addressed.
+    }
+  }
+  \subsection{Fixed}{
+    \itemize{
+      \item Corrected package metadata unit test.
     }
   }
 }
