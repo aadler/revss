@@ -12,6 +12,7 @@ adm5 <- mean(abs(x5 - t5))
 mad5 <- median(abs(x5 - t5))
 y <- c(9, 2, 14, 4)
 naErr <- "There are NAs in the data yet na.rm is FALSE"
+oneValErr <- "There needs to be at least two values for a robust median."
 
 ## ADM Tests
 expect_equal(adm(x5), adm5 * sqrt(pi / 2), tolerance = tol)
@@ -20,6 +21,15 @@ expect_equal(adm(x5, constant = 1), adm5, tolerance = tol)
 expect_equal(adm(c(x5, NA), constant = 1, na.rm = TRUE), adm5, tolerance = tol)
 expect_true(is.na(adm(c(x5, NA))))
 expect_true(is.na(adm(c(x5, NA), constant = 1)))
+
+## MDM Tests
+expect_equal(mdm(y), 1.363 * mad(y), tolerance = tol)
+z <- runif(12)
+expect_equal(mdm(z), 12 / (12 - 0.8) * mad(z), tolerance = tol)
+expect_equal(mdm(c(NA, z, NA), na.rm = TRUE), mdm(z), tolerance = tol)
+expect_true(is.na(mdm(c(NA, z, NA))))
+expect_error(mdm(4), oneValErr)
+
 
 ## RobLoc Tests
 robLocTest <- function(x, na.rm = FALSE, tol = sqrt(.Machine$double.eps)) {
@@ -30,7 +40,7 @@ robLocTest <- function(x, na.rm = FALSE, tol = sqrt(.Machine$double.eps)) {
     return(median(x))
   } else {
     obj <- function(x, data) {
-      sum((2 * plogis((data - x) / mad(data)) - 1)) ^ 2
+      sum((2 * plogis((data - x) / mdm(data)) - 1)) ^ 2
     }
     fit <- optimize(f = obj, interval = range(x), data = x, tol = tol)
     return(fit$minimum)
@@ -71,14 +81,15 @@ expect_error(robLoc(c(x5, NA)), pattern = naErr)
 expect_equal(robLoc(c(x5, NA), na.rm = TRUE), robLoc(x5), tolerance = tol)
 
 ## RobScale Tests
-expect_equal(robScale(y), 5.8798343299206977, tolerance = tol)
+expect_equal(robScale(y), 5.8798344700816374, tolerance = tol)
 
 # Test Exception Handling
-expect_equal(robScale(y[1:3]), mad(y[1:3]), tolerance = tol)
+expect_equal(robScale(y[1:3]), mdm(y[1:3]), tolerance = tol)
 expect_equal(robScale(c(0.00001, 0, 4)), adm(c(0.00001, 0, 4)), tolerance = tol)
-expect_equal(robScale(c(0.0001, 0, 4)), mad(c(0.0001, 0, 4)), tolerance = tol)
+expect_equal(robScale(c(0.0001, 0, 4)), mdm(c(0.0001, 0, 4)), tolerance = tol)
 # Excel precision probably lacking here.
-expect_equal(robScale(c(1e-4, 0, 0, 4)), 0.000101530115510382, tolerance = 1e-7)
+expect_equal(robScale(c(1e-4, 0, 0, 4)), 0.00010153011522291195,
+             tolerance = 1e-7)
 
 robScaleLocTest <- function(x, loc) {
   x <- x - loc
@@ -99,7 +110,7 @@ expect_equal(robScale(y, loc = 7), robScaleLocTest(y, loc = 7), tolerance = tol)
 expect_equal(robScale(1:3, loc = 3), robScaleLocTest(1:3, loc = 3),
              tolerance = tol)
 expect_false(isTRUE(all.equal(robScale(1:3), robScaleLocTest(1:3, loc = 0))))
-expect_equal(robScale(1:3), mad(1:3), tolerance = tol)
+expect_equal(robScale(1:3), mdm(1:3), tolerance = tol)
 
 # Test Error Trapping
 expect_error(robScale(c(x5, NA)), pattern = naErr)
