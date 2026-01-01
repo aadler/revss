@@ -17,23 +17,23 @@ robScale <- function(x, loc = NULL, implbound = 1e-4, na.rm = FALSE,
     t <- 0         # nolint object_overwrite_linter
     minobs <- 3L
   } else {
-    s <- mad(x)
+    s <- mdm(x)
     t <- median(x) # nolint object_overwrite_linter
     minobs <- 4L
   }
   if (length(x) < minobs) {
-    if (mad(x) <= implbound) {
+    if (mdm(x) <= implbound) {
       return(adm(x))
     } else {
-      return(mad(x))
+      return(mdm(x))
     }
   } else {
+    b <- 0.37394112142347236
     converged <- FALSE
     k <- 0L
     while (!converged && k < maxit) {
       k <- k + 1L
-      v <- sqrt(2 * mean((2 * plogis(((x - t) / s) /
-                                       0.37394112142347236) - 1) ^ 2))
+      v <- sqrt(2 * mean((2 * plogis(((x - t) / s) / b) - 1) ^ 2))
       converged <- abs(v - 1) <= tol
       s <- s * v
     }

@@ -16,7 +16,7 @@ robLoc <- function(x, scale = NULL, na.rm = FALSE, maxit = 80L,
     s <- scale
   } else {
     minobs <- 4L
-    s <- mad(x)
+    s <- mdm(x)
   }
   if (length(x) < minobs) {
     return(median(x))
