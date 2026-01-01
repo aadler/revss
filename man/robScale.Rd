@@ -40,9 +40,9 @@ to distances from 0 and iterating on the adjusted sequence.
 
 If \code{na.rm} is \code{TRUE} then \code{NA} values are stripped from \code{x}
 before computation takes place. If this is not done then an \code{NA} value in
-\code{x} will cause \code{mad} to return \code{NA}.
+\code{x} will return an error.
 
-The tolerance and number of iterations are similar to those in existing base R
+The tolerance and number of iterations are similar to those in existing base \R
 functions.
 
 Rousseeuw & Verboven suggest using this function when there are 3--8 samples.

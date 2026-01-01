@@ -37,6 +37,7 @@ If \code{na.rm} is \code{TRUE} then \code{NA} values are stripped from \code{x}
 before computation takes place. If this is not done then an \code{NA} value in
 \code{x} will cause \code{mad} to return \code{NA}.
 }
+
 \value{
 \deqn{ADM = C\frac{1}{n}\sum_{i=1}^n{|x_i - \textrm{center}(x)|}}{ADM =
 C * mean(abs(x - center(x)))}
@@ -49,11 +50,13 @@ Nair, K. R. (1947) A Note on the Mean Deviation from the Median.
 }
 
 \author{Avraham Adler \email{Avraham.Adler@gmail.com}}
+
 \seealso{
 See \code{\link[stats]{mad}} in \pkg{stats} for the median absolute deviation
 from the \code{\link{median}} and \code{\link{mdm}} in this package for a
 small-sample bias-corrected version of \code{mad}.
 }
+
 \examples{
 adm(c(1:9))
 x <- c(1,2,3,5,7,8)

@@ -6,9 +6,11 @@
 \title{Robust Estimate of Location}
 
 \description{Compute the robust estimate of location for very small samples.}
+
 \usage{
 robLoc(x, scale = NULL, na.rm = FALSE, maxit = 80L, tol = sqrt(.Machine$double.eps))
 }
+
 \arguments{
   \item{x}{\strong{numeric}; A vector of values.}
   \item{scale}{\strong{numeric}; The scale, if known, can be used to enhance the
@@ -19,6 +21,7 @@ robLoc(x, scale = NULL, na.rm = FALSE, maxit = 80L, tol = sqrt(.Machine$double.e
   80.}
   \item{tol}{\strong{numeric}; The desired numeric tolerance.}
 }
+
 \details{
 Computes the M-estimator for location using the logistic \eqn{\psi} function of
 Rousseeuw & Verboven (2002, 4.1). If there are three or fewer entries, the
@@ -30,15 +33,16 @@ scale for the \code{mad}.
 
 If \code{na.rm} is \code{TRUE} then \code{NA} values are stripped from \code{x}
 before computation takes place.  If this is not done then an \code{NA} value in
-\code{x} will cause \code{mad} to return \code{NA}.
+\code{x} will return an error.
 
-The tolerance and number of iterations are similar to those in existing base R
+The tolerance and number of iterations are similar to those in existing base \R
 functions.
 
 Rousseeuw & Verboven suggest using this function when there are 3--8 samples.
 It is implied that having more than 8 samples allows the use of more standard
 estimators.
 }
+
 \value{
 Solves for the robust estimate of location, \eqn{T_n}{Tn}, which is the solution
 to
@@ -53,6 +57,7 @@ by Rousseeuw & Verboven is:
 
 This is equivalent to \code{2 * plogis(x) - 1}.
 }
+
 \references{
 Croux, Christophe and Rousseeuw, Peter J. (1992)
 \href{https://wis.kuleuven.be/stat/robust/papers/publications-1992/crouxrousseeuw-timeeffalgosnqn-compstat-1992.pdf}{
@@ -63,10 +68,13 @@ Rousseeuw, Peter J. and Verboven, Sabine (2002) Robust estimation in very small
 samples. \emph{Computational Statistics & Data Analysis}, \bold{40}, (4),
 741--758. \doi{10.1016/S0167-9473(02)00078-6}
 }
+
 \author{Avraham Adler \email{Avraham.Adler@gmail.com}}
+
 \seealso{
 \code{\link{median}}
 }
+
 \examples{
 robLoc(c(1:9))
 x <- c(1,2,3,5,7,8)
