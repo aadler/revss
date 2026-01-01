@@ -77,7 +77,7 @@ samples. \emph{Computational Statistics & Data Analysis}, \bold{40}, (4),
 \author{Avraham Adler \email{Avraham.Adler@gmail.com}}
 
 \seealso{
-See \code{\link{adm}}, \code{\link[stats]{mad}}, and \code{\link{mdm}} for more
+See \code{\link{adm}}, \code{\link[stats]{mad}}, and \code{\link{madn}} for more
 basic robust estimators of scale.
 
 See \code{\link[robustbase]{Qn}} and \code{\link[robustbase]{Sn}} in the

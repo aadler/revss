@@ -1,22 +1,21 @@
 % Copyright (c) 2025, Avraham Adler All rights reserved
 % SPDX-License-Identifier: BSD-2-Clause
 
-\name{mdm}
-\alias{mdm}
+\name{madn}
+\alias{madn}
 \title{
-Median Deviation from the Median (Median Absolute Deviation) for Small Samples
+Median Median Absolute Deviation for Small Sample Size
 }
 
 \description{
   The median absolute deviation (\acronym{MAD}) is actually the median distance
   to the median. For small samples, the normal bias correction of 1.4826 has
   been shown by Croux & Rousseeuw (1992) to be insufficient. This function
-  applies the correction factors found in that paper. To prevent confusion, it
-  uses the name suggested in Rousseeuw & Verboven (2002).
+  applies the \eqn{n}-specific \eqn{b_n} correction factors found in that paper.
 }
 
 \usage{
-mdm(x, na.rm = FALSE)
+madn(x, na.rm = FALSE)
 }
 
 \arguments{
@@ -27,14 +26,16 @@ mdm(x, na.rm = FALSE)
 
 \details{
  Croux & Rousseeuw (1992) used Monte-Carlo methods to calculate correction
- factors to make the standard MAD estimate more unbiased for small samples.
- This function simply applies those factors to the \code{\link[stats]{mad}}
- function already existing in \pkg{stats}.
+ factors to make the standard \acronym{MAD} estimate more unbiased for small
+ samples. They called this new function \eqn{\textrm{MAD}_n} to differentiate it
+ from \eqn{\textrm{MAD}}, given the \eqn{b_n} multiplier is dependent on
+ \eqn{n}---the size of the sample. This function applies those factors to the
+ \code{\link[stats]{mad}} function already existing in \pkg{stats}.
 }
 
 \value{
-\deqn{MDM_n = b_n\;1.4826\;\underset{i}{\textrm{med}}\;|x_i -
-\underset{j}{\textrm{med}}\;x_j|}{MDM = b_n * 1.4826 *
+\deqn{MAD_n = b_n\;1.4826\;\underset{i}{\textrm{med}}\;|x_i -
+\underset{j}{\textrm{med}}\;x_j|}{MADn = b_n * 1.4826 *
 median(abs(x - median(x)))}
 
 where \eqn{b_n} is calculated by Croux & Rousseeuw (1992).
@@ -63,10 +64,10 @@ See \code{\link{adm}} in this package for the average deviation from the
 
 \examples{
 X <- c(1, 2, 3, 4, 5)
-mdm(X)
+madn(X)
 
 # The correction constant for length 5 is 1.206
-all.equal(mdm(X), 1.206 * mad(X))
+all.equal(madn(X), 1.206 * mad(X))
 }
 
 \keyword{univar}

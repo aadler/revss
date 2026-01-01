@@ -17,15 +17,15 @@ robScale <- function(x, loc = NULL, implbound = 1e-4, na.rm = FALSE,
     t <- 0         # nolint object_overwrite_linter
     minobs <- 3L
   } else {
-    s <- mdm(x)
+    s <- madn(x)
     t <- median(x) # nolint object_overwrite_linter
     minobs <- 4L
   }
   if (length(x) < minobs) {
-    if (mdm(x) <= implbound) {
+    if (madn(x) <= implbound) {
       return(adm(x))
     } else {
-      return(mdm(x))
+      return(madn(x))
     }
   } else {
     b <- 0.37394112142347236

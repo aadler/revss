@@ -1,12 +1,12 @@
 # Copyright (c) 2025, Avraham Adler All rights reserved
 # SPDX-License-Identifier: BSD-2-Clause
 
-# Median Deviation from the Median with bias correction based on Croux &
+# Median Absolute Deviation with small-sample bias correction based on Croux &
 # Rousseeuw (1992).
 # https://wis.kuleuven.be/stat/robust/papers/publications-1992/crouxrousseeuw-timeeffalgosnqn-compstat-1992.pdf # nolint line_length_linter
 # Can replace 'mad' in stats for small samples.
 
-mdm <- function(x, na.rm = FALSE) {
+madn <- function(x, na.rm = FALSE) {
   if (na.rm) x <- x[!is.na(x)]
   n <- length(x)
   if (n <= 1) {
