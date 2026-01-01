@@ -54,6 +54,11 @@ by Rousseeuw & Verboven is:
 This is equivalent to \code{2 * plogis(x) - 1}.
 }
 \references{
+Croux, Christophe and Rousseeuw, Peter J. (1992)
+\href{https://wis.kuleuven.be/stat/robust/papers/publications-1992/crouxrousseeuw-timeeffalgosnqn-compstat-1992.pdf}{
+"Time-Efficient Algorithms for Two Highly Robust Estimators of Scale"},
+\emph{Computational Statistics}, Vol. 1, 411--428
+
 Rousseeuw, Peter J. and Verboven, Sabine (2002) Robust estimation in very small
 samples. \emph{Computational Statistics & Data Analysis}, \bold{40}, (4),
 741--758. \doi{10.1016/S0167-9473(02)00078-6}

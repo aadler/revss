@@ -64,6 +64,11 @@ The constant 0.37394112142347236 is necessary so that
 }
 
 \references{
+Croux, Christophe and Rousseeuw, Peter J. (1992)
+\href{https://wis.kuleuven.be/stat/robust/papers/publications-1992/crouxrousseeuw-timeeffalgosnqn-compstat-1992.pdf}{
+"Time-Efficient Algorithms for Two Highly Robust Estimators of Scale"},
+\emph{Computational Statistics}, Vol. 1, 411--428
+
 Rousseeuw, Peter J. and Verboven, Sabine (2002) Robust estimation in very small
 samples. \emph{Computational Statistics & Data Analysis}, \bold{40}, (4),
 741--758. \doi{10.1016/S0167-9473(02)00078-6}
@@ -72,11 +77,12 @@ samples. \emph{Computational Statistics & Data Analysis}, \bold{40}, (4),
 \author{Avraham Adler \email{Avraham.Adler@gmail.com}}
 
 \seealso{
-\code{\link{adm}} and \code{\link{mad}} as basic robust estimators of scale.
+See \code{\link{adm}}, \code{\link[stats]{mad}}, and \code{\link{mdm}} for more
+basic robust estimators of scale.
 
-\code{\link[robustbase]{Qn}} and \code{\link[robustbase]{Sn}} in the
+See \code{\link[robustbase]{Qn}} and \code{\link[robustbase]{Sn}} in the
 \href{https://CRAN.R-project.org/package=robustbase}{\pkg{robustbase}} package
-which are specialized robust scale estimators for larger samples. The latter two
+for more specialized robust scale estimators for larger samples. These last two
 are based on code written by Peter Rousseeuw.
 }
 
