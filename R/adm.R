@@ -5,8 +5,6 @@
 # in stats
 
 adm <- function(x, center = median(x), constant = sqrt(pi / 2), na.rm = FALSE) {
-  if (na.rm) {
-    x <- x[!is.na(x)]
-  }
+  if (na.rm) x <- x[!is.na(x)]
   constant * mean(abs(x - center))
 }
