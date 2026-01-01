@@ -3,7 +3,7 @@
 
 # Median Deviation from the Median with bias correction based on Croux &
 # Rousseeuw (1992).
-# https://wis.kuleuven.be/stat/robust/papers/publications-1992/crouxrousseeuw-timeeffalgosnqn-compstat-1992.pdf nolint line_length_linter
+# https://wis.kuleuven.be/stat/robust/papers/publications-1992/crouxrousseeuw-timeeffalgosnqn-compstat-1992.pdf # nolint line_length_linter
 # Can replace 'mad' in stats for small samples.
 
 mdm <- function(x, na.rm = FALSE) {
