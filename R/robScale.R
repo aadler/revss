@@ -13,7 +13,7 @@ robScale <- function(x, loc = NULL, implbound = 1e-4, na.rm = FALSE,
 
   if (!is.null(loc)) {
     x <- x - loc
-    s <- 1.4826 * median(abs(x)) # Using four digits to match mad in stats.
+    s <- 1.4826 * median(abs(x)) # MDZ in paper. Use 4 digits like mad in stats.
     t <- 0         # nolint object_overwrite_linter
     minobs <- 3L
   } else {
