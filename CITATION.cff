@@ -8,8 +8,11 @@ message: 'To cite package "revss" in publications use:'
 type: software
 license: BSD-2-Clause
 title: 'revss: Robust Estimation in Very Small Samples'
-version: 2.0.0
+version: 3.0.0
 doi: 10.32614/CRAN.package.revss
+identifiers:
+- type: doi
+  value: 10.32614/CRAN.package.revss
 abstract: Implements the estimation techniques described in Rousseeuw & Verboven (2002)
   <https://doi.org/10.1016/S0167-9473(02)00078-6> for the location and scale of very
   small samples.
@@ -29,11 +32,11 @@ preferred-citation:
   year: '2020'
   url: https://CRAN.R-project.org/package=revss
   doi: 10.32614/CRAN.package.revss
-  notes: R package version 2.0.0
+  notes: R package version 3.0.0
 repository: https://CRAN.R-project.org/package=revss
 repository-code: https://github.com/aadler/revss
 url: https://github.com/aadler/revss
-date-released: '2024-06-20'
+date-released: '2026-01-07'
 contact:
 - family-names: Adler
   given-names: Avraham
