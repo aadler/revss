@@ -50,8 +50,9 @@ Nair, K. R. (1947) A Note on the Mean Deviation from the Median.
 
 \author{Avraham Adler \email{Avraham.Adler@gmail.com}}
 \seealso{
-\code{\link[stats]{mad}} for the median absolute deviation from the
-\code{\link{median}}
+See \code{\link[stats]{mad}} in \pkg{stats} for the median absolute deviation
+from the \code{\link{median}} and \code{\link{mdm}} in this package for a
+small-sample bias-corrected version of \code{mad}.
 }
 \examples{
 adm(c(1:9))
