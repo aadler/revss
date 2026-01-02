@@ -22,6 +22,11 @@ expect_equal(adm(c(x5, NA), constant = 1, na.rm = TRUE), adm5, tolerance = tol)
 expect_true(is.na(adm(c(x5, NA))))
 expect_true(is.na(adm(c(x5, NA), constant = 1)))
 
+## Mean Absolute Deviation from the Mean
+expect_equal(adm(x5, center = mean(x5)),
+             sqrt(pi / 2) * mean(abs(x5 - mean(x5))),
+             tolerance = tol)
+
 ## madn Tests
 expect_equal(madn(y), 1.363 * mad(y), tolerance = tol)
 z <- runif(12)
