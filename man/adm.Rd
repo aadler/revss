@@ -35,7 +35,7 @@ the same value as the mean absolute deviation from the mean
 \code{center = mean(x)} in the function call, where \code{x} is whatever is
 being passed in the first position.
 
-Given the asypmtotic behavior, the default is to multiple the results by the
+Given the asymptotic behavior, the default is to multiple the results by the
 reciprocal---\eqn{\sqrt{\frac{\pi}{2}}}{\sqrt(\pi / 2)}. However, it is
 important to note that this asymptotic behavior may \strong{not} hold with the
 smaller sample sizes for which this package is intended.
