@@ -22,16 +22,23 @@ default) adjust by a factor for asymptotically normal consistency.}
 
 \details{
 Computes the average distance, as an absolute value, between each observation
-and the central observation---usually the median.  In statistical literature
-this is also called the \bold{mean absolute deviation around the median}.
+and the central observation---usually the median. In statistical literature this
+is also called the \bold{mean absolute deviation around the median}.
 Unfortunately, this shares the same acronym as the median absolute deviation
 (\acronym{MAD}), which is the median equivalent of this function.
 
 General practice is to adjust the factor for asymptotically normal consistency.
-In large samples this approaches \eqn{\sqrt{\frac{2}{\pi}}}{\sqrt(2 / \pi)}. The
-default is to multiple the results by the reciprocal. However, it is important
-to note that this asymptotic behavior may \strong{not} hold with the smaller
-sample sizes for which this package is intended.
+In large samples, assuming the Gaussian distribution, the mean absolute
+deviation from the median approaches \eqn{\sqrt{\frac{2}{\pi}}}{\sqrt(2 / \pi)},
+the same value as the mean absolute deviation from the mean
+(Pham-Gia & Hung 2001). This latter statistic may be returned by passing
+\code{center = mean(x)} in the function call, where \code{x} is whatever is
+being passed in the first position.
+
+Given the asypmtotic behavior, the default is to multiple the results by the
+reciprocal---\eqn{\sqrt{\frac{\pi}{2}}}{\sqrt(\pi / 2)}. However, it is
+important to note that this asymptotic behavior may \strong{not} hold with the
+smaller sample sizes for which this package is intended.
 
 If \code{na.rm} is \code{TRUE} then \code{NA} values are stripped from \code{x}
 before computation takes place. If this is not done then an \code{NA} value in
@@ -46,7 +53,11 @@ where \eqn{C} is the consistency constant and \code{center} defaults to
 \code{median}.}
 \references{
 Nair, K. R. (1947) A Note on the Mean Deviation from the Median.
-\emph{Biometrika}, \bold{34}, 3/4, 360--362. \doi{10.2307/2332448}
+\emph{Biometrika}, \strong{34}, 3/4, 360--362. \doi{10.2307/2332448}
+
+Pham-Gia, T. and Hung, T. L. (2001) "The mean and median absolute deviations,"
+\emph{Mathematical and Computer Modelling}, \strong{34} (7–8), 921--936.
+\doi{10.1016/s0895-7177(01)00109-1}
 }
 
 \author{Avraham Adler \email{Avraham.Adler@gmail.com}}
