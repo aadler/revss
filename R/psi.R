@@ -17,3 +17,7 @@
 psi <- function(x) {
   .Call(psi_c, as.double(x))
 }
+
+psisq <- function(x) {
+  .Call(psisq_c, as.double(x))
+}
