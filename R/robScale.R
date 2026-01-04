@@ -33,7 +33,7 @@ robScale <- function(x, loc = NULL, implbound = 1e-4, na.rm = FALSE,
     k <- 0L
     while (!converged && k < maxit) {
       k <- k + 1L
-      v <- sqrt(2 * mean((2 * plogis(((x - t) / s) / b) - 1) ^ 2))
+      v <- sqrt(2 * mean((psi(((x - t) / s) / b)) ^ 2))
       converged <- abs(v - 1) <= tol
       s <- s * v
     }

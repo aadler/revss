@@ -26,7 +26,7 @@ robLoc <- function(x, scale = NULL, na.rm = FALSE, maxit = 80L,
     k <- 0L
     while (!converged && k < maxit) {
       k <- k + 1L
-      v <- s * mean((2 * plogis((x - t) / s) - 1) / 0.413241928283814)
+      v <- s * mean((psi((x - t) / s) / 0.413241928283814))
       converged <- abs(v) <= tol
       t <- t + v  # nolint object_overwrite_linter
     }
