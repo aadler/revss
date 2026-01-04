@@ -22,6 +22,9 @@
       \code{madn}, and uses it inside \code{robLoc} and \code{robScale}
       (\href{https://github.com/aadler/revss/issues/1}{Issue #1}; thank you
       \href{https://github.com/filiporn}{@filiporn}).
+      \item Switched from using \code{\link[stats]{plogis}} to using internal,
+      nearly twice as fast, function \code{psi} to calculate \eqn{\psi_{log}(x)}
+      for \code{robLoc} and \code{robScale}.
       \item Switched package metadata unit test to use \code{vapply} for type
       safety.
       \item Updated Github-related files and workflows.
