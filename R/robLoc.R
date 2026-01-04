@@ -5,6 +5,11 @@
 
 robLoc <- function(x, scale = NULL, na.rm = FALSE, maxit = 80L,
                    tol = sqrt(.Machine$double.eps)) {
+
+  if (!is.numeric(x)) {
+    stop("x contains non-numeric entries.")
+  }
+
   if (na.rm) {
     x <- x[!is.na(x)]
   } else if (anyNA(x)) {

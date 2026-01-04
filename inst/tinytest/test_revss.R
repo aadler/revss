@@ -13,6 +13,7 @@ mad5 <- median(abs(x5 - t5))
 y <- c(9, 2, 14, 4)
 naErr <- "There are NAs in the data yet na.rm is FALSE"
 oneValErr <- "There needs to be at least two values for a robust median."
+numErr <- "x contains non-numeric entries."
 
 ## ADM Tests
 expect_equal(adm(x5), adm5 * sqrt(pi / 2), tolerance = tol)
@@ -81,9 +82,12 @@ expect_equal(robLoc(c(1, 8, 12), scale = 5),
 expect_equal(robLoc(c(1, 8), scale = 5), median(c(1, 8)), tolerance = tol)
 expect_false(isTRUE(all.equal(robLoc(c(1, 8, 12), scale = 5),
                               median(c(1, 8, 12)))))
+
+expect_equal(robLoc(c(5L, 8L, 19L)), robLoc(c(5, 8, 19)), tolerance = tol)
 # RobLoc Error Trapping
 expect_error(robLoc(c(x5, NA)), pattern = naErr)
 expect_equal(robLoc(c(x5, NA), na.rm = TRUE), robLoc(x5), tolerance = tol)
+expect_error(robLoc(c(x5, "A")), pattern = numErr)
 
 ## RobScale Tests
 expect_equal(robScale(y), 5.8798344700816374, tolerance = tol)
@@ -95,6 +99,9 @@ expect_equal(robScale(c(0.0001, 0, 4)), madn(c(0.0001, 0, 4)), tolerance = tol)
 # Excel precision probably lacking here.
 expect_equal(robScale(c(1e-4, 0, 0, 4)), 0.00010153011522291195,
              tolerance = 1e-7)
+expect_equal(robScale(c(1L, 0L, 3L, 5L)),
+             robScale(c(1, 0, 3, 5)),
+             tolerance = tol)
 
 robScaleLocTest <- function(x, loc) {
   x <- x - loc
@@ -120,5 +127,6 @@ expect_equal(robScale(1:3), madn(1:3), tolerance = tol)
 # Test Error Trapping
 expect_error(robScale(c(x5, NA)), pattern = naErr)
 expect_equal(robScale(c(x5, NA), na.rm = TRUE), robScale(x5), tolerance = tol)
+expect_error(robScale(c(x5, "A")), pattern = numErr)
 
 message("Seed for test session: ", eff_seed)

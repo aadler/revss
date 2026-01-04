@@ -15,4 +15,4 @@ BugReports: https://github.com/aadler/revss/issues
 Encoding: UTF-8
 Suggests: covr, tinytest
 Imports: stats
-NeedsCompilation: no
+NeedsCompilation: yes

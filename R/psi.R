@@ -7,8 +7,13 @@
 # of plogis can be twice as fast.
 # (AA: 2026-01-04)
 
+# psi <- function(x) {
+#   # When x large, logit returns 1.
+#   xx <- expm1(pmin.int(x, 100))
+#   xx / (xx + 2)
+# }
+
+# Profiling shows psi/plogis as a bottlneck, so ported to C.
 psi <- function(x) {
-  # When x large, logit returns 1.
-  xx <- expm1(pmin.int(x, 100))
-  xx / (xx + 2)
+  .Call(psi_c, as.double(x))
 }
