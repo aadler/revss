@@ -33,15 +33,17 @@ robScale <- function(x, loc = NULL, implbound = 1e-4, na.rm = FALSE,
       return(madn(x))
     }
   } else {
-    b <- 0.37394112142347236
-    converged <- FALSE
-    k <- 0L
-    while (!converged && k < maxit) {
-      k <- k + 1L
-      v <- sqrt(2 * mean(psisq(((x - t) / s) / b)))
-      converged <- abs(v - 1) <= tol
-      s <- s * v
-    }
-    return(s)
+    # b <- 0.37394112142347236
+    # converged <- FALSE
+    # k <- 0L
+    # while (!converged && k < maxit) {
+    #   k <- k + 1L
+    #   v <- sqrt(2 * mean(psi(((x - t) / s) / b) ^ 2))
+    #   converged <- abs(v - 1) <= tol
+    #   s <- s * v
+    # }
+    # return(s)
+    .Call(robScale_c, as.double(x), as.double(t), as.double(s),
+          as.integer(maxit), as.double(tol))
   }
 }

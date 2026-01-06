@@ -1,7 +1,7 @@
 PKG_CFLAGS = $(LTO_OPT)
 PKG_LIBS = $(LAPACK_LIBS) $(BLAS_LIBS) $(FLIBS) $(LTO_OPT)
 
-C_OBJS = psi.o
+C_OBJS = revss.o init.o
 
 all:
 	@$(MAKE) $(SHLIB)
