@@ -62,7 +62,7 @@ return the unbiased estimate assuming normality.
 \value{
 A \strong{numeric} value representing the median absolute deviation from the
 requested central tendency adjusted by the asymptotic normality constant and the
-small-sample unbiasing constant.
+small-sample bias constant.
 }
 
 \references{

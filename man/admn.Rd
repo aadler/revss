@@ -5,9 +5,9 @@
 \alias{admn}
 \title{Mean Absolute Deviation from the Median or Mean for Small Samples}
 \description{Compute the mean absolute deviation from the median, also known as
-the average deviation to the median (\acronym{ADM}) and adjust by unbiasing
-factors calculated specifically for small-sample size to acheive asymptotic
-normal consistency.}
+the average deviation to the median (\acronym{ADM}) and adjust by applying
+factors calculated specifically for small-sample size to achieve unbiased
+asymptotic normal consistency.}
 \usage{
 admn(x, center = c("median", "mean"), na.rm = FALSE)
 }

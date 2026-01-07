@@ -9,24 +9,35 @@
   \subsection{Added}{
     \itemize{
       \item Added small-sample bias-corrected version of \code{mad}---called
-      \code{madn}---found in Croux & Rousseeuw (1992)
+      \code{madn}---found in Croux & Rousseeuw (1992). This has both the factors
+      from Croux & Rousseeuw as well as factors based on a significantly larger
+      Monte Carlo simulation run by the package author which are intended to
+      be published in the future.
       (\href{https://github.com/aadler/revss/issues/1}{Issue #1}; thank you
       \href{https://github.com/filiporn}{@filiporn}).
+      \item Added small-sample bias-corrected version of \code{adm}---called
+      \code{admn}---with factors based on a Monte Carlo simulation run by the
+      package author which are intended to be published in the future.
     }
   }
   \subsection{Changed}{
     \itemize{
+      \item \strong{Breaking:} Rewrite of most of the code base including
+      tightening \R code and porting the heavier parts of \code{robLoc} and
+      \code{robScale} to \acronym{C}. New parameter options were added and some
+      positions moved, so this change is considered breaking.
       \item \strong{Breaking:} Rousseeuw & Verboven (2002) actually use a
       small sample bias-corrected version of \code{mad} found in Croux &
       Rousseeuw (1992). The package now implements this as a new function,
-      \code{madn}, and uses it inside \code{robLoc} and \code{robScale}
+      \code{madn}, and uses a form of it inside \code{robLoc} and
+      \code{robScale}
       (\href{https://github.com/aadler/revss/issues/1}{Issue #1}; thank you
       \href{https://github.com/filiporn}{@filiporn}).
-      \item Switched from using \code{\link[stats]{plogis}} to using internal,
-      function \code{psi}---ported to \acronym{C}---to calculate
-      \eqn{\psi_{log}(x)} for \code{robLoc} and \code{robScale}.
-      \item Switched package metadata unit test to use \code{vapply} for type
-      safety.
+      \item \strong{Breaking:} New function \code{admn} now used for
+      \code{robScale} branch with too few observations and where \code{madn}
+      appears to implode.
+      \item Updated unit tests to cover new functionality and to be more
+      efficient and type safe.
       \item Updated Github-related files and workflows.
       \item Other spelling and punctuation errors addressed.
     }
