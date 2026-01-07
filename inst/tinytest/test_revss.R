@@ -15,28 +15,6 @@ naErr <- "There are NAs in the data yet na.rm is FALSE"
 oneValErr <- "There needs to be at least two values for a robust measure."
 numErr <- "x contains non-numeric entries."
 
-## ADM Tests
-expect_equal(adm(x5), adm5 * sqrt(pi / 2), tolerance = tol)
-expect_equal(adm(c(x5, NA), na.rm = TRUE), adm5 * sqrt(pi / 2), tolerance = tol)
-expect_equal(adm(x5, constant = 1), adm5, tolerance = tol)
-expect_equal(adm(c(x5, NA), constant = 1, na.rm = TRUE), adm5, tolerance = tol)
-expect_true(is.na(adm(c(x5, NA))))
-expect_true(is.na(adm(c(x5, NA), constant = 1)))
-
-## Mean Absolute Deviation from the Mean
-expect_equal(adm(x5, center = mean(x5)),
-             sqrt(pi / 2) * mean(abs(x5 - mean(x5))),
-             tolerance = tol)
-
-## madn Tests
-expect_equal(madn(y, factors = "CR"), 1.363 * mad(y), tolerance = tol)
-z <- runif(12)
-expect_equal(madn(z), 12 / (12 - 0.8) * mad(z), tolerance = tol)
-expect_equal(madn(c(NA, z, NA), na.rm = TRUE), madn(z), tolerance = tol)
-expect_true(is.na(madn(c(NA, z, NA))))
-expect_error(madn(4), oneValErr)
-
-
 ## RobLoc Tests
 robLocTest <- function(x, na.rm = FALSE, tol = sqrt(.Machine$double.eps)) {
   if (na.rm) {
@@ -84,6 +62,7 @@ expect_false(isTRUE(all.equal(robLoc(c(1, 8, 12), scale = 5),
                               median(c(1, 8, 12)))))
 
 expect_equal(robLoc(c(5L, 8L, 19L)), robLoc(c(5, 8, 19)), tolerance = tol)
+
 # RobLoc Error Trapping
 expect_error(robLoc(c(x5, NA)), pattern = naErr)
 expect_equal(robLoc(c(x5, NA), na.rm = TRUE), robLoc(x5), tolerance = tol)
@@ -129,4 +108,4 @@ expect_error(robScale(c(x5, NA)), pattern = naErr)
 expect_equal(robScale(c(x5, NA), na.rm = TRUE), robScale(x5), tolerance = tol)
 expect_error(robScale(c(x5, "A")), pattern = numErr)
 
-message("Seed for test session: ", eff_seed)
+message("Seed for robLocScale test session: ", eff_seed)
