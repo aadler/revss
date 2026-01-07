@@ -26,24 +26,15 @@ robScale <- function(x, loc = NULL, implbound = 1e-4, na.rm = FALSE,
     t <- median(x) # nolint object_overwrite_linter
     minobs <- 4L
   }
+
   if (length(x) < minobs) {
     if (madn(x) <= implbound) {
       return(admn(x))
     } else {
       return(madn(x))
     }
-  } else {
-    # b <- 0.37394112142347236
-    # converged <- FALSE
-    # k <- 0L
-    # while (!converged && k < maxit) {
-    #   k <- k + 1L
-    #   v <- sqrt(2 * mean(psi(((x - t) / s) / b) ^ 2))
-    #   converged <- abs(v - 1) <= tol
-    #   s <- s * v
-    # }
-    # return(s)
-    .Call(robScale_c, as.double(x), as.double(t), as.double(s),
-          as.integer(maxit), as.double(tol))
   }
+
+  .Call(robScale_c, as.double(x), as.double(t), as.double(s), as.integer(maxit),
+        as.double(tol))
 }

@@ -28,16 +28,6 @@ robLoc <- function(x, scale = NULL, na.rm = FALSE, maxit = 80L,
     return(median(x))
   }
 
-  # t <- median(x) # nolint object_overwrite_linter
-  # converged <- FALSE
-  # k <- 0L
-  # while (!converged && k < maxit) {
-  #   k <- k + 1L
-  #   v <- s * mean((psi((x - t) / s) / 0.413241928283814))
-  #   converged <- abs(v) <= tol
-  #   t <- t + v  # nolint object_overwrite_linter
-  # }
-  # return(t)
   .Call(robLoc_c, as.double(x), as.double(median(x)), as.double(s),
         as.integer(maxit), as.double(tol))
 }
