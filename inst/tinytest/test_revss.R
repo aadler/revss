@@ -12,7 +12,7 @@ adm5 <- mean(abs(x5 - t5))
 mad5 <- median(abs(x5 - t5))
 y <- c(9, 2, 14, 4)
 naErr <- "There are NAs in the data yet na.rm is FALSE"
-oneValErr <- "There needs to be at least two values for a robust median."
+oneValErr <- "There needs to be at least two values for a robust measure."
 numErr <- "x contains non-numeric entries."
 
 ## ADM Tests
@@ -29,7 +29,7 @@ expect_equal(adm(x5, center = mean(x5)),
              tolerance = tol)
 
 ## madn Tests
-expect_equal(madn(y), 1.363 * mad(y), tolerance = tol)
+expect_equal(madn(y, factors = "CR"), 1.363 * mad(y), tolerance = tol)
 z <- runif(12)
 expect_equal(madn(z), 12 / (12 - 0.8) * mad(z), tolerance = tol)
 expect_equal(madn(c(NA, z, NA), na.rm = TRUE), madn(z), tolerance = tol)
