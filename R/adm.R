@@ -8,7 +8,7 @@ adm <- function(x, center = median(x), constant = NULL, na.rm = FALSE) {
   if (na.rm) x <- x[!is.na(x)]
   n <- length(x)
   if (n <= 1) {
-    stop("There needs to be at least two values for a robust median.")
+    stop("There needs to be at least two values for a robust measure.")
   }
 
   # Asymptotic constant for both mean absolute deviation from the mean and mean
