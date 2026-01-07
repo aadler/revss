@@ -17,12 +17,22 @@ madn <- function(x, center = c("median", "mean"), factors = c("AA", "CR"),
   }
   nc <- as.character(n)
   no <- 2 * (n %/% 2) + 1L # Odd ceiling of length. Constants are step-like.
-  center <- match.arg(center)
-  factors <- match.arg(factors)
+
+  if (missing(center)) {
+    center <- "median"
+  } else {
+    center <- match.arg(center)
+  }
+
+  if (missing(factors)) {
+    factors <- "AA"
+  } else {
+    factors <- match.arg(factors)
+  }
+
   if (center == "mean") {
     message("There are no factors in Croux & Rousseeuw for median absolute ",
             "deviation from the mean. Using Adler's factors.")
-    factors <- "AA"
     bn <- switch(nc,
                  "2" = 1.196057420160531,
                  "3" = 0.9430952345145196,
@@ -47,7 +57,7 @@ madn <- function(x, center = c("median", "mean"), factors = c("AA", "CR"),
                            "8" = 1.129,
                            "9" = 1.107,
                            n / (n - 0.8)),
-               AA = switch(as.character(n),
+               AA = switch(nc,
                            "2" = 1.196057420160531,
                            "3" = 1.4882318165882795,
                            "4" = 1.3605298448399872,

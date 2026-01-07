@@ -31,7 +31,13 @@ admn <- function(x, center = c("median", "mean"), na.rm = FALSE) {
     stop("There needs to be at least two values for a robust measure.")
   }
   nc <- as.character(n)
-  center <- match.arg(center)
+
+  if (missing(center)) {
+    center <- "median"
+  } else {
+    center <- match.arg(center)
+  }
+
   # Asymptotic constant for both mean absolute deviation from the mean and mean
   # absolute deviation from the median is sqrt(pi / 2)
   const <- 1.2533141373155001
@@ -47,6 +53,7 @@ admn <- function(x, center = c("median", "mean"), na.rm = FALSE) {
                  "8" = 1.068865412268323,
                  "9" = 1.0606623968690487,
                  n / (n - 0.51))
+    raw <- mean(abs(x - mean(x)))
   } else {
     ne <- 2 * (n %/% 2) # Even floor of length. Constants exhibit step behavior.
     an <- switch(nc,
@@ -59,7 +66,8 @@ admn <- function(x, center = c("median", "mean"), na.rm = FALSE) {
                  "8" = 1.0999299985011299,
                  "9" = 1.1000963990699943,
                  ne / (ne - 0.76))
+    raw <- mean(abs(x - median(x)))
   }
 
-  const * an * mean(abs(x - center))
+  const * an * raw
 }
