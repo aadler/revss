@@ -2,14 +2,12 @@
 // SPDX-License-Identifier: BSD-2-Clause
 
 #include <Rmath.h>
-
 #include "revss.h"
 
 void F77_NAME(robLoc_f)(double *x, int nx, double *t, double *s, int *maxit,
               double *tol, double *ret);
 
 extern SEXP robLoc_c (SEXP x, SEXP t_, SEXP s_, SEXP maxit_, SEXP tol_) {
-
   const int nx = LENGTH(x);
   SEXP ret = PROTECT(allocVector(REALSXP, 1));
   F77_CALL(robLoc_f)(REAL(x), nx, REAL(t_), REAL(s_), INTEGER(maxit_),
@@ -22,7 +20,6 @@ void F77_NAME(robScale_f)(double *x, int nx, double *t, double *s, int *maxit,
               double *tol, double *ret);
 
 extern SEXP robScale_c (SEXP x, SEXP t_, SEXP s_, SEXP maxit_, SEXP tol_) {
-
   const int nx = LENGTH(x);
   SEXP ret = PROTECT(allocVector(REALSXP, 1));
   F77_CALL(robScale_f)(REAL(x), nx, REAL(t_), REAL(s_), INTEGER(maxit_),

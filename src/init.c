@@ -3,7 +3,6 @@
 
 #include <stdlib.h> // for NULL
 #include <R_ext/Rdynload.h>
-
 #include "revss.h"
 
 static const R_CallMethodDef CallEntries[] = {
