@@ -17,7 +17,9 @@ numErr <- "x contains non-numeric entries."
 ## Median Absolute Deviation from the Median Small Sample
 expect_equal(madn(y, factors = "CR"), 1.363 * mad(y), tolerance = tol)
 expect_equal(madn(y), 1.3605298448399872 * mad(y), tolerance = tol)
-expect_equal(madn(y, center = "median"), madn(y, factors = "AA"))
+expect_equal(madn(y, center = "median"),
+             madn(y, factors = "AA"),
+             tolerance = tol)
 
 z <- runif(12)
 expect_equal(madn(z, factors = "CR"), 12 / (12 - 0.8) * mad(z), tolerance = tol)

@@ -73,7 +73,7 @@ expect_equal(robScale(y), 5.8798344700816374, tolerance = tol)
 
 # Test Exception Handling
 expect_equal(robScale(y[1:3]), madn(y[1:3]), tolerance = tol)
-expect_equal(robScale(c(0.00001, 0, 4)), admn(c(0.00001, 0, 4)), tolerance = tol)
+expect_equal(robScale(c(1e-5, 0, 4)), admn(c(1e-5, 0, 4)), tolerance = tol)
 expect_equal(robScale(c(0.0001, 0, 4)), madn(c(0.0001, 0, 4)), tolerance = tol)
 # Excel precision probably lacking here.
 expect_equal(robScale(c(1e-4, 0, 0, 4)), 0.00010153011522291195,
