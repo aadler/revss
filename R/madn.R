@@ -31,8 +31,10 @@ madn <- function(x, center = c("median", "mean"), factors = c("AA", "CR"),
   }
 
   if (center == "mean") {
-    message("There are no factors in Croux & Rousseeuw for median absolute ",
-            "deviation from the mean. Using Adler's factors.")
+    if (factors == "CR") {
+      message("There are no factors in Croux & Rousseeuw for median absolute ",
+              "deviation from the mean. Using Adler's factors.")
+    }
     bn <- switch(nc,
                  "2" = 1.196057420160531,
                  "3" = 0.9430952345145196,
