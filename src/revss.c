@@ -39,7 +39,6 @@ extern SEXP robLoc_c (SEXP x, SEXP t_, SEXP s_, SEXP maxit_, SEXP tol_) {
   }
 
   pret[0] = t;
-
   UNPROTECT(1);
   return(ret);
 }
@@ -54,7 +53,7 @@ extern SEXP robScale_c (SEXP x, SEXP t_, SEXP s_, SEXP maxit_, SEXP tol_) {
   const double bt = 0.37394112142347236;
 
   double s = Rf_asReal(s_);
-  double v = 1000.0 * tol;
+  double v = 2.0 + tol;
   int k = 0;
 
   SEXP ret = PROTECT(allocVector(REALSXP, 1));
