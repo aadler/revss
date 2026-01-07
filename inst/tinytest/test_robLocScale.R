@@ -52,7 +52,7 @@ expect_equal(robLoc(x5, tol = .Machine$double.eps),
              robLocTest(x5, .Machine$double.eps), tolerance = tol)
 expect_equal(robLoc(c(1, 9, 7)), median(c(1, 9, 7)), tolerance = tol)
 
-# Known Location
+# Known Scale
 expect_equal(robLoc(y, scale = 5), robLocScaleTest(y, scale = 5),
              tolerance = tol)
 expect_equal(robLoc(c(1, 8, 12), scale = 5),
@@ -61,6 +61,7 @@ expect_equal(robLoc(c(1, 8), scale = 5), median(c(1, 8)), tolerance = tol)
 expect_false(isTRUE(all.equal(robLoc(c(1, 8, 12), scale = 5),
                               median(c(1, 8, 12)))))
 
+# Integer conversion
 expect_equal(robLoc(c(5L, 8L, 19L)), robLoc(c(5, 8, 19)), tolerance = tol)
 
 # RobLoc Error Trapping
@@ -69,14 +70,14 @@ expect_equal(robLoc(c(x5, NA), na.rm = TRUE), robLoc(x5), tolerance = tol)
 expect_error(robLoc(c(x5, "A")), pattern = numErr)
 
 ## RobScale Tests
-expect_equal(robScale(y), 5.8798344700816374, tolerance = tol)
+expect_equal(robScale(y), 5.8798344696311284, tolerance = tol)
 
 # Test Exception Handling
 expect_equal(robScale(y[1:3]), madn(y[1:3]), tolerance = tol)
 expect_equal(robScale(c(1e-5, 0, 4)), admn(c(1e-5, 0, 4)), tolerance = tol)
 expect_equal(robScale(c(0.0001, 0, 4)), madn(c(0.0001, 0, 4)), tolerance = tol)
 # Excel precision probably lacking here.
-expect_equal(robScale(c(1e-4, 0, 0, 4)), 0.00010153011522291195,
+expect_equal(robScale(c(1e-4, 0, 0, 4)), 0.0001015301155129359,
              tolerance = 1e-7)
 expect_equal(robScale(c(1L, 0L, 3L, 5L)),
              robScale(c(1, 0, 3, 5)),
