@@ -24,7 +24,7 @@
     \itemize{
       \item \strong{Breaking:} Rewrite of most of the code base including
       tightening \R code and porting the heavier parts of \code{robLoc} and
-      \code{robScale} to \acronym{C}. New parameter options were added and some
+      \code{robScale} to Fortran. New parameter options were added and some
       positions moved, so this change is considered breaking.
       \item \strong{Breaking:} Rousseeuw & Verboven (2002) actually use a
       small sample bias-corrected version of \code{mad} found in Croux &
