@@ -28,7 +28,7 @@ robScale <- function(x, loc = NULL, implbound = 1e-4, na.rm = FALSE,
   }
   if (length(x) < minobs) {
     if (madn(x) <= implbound) {
-      return(adm(x))
+      return(admn(x))
     } else {
       return(madn(x))
     }
