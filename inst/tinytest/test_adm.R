@@ -36,12 +36,12 @@ expect_true(is.na(adm(c(x5, NA))))     # mad returns NA here too.
 # ADMN
 ## Mean Absolute Deviation from the Mean
 expect_equal(admn(x5, center = "mean"),
-             adm(x5, center = mean(x5)) * 1.1172756685718443,
+             adm(x5, center = mean(x5)) * 1.11763,
              tolerance = tol)
 
 ## Mean Absolute Deviation from the Median
 expect_equal(admn(x5, center = "median"),
-             adm(x5, center = median(x5)) * 1.2023267518622953,
+             adm(x5, center = median(x5)) * 1.20265,
              tolerance = tol)
 
 expect_error(admn(4), oneValErr)

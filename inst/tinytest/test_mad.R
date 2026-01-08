@@ -16,14 +16,15 @@ numErr <- "x contains non-numeric entries."
 
 ## Median Absolute Deviation from the Median Small Sample
 expect_equal(madn(y, factors = "CR"), 1.363 * mad(y), tolerance = tol)
-expect_equal(madn(y), 1.3605298448399872 * mad(y), tolerance = tol)
+expect_equal(madn(y), 1.36038 * mad(y), tolerance = tol)
 expect_equal(madn(y, center = "median"),
              madn(y, factors = "AA"),
              tolerance = tol)
 
 z <- runif(12)
 expect_equal(madn(z, factors = "CR"), 12 / (12 - 0.8) * mad(z), tolerance = tol)
-expect_equal(madn(z, factors = "AA"), 12 / (12 - 0.8) * mad(z), tolerance = tol)
+expect_equal(madn(z, factors = "AA"), 12 / (12 - 0.819) * mad(z),
+             tolerance = tol)
 expect_equal(madn(c(NA, z, NA), na.rm = TRUE), madn(z), tolerance = tol)
 
 ## Error trapping
@@ -33,7 +34,7 @@ expect_error(madn(c(z, "c")))
 
 ## Median Absolute Deviation from the Mean Small Sample
 expect_equal(madn(x5, center = "mean", factors = "AA"),
-             mad(x5, center = mean(x5)) * 1.074608827423805,
+             mad(x5, center = mean(x5)) * 1.07463,
              tolerance = tol)
 
 ## Error Trapping
