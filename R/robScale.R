@@ -4,7 +4,15 @@
 # Robust Scale Estimator found in Rousseeuw & Verboven (2002)
 
 robScale <- function(x, loc = NULL, implbound = 1e-4, na.rm = FALSE,
-                     maxit = 80L, tol = sqrt(.Machine$double.eps)) {
+                     maxit = 80L, tol = NULL, factors = c("AA", "CR")) {
+
+  if (is.null(tol)) tol <- sqrt(.Machine$double.eps)
+
+  if (missing(factors)) {
+    factors <- "AA"
+  } else {
+    factors <- match.arg(factors)
+  }
 
   if (!is.numeric(x)) {
     stop("x contains non-numeric entries.")
@@ -22,7 +30,7 @@ robScale <- function(x, loc = NULL, implbound = 1e-4, na.rm = FALSE,
     t <- 0         # nolint object_overwrite_linter
     minobs <- 3L
   } else {
-    s <- madn(x)
+    s <- madn(x, factors = factors)
     t <- median(x) # nolint object_overwrite_linter
     minobs <- 4L
   }
@@ -31,7 +39,7 @@ robScale <- function(x, loc = NULL, implbound = 1e-4, na.rm = FALSE,
     if (madn(x) <= implbound) {
       return(admn(x))
     } else {
-      return(madn(x))
+      return(madn(x, factors = factors))
     }
   }
 

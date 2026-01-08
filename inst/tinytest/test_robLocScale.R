@@ -52,6 +52,11 @@ expect_equal(robLoc(x5, tol = .Machine$double.eps),
              robLocTest(x5, .Machine$double.eps), tolerance = tol)
 expect_equal(robLoc(c(1, 9, 7)), median(c(1, 9, 7)), tolerance = tol)
 
+expect_equal(robLoc(x5, factors = "AA"), robLoc(x5), tolerance = tol)
+expect_false(isTRUE(all.equal(robLoc(x5, factors = "CR"),
+                              robLoc(x5),
+                              tolerance = tol)))
+
 # Known Scale
 expect_equal(robLoc(y, scale = 5), robLocScaleTest(y, scale = 5),
              tolerance = tol)
@@ -76,6 +81,15 @@ expect_equal(robScale(y), 5.8798344696311284, tolerance = tol)
 expect_equal(robScale(y[1:3]), madn(y[1:3]), tolerance = tol)
 expect_equal(robScale(c(1e-5, 0, 4)), admn(c(1e-5, 0, 4)), tolerance = tol)
 expect_equal(robScale(c(0.0001, 0, 4)), madn(c(0.0001, 0, 4)), tolerance = tol)
+
+# Test passing factors which only matters for length(x) < minobs
+expect_equal(robScale(y[1:3], factors = "AA"),
+             robScale(y[1:3]),
+             tolerance = tol)
+expect_false(isTRUE(all.equal(robScale(y[1:3], factors = "CR"),
+                       robScale(y[1:3]),
+                       tolerance = tol)))
+
 # Excel precision probably lacking here.
 expect_equal(robScale(c(1e-4, 0, 0, 4)), 0.0001015301155129359,
              tolerance = 1e-7)

@@ -3,8 +3,16 @@
 
 # Robust Location Estimator found in Rousseeuw & Verboven (2002)
 
-robLoc <- function(x, scale = NULL, na.rm = FALSE, maxit = 80L,
-                   tol = sqrt(.Machine$double.eps)) {
+robLoc <- function(x, scale = NULL, na.rm = FALSE, maxit = 80L, tol = NULL,
+                   factors = c("AA", "CR")) {
+
+  if (is.null(tol)) tol <- sqrt(.Machine$double.eps)
+
+  if (missing(factors)) {
+    factors <- "AA"
+  } else {
+    factors <- match.arg(factors)
+  }
 
   if (!is.numeric(x)) {
     stop("x contains non-numeric entries.")
@@ -21,7 +29,7 @@ robLoc <- function(x, scale = NULL, na.rm = FALSE, maxit = 80L,
     s <- scale
   } else {
     minobs <- 4L
-    s <- madn(x)
+    s <- madn(x, factors = factors)
   }
 
   if (length(x) < minobs) {
