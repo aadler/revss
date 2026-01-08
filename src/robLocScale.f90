@@ -77,9 +77,9 @@ contains
     integer(kind = c_int), intent(in)        :: maxit
     real(kind = c_double), intent(inout)     :: t
     real(kind = c_double), intent(out)       :: ret
-    integer                                  :: k
-    real(kind = c_double)                    :: v, nxr
     real(kind = c_double), parameter         :: bt = 0.413241928283814_c_double
+    real(kind = c_double)                    :: v, nxr
+    integer                                  :: k
 
         v = TWO * tol
         k = 0
@@ -109,21 +109,21 @@ contains
     integer(kind = c_int), intent(in)       :: maxit
     real(kind = c_double), intent(inout)    :: s
     real(kind = c_double), intent(out)      :: ret
-    integer                                 :: k
-    real(kind = c_double)                   :: v, nxr
     real(kind = c_double), parameter        :: bt = 0.37394112142347236_c_double
+    real(kind = c_double)                   :: v, nxr
+    integer                                 :: k
 
-            v = TWO + tol
-            k = 0
-            nxr = real(nx, c_double)
+        v = TWO + tol
+        k = 0
+        nxr = real(nx, c_double)
 
-            do while (abs(v - ONE) > tol .and. k < maxit)
-                k = k + 1
-                v = sqrt(TWO * (sum(psi((x - t) / (s * bt)) ** 2) / nxr))
-                s = s * v
-            end do
+        do while (abs(v - ONE) > tol .and. k < maxit)
+            k = k + 1
+            v = sqrt(TWO * (sum(psi((x - t) / (s * bt)) ** 2) / nxr))
+            s = s * v
+        end do
 
-            ret = s
+        ret = s
 
     end subroutine robScale_f
 
