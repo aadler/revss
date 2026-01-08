@@ -24,9 +24,10 @@ madn(x, center = c("median", "mean"), factors = c("AA", "CR"), na.rm = FALSE)
   which will be used as the function to calculate the central tendency from
   which to measure the absolute deviations. Defaults to \code{"median"}.}
   \item{factors}{\strong{character}; \code{"CR"} will use the factors calculated
-  in Croux & Rousseeuw (1992) while \code{"AA"} will use the factors calculated
-  by the package author. Note that if \code{center == "mean"}, there are no
-  \code{CR} factors and the \code{AA} factors will be used.}
+  in Croux & Rousseeuw (1992) while \code{"AA"} (the default) will use the
+  factors calculated by the package author. Note that if
+  \code{center == "mean"}, there are no \code{CR} factors and the \code{AA}
+  factors will be used.}
   \item{na.rm}{\strong{logical}; If \code{TRUE} then \code{NA} values are
   stripped from \code{x} before computation takes place.}
 }
