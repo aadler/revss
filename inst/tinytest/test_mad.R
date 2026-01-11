@@ -39,8 +39,8 @@ expect_equal(madn(x5, center = "mean", factors = "AA"),
 
 ## Error Trapping
 expect_error(madn(4, center = "mean"), oneValErr)
-expect_warning(madn(c(x5, "c"), center = "mean"))
-expect_error(suppressWarnings(madn(c(x5, "c"), center = "mean")))
+# expect_warning(madn(c(x5, "c"), center = "mean")) No warning for own mad;
+expect_error(madn(c(x5, "c"), center = "mean"), "non-numeric argument")
 expect_true(is.na(madn(c(x5, NA), center = "mean")))
 expect_message(madn(x5, center = "mean", factors = "CR"),
                "Using Adler's factors")
