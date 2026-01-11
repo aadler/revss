@@ -3,13 +3,13 @@
 
 medianR <- function(x, na.rm = FALSE) {
 
-  if (length(x) == 0 | (!na.rm && anyNA(x))) {
+  if (length(x) == 0 || (!na.rm && anyNA(x))) {
     return(NA_real_)
   }
 
   if (na.rm) x <- x[!is.na(x)]
 
-  if (any(!is.numeric(x))) {
+  if (!all(is.numeric(x))) {
     stop("x contains a non-numeric argument.")
   }
 
@@ -18,7 +18,7 @@ medianR <- function(x, na.rm = FALSE) {
 }
 
 adm <- function(x, center = NULL, constant = NULL, na.rm = FALSE) {
-  if (any(!is.numeric(x))) {
+  if (!all(is.numeric(x))) {
     stop("x contains a non-numeric argument.")
   }
 
@@ -51,7 +51,7 @@ adm <- function(x, center = NULL, constant = NULL, na.rm = FALSE) {
 
 admn <- function(x, center = c("median", "mean"), na.rm = FALSE) {
 
-  if (any(!is.numeric(x))) {
+  if (!all(is.numeric(x))) {
     stop("x contains a non-numeric argument.")
   }
 

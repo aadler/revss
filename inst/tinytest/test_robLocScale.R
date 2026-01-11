@@ -82,14 +82,14 @@ psif <- function(x) {
 
 robScaleTest <- function(x, mi = 80L, tol = NULL) {
   if (is.null(tol)) tol <- sqrt(.Machine$double.eps)
-  t <- median(x)
+  t <- median(x) # nolint object_overwrite_linter
   s <- revss::madn(x)
   i <- 0
   v <- 2
   while (abs(v - 1) >= tol && (i <= mi)) {
     i <- i + 1
     v <- sqrt(2 * mean(psif((x - t) / s)))
-    s = s * v
+    s <- s * v
   }
 
   s

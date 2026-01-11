@@ -8,7 +8,7 @@
 
 madf <- function(x, center = NULL, constant = 1.4826, na.rm = FALSE) {
 
-  if (any(!is.numeric(x))) {
+  if (!all(is.numeric(x))) {
       stop("x contains a non-numeric argument.")
   }
 
