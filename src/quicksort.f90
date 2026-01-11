@@ -94,4 +94,4 @@ contains
 
     end subroutine median_f
 
-end module quicksort
+end module quicksort ! # nocov covr often misses the last line, apparently.
