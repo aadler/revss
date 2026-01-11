@@ -5,6 +5,29 @@
 # based on Croux & Rousseeuw (1992). AA parameters based on Monte Carlo by the
 # package owner, paper forthcoming.
 
+
+madf <- function(x, center = NULL, constant = 1.4826, na.rm = FALSE) {
+
+  if (any(!is.numeric(x))) {
+      stop("x contains a non-numeric argument.")
+  }
+
+  if (na.rm) x <- x[!is.na(x)]
+  n <- length(x)
+  if (n <= 1) {
+    stop("There needs to be at least two values for a robust measure.")
+  }
+
+  x <- as.double(x)
+  if (is.null(center)) {
+    center <- medianR(x)
+  } else {
+    center <- as.double(center)
+  }
+
+  .Call(mad_c, x, center, as.double(constant))
+}
+
 # Can replace 'mad' in stats for small samples.
 
 madn <- function(x, center = c("median", "mean"), factors = c("AA", "CR"),
@@ -45,7 +68,7 @@ madn <- function(x, center = c("median", "mean"), factors = c("AA", "CR"),
                  "8" = 1.01934,
                  "9" = 1.02509,
                  no / (no - 0.19))
-    return(bn * mad(x, center = mean(x)))
+    return(bn * madf(x, center = mean(x)))
   }
 
   bn <- switch(factors,
@@ -69,6 +92,6 @@ madn <- function(x, center = c("median", "mean"), factors = c("AA", "CR"),
                            "8" = 1.12724,
                            "9" = 1.10157,
                            n / (n - 0.819)))
-  bn * mad(x)
+  bn * madf(x)
 
 }

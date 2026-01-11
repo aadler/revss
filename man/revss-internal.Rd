@@ -5,6 +5,7 @@
 
 % These are internal functions called by the package
 \alias{medianR}
+\alias{madf}
 
 \title{Internal Delaporte Functions}
 \description{

@@ -3,13 +3,15 @@ PKG_CFLAGS = $(LTO_OPT)
 PKG_LIBS = $(LAPACK_LIBS) $(BLAS_LIBS) $(FLIBS) $(LTO_OPT)
 
 C_OBJS = revss.o init.o
-FT_OBJS = quicksort.o robLocScale.o
+FT_OBJS = median.o madadm.o robLocScale.o
 
 all:
 	@$(MAKE) $(SHLIB)
 	@rm -f *.mod *.o
 
 $(SHLIB): $(FT_OBJS) $(C_OBJS)
+
+madadm.o: median.o
 
 clean:
 	@rm -f *.mod *.o
