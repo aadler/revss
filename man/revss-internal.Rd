@@ -7,9 +7,9 @@
 \alias{medianR}
 \alias{madf}
 
-\title{Internal Delaporte Functions}
+\title{Internal revss Functions}
 \description{
-  Internal Delaporte functions
+  Internal revss functions
 }
 \details{
   These are not to be called directly by the user.
