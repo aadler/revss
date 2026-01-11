@@ -6,7 +6,11 @@
 robScale <- function(x, loc = NULL, implbound = 1e-4, na.rm = FALSE,
                      maxit = 80L, tol = NULL, factors = c("AA", "CR")) {
 
-  if (is.null(tol)) tol <- sqrt(.Machine$double.eps)
+  if (is.null(tol)) {
+    tol <- sqrt(.Machine$double.eps)
+  } else {
+    tol <- as.double(tol)
+  }
 
   if (missing(factors)) {
     factors <- "AA"
@@ -24,14 +28,16 @@ robScale <- function(x, loc = NULL, implbound = 1e-4, na.rm = FALSE,
     stop("There are NAs in the data yet na.rm is FALSE.")
   }
 
+  x <- as.double(x)
+
   if (!is.null(loc)) {
     x <- x - loc
-    s <- 1.4826 * median(abs(x)) # MDZ in paper. Use 4 digits like mad in stats.
+    s <- 1.4826 * medianR(abs(x)) # MDZ in paper. Use 4 digits like mad.
     t <- 0         # nolint object_overwrite_linter
     minobs <- 3L
   } else {
     s <- madn(x, factors = factors)
-    t <- median(x) # nolint object_overwrite_linter
+    t <- medianR(x) # nolint object_overwrite_linter
     minobs <- 4L
   }
 
@@ -43,6 +49,5 @@ robScale <- function(x, loc = NULL, implbound = 1e-4, na.rm = FALSE,
     }
   }
 
-  .Call(robScale_c, as.double(x), as.double(t), as.double(s), as.integer(maxit),
-        as.double(tol))
+  .Call(robScale_c, x, as.double(t), as.double(s), as.integer(maxit), tol)
 }

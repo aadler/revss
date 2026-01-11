@@ -9,14 +9,14 @@
 the average deviation to the median (\acronym{ADM}) and (by default) adjust by a
 factor for asymptotically normal consistency.}
 
-\usage{adm(x, center = median(x), constant = NULL, na.rm = FALSE)}
+\usage{adm(x, center = NULL, constant = NULL, na.rm = FALSE)}
 
 \arguments{
   \item{x}{\strong{numeric}; A vector of values.}
   \item{center}{optional; The central value from which to measure the average
   distance. It can either be a scalar \strong{numeric} value or a
   \strong{function} on \code{x} returning a single numeric value. Defaults to
-  \code{median(x)}.}
+  the median of \code{x}.}
   \item{constant}{\strong{numeric}; A scale factor for asymptotic normality.
   When \code{NULL}, it defaults to \eqn{\sqrt{\frac{\pi}{2}}}{\sqrt(\pi / 2)}.}
   \item{na.rm}{\strong{logical}; If \code{TRUE} then \code{NA} values are

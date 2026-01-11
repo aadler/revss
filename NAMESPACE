@@ -1,7 +1,6 @@
 useDynLib(revss, .registration = TRUE)
 
 importFrom(stats,
-           median,
            mad)
 
 export(adm,

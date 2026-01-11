@@ -37,3 +37,13 @@ extern SEXP robScale_c (SEXP x, SEXP t_, SEXP s_, SEXP maxit_, SEXP tol_) {
   UNPROTECT(1);
   return(ret);
 }
+
+void F77_NAME(median_f)(double *x, int nx, double *ret);
+
+extern SEXP median_c (SEXP x) {
+  const int nx = LENGTH(x);
+  SEXP ret = PROTECT(allocVector(REALSXP, 1));
+  F77_CALL(median_f)(REAL(x), nx, REAL(ret));
+  UNPROTECT(1);
+  return(ret);
+}

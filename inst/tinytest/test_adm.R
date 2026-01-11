@@ -47,7 +47,7 @@ expect_equal(admn(x5, center = "median"),
 expect_error(admn(4), oneValErr)
 expect_equal(admn(c(x5, NA), na.rm = TRUE), admn(x5), tolerance = tol)
 expect_true(is.na(admn(c(x5, NA))))                  # mad returns NA here too.
-expect_warning(admn(c(x5, "c")))
+# expect_warning(admn(c(x5, "c"))) No warning for own adm; the error is enough.
 expect_error(suppressWarnings(admn(c(x5, "c"))), "non-numeric argument")
 
 message("Seed for adm test session: ", eff_seed)
