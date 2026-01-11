@@ -1,14 +1,14 @@
 !-------------------------------------------------------------------------------
 !
-! MODULE: Quicksort
+! MODULE: Median
 !
 ! AUTHOR: Avraham Adler <Avraham.Adler@gmail.com>
 !
-! DESCRIPTION: Calculation engine for the revss package
+! DESCRIPTION: Stripped down fast median for doubles-only based on quicksort
 !
 ! HISTORY:
-!          Version 1.0: 2026-01-07
-!                       Ported from C
+!          Version 1.0: 2026-01-11
+!                       Initial Commit
 ! LICENSE:
 !   Copyright (c) 2026, Avraham Adler
 !   All rights reserved.
@@ -34,7 +34,7 @@
 !   POSSIBILITY OF SUCH DAMAGE.
 !-------------------------------------------------------------------------------
 
-module quicksort
+module median
     use, intrinsic :: iso_c_binding
     use, intrinsic :: iso_fortran_env
     implicit none
@@ -43,7 +43,7 @@ module quicksort
 
 contains
 
-    recursive subroutine QS(v, l, r)
+    pure recursive subroutine QS(v, l, r)
     real(kind = c_double), intent(inout)                   :: v(:)
     integer(kind = c_int), intent(in)                      :: l, r
     integer(kind = c_int)                                  :: i, j
@@ -80,7 +80,7 @@ contains
 
     end subroutine QS
 
-    subroutine median_f(x, nx, ret) bind(C, name="median_f_")
+    pure subroutine median_f(x, nx, ret) bind(C, name="median_f_")
 
     integer(kind = c_int), intent(in), value :: nx
     real(kind = c_double), intent(inout)     :: x(nx)
@@ -94,4 +94,4 @@ contains
 
     end subroutine median_f
 
-end module quicksort ! # nocov covr often misses the last line, apparently.
+end module median ! # nocov covr often misses the last line, apparently.
