@@ -14,5 +14,4 @@ URL: https://github.com/aadler/revss
 BugReports: https://github.com/aadler/revss/issues
 Encoding: UTF-8
 Suggests: covr, tinytest
-Imports: stats
 NeedsCompilation: yes

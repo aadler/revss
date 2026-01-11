@@ -1,8 +1,5 @@
 useDynLib(revss, .registration = TRUE)
 
-importFrom(stats,
-           mad)
-
 export(adm,
        admn,
        madn,
