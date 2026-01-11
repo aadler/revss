@@ -12,9 +12,21 @@ adm5 <- mean(abs(x5 - t5))
 y <- c(9, 2, 14, 4)
 oneValErr <- "There needs to be at least two values for a robust measure."
 
+admTest <- function(x, ct, co = NULL) {
+
+  if (is.null(co)) {
+    co <- 1.2533141373155001 # sqrt(pi / 2)
+  } else {
+    co <- as.double(co)
+  }
+
+  co * mean(abs(x - ct))
+}
+
 # ADM
 ## Mean Absolute Deviation from the Median
 expect_equal(adm(x5), adm5 * sqrt(pi / 2), tolerance = tol)
+expect_equal(adm(x5), admTest(x5, revss:::medianR(x5)), tolerance = tol)
 expect_equal(adm(c(x5, NA), na.rm = TRUE), adm5 * sqrt(pi / 2), tolerance = tol)
 expect_equal(adm(x5, constant = 1), adm5, tolerance = tol)
 expect_equal(adm(c(x5, NA), constant = 1, na.rm = TRUE), adm5, tolerance = tol)
@@ -25,13 +37,15 @@ expect_true(is.na(adm(c(x5, NA), constant = 1)))
 expect_equal(adm(x5, center = mean(x5)),
              sqrt(pi / 2) * mean(abs(x5 - mean(x5))),
              tolerance = tol)
+expect_equal(adm(x5, center = mean(x5)),
+             admTest(x5, mean(x5)),
+             tolerance = tol)
 
 ## Error Trapping
 expect_error(adm(4), oneValErr)
 # expect_warning(adm(c(x5, "c"))) No warning for own adm; the error is enough.
 expect_error(suppressWarnings(adm(c(x5, "c"))), "non-numeric argument")
 expect_true(is.na(adm(c(x5, NA))))     # mad returns NA here too.
-
 
 # ADMN
 ## Mean Absolute Deviation from the Mean
