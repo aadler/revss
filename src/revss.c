@@ -4,6 +4,16 @@
 #include <Rmath.h>
 #include "revss.h"
 
+void F77_NAME(adm_f)(double *x, int nx, double *ct, double *co, double *ret);
+
+extern SEXP adm_c (SEXP x, SEXP ct_, SEXP co_) {
+  const int nx = LENGTH(x);
+  SEXP ret = PROTECT(allocVector(REALSXP, 1));
+  F77_CALL(adm_f)(REAL(x), nx, REAL(ct_), REAL(co_), REAL(ret));
+  UNPROTECT(1);
+  return(ret);
+}
+
 void F77_NAME(robLoc_f)(double *x, int nx, double *t, double *s, int *maxit,
               double *tol, double *ret);
 

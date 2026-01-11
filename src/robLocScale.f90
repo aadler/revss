@@ -48,6 +48,23 @@ module robLocScale
 contains
 
 !-------------------------------------------------------------------------------
+! FUNCTION: adm_f
+!
+! DESCRIPTION: Mean Absolute Deviation from Center
+!-------------------------------------------------------------------------------
+
+    pure subroutine adm_f(x, nx, ct, co, ret) bind(C, name="adm_f_")
+
+    integer(kind = c_int), intent(in), value :: nx
+    real(kind = c_double), intent(in)        :: x(nx), ct, co
+    real(kind = c_double), intent(out)       :: ret
+    real(kind = c_double)                    :: nxr
+
+        ret = co * sum(abs(x - ct)) / real(nx, c_double)
+
+    end subroutine adm_f
+
+!-------------------------------------------------------------------------------
 ! FUNCTION: psi
 !
 ! DESCRIPTION: Psi function of Rousseeuw & Verboven (2002)

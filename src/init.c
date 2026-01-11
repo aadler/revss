@@ -6,6 +6,7 @@
 #include "revss.h"
 
 static const R_CallMethodDef CallEntries[] = {
+  {"adm_c",       (DL_FUNC) &adm_c,      3},
   {"robLoc_c",    (DL_FUNC) &robLoc_c,   5},
   {"robScale_c",  (DL_FUNC) &robScale_c, 5},
   {NULL,          NULL,                  0}

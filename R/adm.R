@@ -4,7 +4,27 @@
 # Mean Absolute Deviation from the Median (Average Deviation from the Mean) with
 # asymptotic bias correction. Patterned after 'mad' in stats
 
+# adm <- function(x, center = median(x), constant = NULL, na.rm = FALSE) {
+#   if (na.rm) x <- x[!is.na(x)]
+#   n <- length(x)
+#   if (n <= 1) {
+#     stop("There needs to be at least two values for a robust measure.")
+#   }
+#
+#   # Asymptotic constant for both mean absolute deviation from the mean and mean
+#   # absolute deviation from the median is sqrt(pi / 2)
+#   if (is.null(constant)) {
+#     constant <- 1.2533141373155001 # sqrt(pi / 2)
+#   }
+#
+#   constant * mean(abs(x - center))
+# }
+
 adm <- function(x, center = median(x), constant = NULL, na.rm = FALSE) {
+  if (any(is.character(x))) {
+    stop("x contains a non-numeric argument.")
+  }
+
   if (na.rm) x <- x[!is.na(x)]
   n <- length(x)
   if (n <= 1) {
@@ -17,7 +37,7 @@ adm <- function(x, center = median(x), constant = NULL, na.rm = FALSE) {
     constant <- 1.2533141373155001 # sqrt(pi / 2)
   }
 
-  constant * mean(abs(x - center))
+  .Call(adm_c, as.double(x), as.double(center), as.double(constant))
 }
 
 # Mean Absolute Deviation from the Median (Average Deviation from the Mean) with

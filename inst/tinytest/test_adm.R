@@ -28,7 +28,7 @@ expect_equal(adm(x5, center = mean(x5)),
 
 ## Error Trapping
 expect_error(adm(4), oneValErr)
-expect_warning(adm(c(x5, "c")))
+# expect_warning(adm(c(x5, "c"))) No warning for own adm; the error is enough.
 expect_error(suppressWarnings(adm(c(x5, "c"))), "non-numeric argument")
 expect_true(is.na(adm(c(x5, NA))))     # mad returns NA here too.
 
