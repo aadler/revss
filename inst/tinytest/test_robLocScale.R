@@ -75,7 +75,27 @@ expect_equal(robLoc(c(x5, NA), na.rm = TRUE), robLoc(x5), tolerance = tol)
 expect_error(robLoc(c(x5, "A")), pattern = numErr)
 
 ## RobScale Tests
-expect_equal(robScale(y), 5.8798344696311284, tolerance = tol)
+psif <- function(x) {
+  y <- expm1(pmin.int(x / 0.37394112142347236, 100))
+  (y / (y + 2)) ^ 2
+}
+
+robScaleTest <- function(x, mi = 80L, tol = NULL) {
+  if (is.null(tol)) tol <- sqrt(.Machine$double.eps)
+  t <- median(x)
+  s <- revss::madn(x)
+  i <- 0
+  v <- 2
+  while (abs(v - 1) >= tol && (i <= mi)) {
+    i <- i + 1
+    v <- sqrt(2 * mean(psif((x - t) / s)))
+    s = s * v
+  }
+
+  s
+}
+
+expect_equal(robScale(y), robScaleTest(y), tolerance = tol)
 
 # Test Exception Handling
 expect_equal(robScale(y[1:3]), madn(y[1:3]), tolerance = tol)
