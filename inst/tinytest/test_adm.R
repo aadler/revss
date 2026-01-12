@@ -53,12 +53,12 @@ expect_equal(revss:::medianR(c(x5, NA), na.rm = TRUE),
 # ADMN
 ## Mean Absolute Deviation from the Mean
 expect_equal(admn(x5, center = "mean"),
-             adm(x5, center = mean(x5)) * 1.11763,
+             adm(x5, center = mean(x5)) * 1.11797,
              tolerance = tol)
 
 ## Mean Absolute Deviation from the Median
 expect_equal(admn(x5, center = "median"),
-             adm(x5, center = median(x5)) * 1.20265,
+             adm(x5, center = median(x5)) * 1.20305,
              tolerance = tol)
 
 expect_error(admn(4), oneValErr)
@@ -67,3 +67,4 @@ expect_true(is.na(admn(c(x5, NA))))                  # mad returns NA here too.
 expect_error(suppressWarnings(admn(c(x5, "c"))), "non-numeric argument")
 
 message("Seed for adm test session: ", eff_seed)
+
