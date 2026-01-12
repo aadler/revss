@@ -4,7 +4,8 @@
 # Robust Scale Estimator found in Rousseeuw & Verboven (2002)
 
 robScale <- function(x, loc = NULL, implbound = 1e-4, na.rm = FALSE,
-                     maxit = 80L, tol = NULL, factors = c("AA", "CR")) {
+                     maxit = 80L, tol = NULL, madfctrs = c("AA", "CR"),
+                     usefctrs = FALSE) {
 
   if (!is.numeric(x)) {
     stop("x contains non-numeric entries.")
@@ -17,6 +18,7 @@ robScale <- function(x, loc = NULL, implbound = 1e-4, na.rm = FALSE,
   }
 
   x <- as.double(x)
+  n <- length(x)
 
   if (is.null(tol)) {
     tol <- sqrt(.Machine$double.eps)
@@ -25,9 +27,9 @@ robScale <- function(x, loc = NULL, implbound = 1e-4, na.rm = FALSE,
   }
 
   if (missing(factors)) {
-    factors <- "AA"
+    madfctrs <- "AA"
   } else {
-    factors <- match.arg(factors)
+    madfctrs <- match.arg(factors)
   }
 
   if (!is.null(loc)) {
@@ -36,18 +38,35 @@ robScale <- function(x, loc = NULL, implbound = 1e-4, na.rm = FALSE,
     t <- 0                        # nolint object_overwrite_linter
     minobs <- 3L
   } else {
-    s <- madn(x, factors = factors)
+    s <- madn(x, factors = madfctrs)
     t <- medianR(x)              # nolint object_overwrite_linter
     minobs <- 4L
   }
 
-  if (length(x) < minobs) {
+  if (n < minobs) {
     if (madn(x) <= implbound) {
       return(admn(x))
     } else {
-      return(madn(x, factors = factors))
+      return(madn(x, factors = madfctrs))
     }
   }
 
-  .Call(robScale_c, x, t, as.double(s), as.integer(maxit), tol)
+  rS <- .Call(robScale_c, x, t, as.double(s), as.integer(maxit), tol)
+  if (usefctrs && is.null(loc)) {
+    nc <- as.character(n)
+    rn <- switch(nc,
+                 "2" = 1.00033,
+                 "3" = 1,
+                 "4" = 1.30827,
+                 "5" = 1.31918,
+                 "6" = 1.21614,
+                 "7" = 1.20221,
+                 "8" = 1.16041,
+                 "9" = 1.14768,
+                 n / (n - 1.126))
+  } else {
+    rn <- 1
+  }
+
+  rn * rS
 }
