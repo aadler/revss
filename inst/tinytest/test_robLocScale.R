@@ -100,6 +100,9 @@ expect_equivalent(robScale(y, tol = 100 * .Machine$double.eps),
                   robScaleTest(y, tol = 100 * .Machine$double.eps),
                   tolerance = 100 * .Machine$double.eps)
 
+expect_equal(robScale(y, usefctrs = TRUE),
+             1.30827 * robScaleTest(y), tolerance = tol)
+
 # Test Exception Handling
 expect_equal(robScale(y[1:3]), madn(y[1:3]), tolerance = tol)
 expect_equal(robScale(c(1e-5, 0, 4)), admn(c(1e-5, 0, 4)), tolerance = tol)
@@ -110,8 +113,7 @@ expect_equal(robScale(y[1:3], madfctrs = "AA"),
              robScale(y[1:3]),
              tolerance = tol)
 expect_false(isTRUE(all.equal(robScale(y[1:3], madfctrs = "CR"),
-                       robScale(y[1:3]),
-                       tolerance = tol)))
+                    1.30827 * robScale(y[1:3]), tolerance = tol)))
 
 # Excel precision probably lacking here.
 expect_equal(robScale(c(1e-4, 0, 0, 4)), 0.0001015301155129359,
