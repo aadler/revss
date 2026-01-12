@@ -58,20 +58,21 @@ madn <- function(x, center = c("median", "mean"), factors = c("AA", "CR"),
       message("There are no factors in Croux & Rousseeuw for median absolute ",
               "deviation from the mean. Using Adler's factors.")
     }
-    no <- 2 * (n %/% 2) + 1L # Odd floor length; constants have step behavior.
+    ne <- 2 * (n %/% 2) # Even floor length; constants have step behavior.
     bn <- switch(nc,
-                 "2" = 1.19521,
-                 "3" = 0.94273,
-                 "4" = 1.01705,
-                 "5" = 1.07463,
-                 "6" = 1.03163,
-                 "7" = 1.02151,
-                 "8" = 1.01934,
-                 "9" = 1.02509,
-                 no / (no - 0.19))
+                 "2" = 1.19561,
+                 "3" = 0.94279,
+                 "4" = 1.01703,
+                 "5" = 1.07511,
+                 "6" = 1.03119,
+                 "7" = 1.02084,
+                 "8" = 1.01958,
+                 "9" = 1.02468,
+                 ne / (ne - 0.18))
     return(bn * madf(x, center = sum(x) / n))
   }
 
+  no <- 2 * ((n + 1) %/% 2) - 1
   bn <- switch(factors,
                CR = switch(nc,
                            "2" = 1.196,
@@ -84,15 +85,15 @@ madn <- function(x, center = c("median", "mean"), factors = c("AA", "CR"),
                            "9" = 1.107,
                            n / (n - 0.8)),
                AA = switch(nc,
-                           "2" = 1.19521,
-                           "3" = 1.48695,
-                           "4" = 1.36038,
-                           "5" = 1.21604,
-                           "6" = 1.19025,
-                           "7" = 1.13863,
-                           "8" = 1.12724,
-                           "9" = 1.10157,
-                           n / (n - 0.819)))
+                           "2" = 1.19561,
+                           "3" = 1.48701,
+                           "4" = 1.36067,
+                           "5" = 1.217,
+                           "6" = 1.18973,
+                           "7" = 1.13773,
+                           "8" = 1.12735,
+                           "9" = 1.10113,
+                           no / (no - 0.786)))
   bn * madf(x)
 
 }
