@@ -106,10 +106,10 @@ expect_equal(robScale(c(1e-5, 0, 4)), admn(c(1e-5, 0, 4)), tolerance = tol)
 expect_equal(robScale(c(0.0001, 0, 4)), madn(c(0.0001, 0, 4)), tolerance = tol)
 
 # Test passing factors which only matters for length(x) < minobs
-expect_equal(robScale(y[1:3], factors = "AA"),
+expect_equal(robScale(y[1:3], madfctrs = "AA"),
              robScale(y[1:3]),
              tolerance = tol)
-expect_false(isTRUE(all.equal(robScale(y[1:3], factors = "CR"),
+expect_false(isTRUE(all.equal(robScale(y[1:3], madfctrs = "CR"),
                        robScale(y[1:3]),
                        tolerance = tol)))
 
