@@ -85,7 +85,7 @@ admn <- function(x, center = c("median", "mean"), na.rm = FALSE) {
                  "8" = 1.06887,
                  "9" = 1.06098,
                  n / (n - 0.509))
-    rawAnswer <- adm(x, mean(x), 1)
+    rawAnswer <- adm(x, sum(x) / n, 1)
   } else {
     no <- 2 * (n %/% 2) + 1L # Odd floor length; constants have step behavior.
     an <- switch(nc,

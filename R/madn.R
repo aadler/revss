@@ -69,7 +69,7 @@ madn <- function(x, center = c("median", "mean"), factors = c("AA", "CR"),
                  "8" = 1.01934,
                  "9" = 1.02509,
                  no / (no - 0.19))
-    return(bn * madf(x, center = mean(x)))
+    return(bn * madf(x, center = sum(x) / n))
   }
 
   bn <- switch(factors,
