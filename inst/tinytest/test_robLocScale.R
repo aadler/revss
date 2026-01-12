@@ -96,6 +96,9 @@ robScaleTest <- function(x, mi = 80L, tol = NULL) {
 }
 
 expect_equal(robScale(y), robScaleTest(y), tolerance = tol)
+expect_equivalent(robScale(y, tol = 100 * .Machine$double.eps),
+                  robScaleTest(y, tol = 100 * .Machine$double.eps),
+                  tolerance = 100 * .Machine$double.eps)
 
 # Test Exception Handling
 expect_equal(robScale(y[1:3]), madn(y[1:3]), tolerance = tol)

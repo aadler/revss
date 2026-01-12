@@ -14,6 +14,12 @@ y <- c(9, 2, 14, 4)
 oneValErr <- "There needs to be at least two values for a robust measure."
 numErr <- "x contains non-numeric entries."
 
+## Internal madf error trapping
+expect_equal(revss:::madf(c(x5, NA), na.rm = TRUE),
+             revss:::madf(x5), tolerance = tol)
+expect_error(revss:::madf(c(1, NA, NA), na.rm = TRUE), "at least two")
+expect_error(revss:::madf(c(x5, "c")), "non-numeric argument")
+
 ## Median Absolute Deviation from the Median Small Sample
 expect_equal(madn(y, factors = "CR"), 1.363 * mad(y), tolerance = tol)
 expect_equal(madn(y), 1.36038 * mad(y), tolerance = tol)
@@ -39,7 +45,6 @@ expect_equal(madn(x5, center = "mean", factors = "AA"),
 
 ## Error Trapping
 expect_error(madn(4, center = "mean"), oneValErr)
-# expect_warning(madn(c(x5, "c"), center = "mean")) No warning for own mad;
 expect_error(madn(c(x5, "c"), center = "mean"), "non-numeric argument")
 expect_true(is.na(madn(c(x5, NA), center = "mean")))
 expect_message(madn(x5, center = "mean", factors = "CR"),

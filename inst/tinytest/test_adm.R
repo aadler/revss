@@ -43,9 +43,12 @@ expect_equal(adm(x5, center = mean(x5)),
 
 ## Error Trapping
 expect_error(adm(4), oneValErr)
-# expect_warning(adm(c(x5, "c"))) No warning for own adm; the error is enough.
 expect_error(suppressWarnings(adm(c(x5, "c"))), "non-numeric argument")
 expect_true(is.na(adm(c(x5, NA))))     # mad returns NA here too.
+
+expect_error(revss:::medianR(c(x5, "c")), "non-numeric argument")
+expect_equal(revss:::medianR(c(x5, NA), na.rm = TRUE),
+             revss:::medianR(x5), tolerance = tol)
 
 # ADMN
 ## Mean Absolute Deviation from the Mean
@@ -61,7 +64,6 @@ expect_equal(admn(x5, center = "median"),
 expect_error(admn(4), oneValErr)
 expect_equal(admn(c(x5, NA), na.rm = TRUE), admn(x5), tolerance = tol)
 expect_true(is.na(admn(c(x5, NA))))                  # mad returns NA here too.
-# expect_warning(admn(c(x5, "c"))) No warning for own adm; the error is enough.
 expect_error(suppressWarnings(admn(c(x5, "c"))), "non-numeric argument")
 
 message("Seed for adm test session: ", eff_seed)
