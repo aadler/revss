@@ -26,10 +26,10 @@ robScale <- function(x, loc = NULL, implbound = 1e-4, na.rm = FALSE,
     tol <- as.double(tol)
   }
 
-  if (missing(factors)) {
+  if (missing(madfctrs)) {
     madfctrs <- "AA"
   } else {
-    madfctrs <- match.arg(factors)
+    madfctrs <- match.arg(madfctrs)
   }
 
   if (!is.null(loc)) {
