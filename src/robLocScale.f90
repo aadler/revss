@@ -43,7 +43,7 @@ module robLocScale
 
     real(kind = c_double), parameter :: ONE = 1._c_double
     real(kind = c_double), parameter :: TWO = 2._c_double
-    real(kind = c_double), parameter :: HUNDRED = 100._c_double
+    real(kind = c_double), parameter :: FORTY = 40._c_double
 
 contains
 
@@ -58,8 +58,12 @@ contains
     real(kind = c_double), intent(in)                   :: x
     real(kind = c_double)                               :: y
 
-        y = exp(min(x, HUNDRED))
-        y = (y - ONE) / (y + ONE)
+        if (x .gt. 37.43) then ! becomes 1 in double precision at 37.43
+            y = ONE
+        else
+            y = exp(x)
+            y = (y - ONE) / (y + ONE)
+        end if
 
     end function psi
 
