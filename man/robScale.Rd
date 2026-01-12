@@ -7,7 +7,7 @@
 \description{Compute the robust estimate of scale for very small samples.}
 \usage{
 robScale(x, loc = NULL, implbound = 1e-4, na.rm = FALSE, maxit = 80L,
-         tol = NULL, factors = c("AA", "CR"))
+         tol = NULL, madfctrs = c("AA", "CR"), usefctrs = FALSE)
 }
 \arguments{
   \item{x}{\strong{numeric}; A vector of values.}
@@ -22,9 +22,12 @@ robScale(x, loc = NULL, implbound = 1e-4, na.rm = FALSE, maxit = 80L,
   \item{tol}{\strong{numeric}; The desired numeric tolerance. Defaults to the
   square root of \code{.Machine$double.eps} or roughly
   \eqn{1.49\times 10^{-8}}{1.49e-8}.}
-  \item{factors}{\strong{character}; \code{"CR"} will use the factors calculated
-  in Croux & Rousseeuw (1992) while \code{"AA"} (default) will use the factors
-  calculated by the package author.}
+  \item{madfctrs}{\strong{character}; when passing data to \code{madn},
+  \code{"CR"} will use the factors calculated in Croux & Rousseeuw (1992) while
+  \code{"AA"} (default) will use the factors calculated by the package author.}
+  \item{usefctrs}{\strong{logical}; If \code{TRUE}, then bias factors for
+  \code{robScale} itself will be used. If \code{FALSE}, the default, or if
+  \code{loc} is passed, no factors will be used.}
 }
 \details{
 Computes the M-estimator for scale using a smooth \eqn{\rho}-function defined as
@@ -37,7 +40,9 @@ long as \code{mad} has not \dQuote{imploded}, i.e. it is greater than
 
 If the location is known and passed through \code{loc}, the algorithm uses the
 suggestion in Rousseeuw & Verboven section 5 (2002) converting the observations
-to distances from 0 and iterating on the adjusted sequence.
+to distances from 0 and iterating on the adjusted sequence. In this case, the
+large-scale simulation indicated that there was no bias, so \code{usefctrs} is
+ignored.
 
 If \code{na.rm} is \code{TRUE} then \code{NA} values are stripped from \code{x}
 before computation takes place. If this is not done then an \code{NA} value in
@@ -63,10 +68,9 @@ The constant 0.37394112142347236 is necessary so that
 \deqn{\beta = \int\rho(u)\;d\Phi(u)=0.5}{\beta = Int\rho(u)d\Phi(u)=0.5}
 }
 \references{
-Croux, Christophe and Rousseeuw, Peter J. (1992)
-\href{https://wis.kuleuven.be/stat/robust/papers/publications-1992/crouxrousseeuw-timeeffalgosnqn-compstat-1992.pdf}{
-"Time-Efficient Algorithms for Two Highly Robust Estimators of Scale"},
-\emph{Computational Statistics}, Vol. 1, 411--428
+Croux, Christophe and Rousseeuw, Peter J. (1992) "Time-Efficient Algorithms for
+Two Highly Robust Estimators of Scale", \emph{Computational Statistics}, Vol. 1,
+411--428. \doi{10.1007/978-3-662-26811-7_58}
 
 Rousseeuw, Peter J. and Verboven, Sabine (2002) Robust estimation in very small
 samples. \emph{Computational Statistics & Data Analysis}, \bold{40}, (4),
