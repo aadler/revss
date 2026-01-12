@@ -1,24 +1,21 @@
 # Copyright (c) 2025, Avraham Adler All rights reserved
 # SPDX-License-Identifier: BSD-2-Clause
 
-# Median Absolute Deviation with small-sample bias correction. CR parameters
-# based on Croux & Rousseeuw (1992). AA parameters based on Monte Carlo by the
-# package owner, paper forthcoming.
-
-
 madf <- function(x, center = NULL, constant = 1.4826, na.rm = FALSE) {
+  # Internal fast Median Absolute Deviation from Center coded in Fortran
 
   if (!all(is.numeric(x))) {
       stop("x contains a non-numeric argument.")
   }
 
   if (na.rm) x <- x[!is.na(x)]
-  n <- length(x)
-  if (n <= 1) {
+
+  if (length(x) <= 1) {
     stop("There needs to be at least two values for a robust measure.")
   }
 
   x <- as.double(x)
+
   if (is.null(center)) {
     center <- medianR(x)
   } else {
@@ -28,12 +25,16 @@ madf <- function(x, center = NULL, constant = 1.4826, na.rm = FALSE) {
   .Call(mad_c, x, center, as.double(constant))
 }
 
+# Median Absolute Deviation with small-sample bias correction. CR parameters
+# based on Croux & Rousseeuw (1992). AA parameters based on Monte Carlo by the
+# package owner, paper forthcoming.
 # Can replace 'mad' in stats for small samples.
 
 madn <- function(x, center = c("median", "mean"), factors = c("AA", "CR"),
                  na.rm = FALSE) {
 
   if (na.rm) x <- x[!is.na(x)]
+
   n <- length(x)
   if (n <= 1) {
     stop("There needs to be at least two values for a robust measure.")
