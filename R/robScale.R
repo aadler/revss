@@ -55,7 +55,7 @@ robScale <- function(x, loc = NULL, implbound = 1e-4, na.rm = FALSE,
   if (usefctrs && is.null(loc)) {
     nc <- as.character(n)
     rn <- switch(nc,
-                 "2" = 1.00033,
+                 "2" = 1,
                  "3" = 1,
                  "4" = 1.30827,
                  "5" = 1.31918,
