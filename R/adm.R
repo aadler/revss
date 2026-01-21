@@ -91,11 +91,7 @@ admn <- function(x, center = c("median", "mean"), na.rm = FALSE) {
 
   nc <- as.character(n)
 
-  if (missing(center)) {
-    center <- "median"
-  } else {
-    center <- match.arg(center)
-  }
+  center <- match.arg(center)
 
   # Asymptotic constant for both mean absolute deviation from the mean and mean
   # absolute deviation from the median is sqrt(pi / 2)
