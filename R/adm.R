@@ -3,7 +3,7 @@
 
 medianR <- function(x, na.rm = FALSE) {
 
-  if (length(x) == 0) {
+  if (length(x) == 0L) {
     return(NA_real_)
   }
 
@@ -11,7 +11,7 @@ medianR <- function(x, na.rm = FALSE) {
 
   if (na.rm) {
     x <- x[!is.na(x)]
-    if (length(x) == 0) {
+    if (length(x) == 0L) {
       return(NA_real_)
     }
   } else if (anyNA(x)) {
@@ -24,7 +24,7 @@ medianR <- function(x, na.rm = FALSE) {
 
 adm <- function(x, center = NULL, constant = NULL, na.rm = FALSE) {
 
-  if (length(x) == 0) {
+  if (length(x) == 0L) {
     return(NA_real_)
   }
 
@@ -32,7 +32,7 @@ adm <- function(x, center = NULL, constant = NULL, na.rm = FALSE) {
 
   if (na.rm) {
     x <- x[!is.na(x)]
-    if (length(x) == 0) {
+    if (length(x) == 0L) {
       return(NA_real_)
     }
   } else if (anyNA(x)) {
@@ -40,7 +40,7 @@ adm <- function(x, center = NULL, constant = NULL, na.rm = FALSE) {
   }
 
   n <- length(x)
-  if (n <= 1) {
+  if (n <= 1L) {
     stop("There needs to be at least two values for a robust measure.")
   }
 
@@ -69,7 +69,7 @@ adm <- function(x, center = NULL, constant = NULL, na.rm = FALSE) {
 
 admn <- function(x, center = c("median", "mean"), na.rm = FALSE) {
 
-  if (length(x) == 0) {
+  if (length(x) == 0L) {
     return(NA_real_)
   }
 
@@ -77,7 +77,7 @@ admn <- function(x, center = c("median", "mean"), na.rm = FALSE) {
 
   if (na.rm) {
     x <- x[!is.na(x)]
-    if (length(x) == 0) {
+    if (length(x) == 0L) {
       return(NA_real_)
     }
   } else if (anyNA(x)) {
@@ -85,11 +85,9 @@ admn <- function(x, center = c("median", "mean"), na.rm = FALSE) {
   }
 
   n <- length(x)
-  if (n <= 1) {
+  if (n <= 1L) {
     stop("There needs to be at least two values for a robust measure.")
   }
-
-  nc <- as.character(n)
 
   center <- match.arg(center)
 
@@ -98,29 +96,38 @@ admn <- function(x, center = c("median", "mean"), na.rm = FALSE) {
   const <- 1.2533141373155001
 
   if (center == "mean") {
-    an <- switch(nc,
-                 "2" = 1.41434,
-                 "3" = 1.22469,
-                 "4" = 1.15468,
-                 "5" = 1.11797,
-                 "6" = 1.09558,
-                 "7" = 1.08009,
-                 "8" = 1.06914,
-                 "9" = 1.06072,
-                 n / (n - 0.508))
+    an_adm_mean <- c(NA_real_,
+                     1.41434,
+                     1.22469,
+                     1.15468,
+                     1.11797,
+                     1.09558,
+                     1.08009,
+                     1.06914,
+                     1.06072)
+    if (n <= 9L) {
+      an <- an_adm_mean[n]
+    } else {
+      an <- n / (n - 0.508)
+    }
     rawAnswer <- adm(x, sum(x) / n, 1)
   } else {
-    ne <- 2 * (n %/% 2) # Even floor length; constants have step behavior.
-    an <- switch(nc,
-                 "2" = 1.41434,
-                 "3" = 1.41413,
-                 "4" = 1.20309,
-                 "5" = 1.20305,
-                 "6" = 1.13428,
-                 "7" = 1.13411,
-                 "8" = 1.10015,
-                 "9" = 1.10012,
-                 ne / (ne - 0.756))
+    ne <- 2 * (n %/% 2) # Even floor length
+    an_adm_med <- c(NA_real_,
+                    1.41434,
+                    1.41434,
+                    1.20307,
+                    1.20307,
+                    1.13420,
+                    1.13420,
+                    1.10014,
+                    1.10014)
+
+    if (n <= 9L) {
+      an <- an_adm_med[n]
+    } else {
+      ne / (ne - 0.756)
+    }
     rawAnswer <- adm(x, medianR(x), 1)
   }
 
