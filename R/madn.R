@@ -58,18 +58,8 @@ madn <- function(x, center = c("median", "mean"), factors = c("AA", "CR"),
               "deviation from the mean. Using Adler's factors.", call. = FALSE)
     }
 
-    bnMadMeanAA <- c(NA_real_,
-                        1.19561,
-                        0.94279,
-                         1.01703,
-                         1.07511,
-                         1.03119,
-                         1.02084,
-                         1.01958,
-                         1.02468)
-
     bn <- if (n <= 9L) {
-      bnMadMeanAA[n]
+      .revssConst$bnMadMeanAA[n]
     } else {
       ne / (ne - 0.18)
     }
@@ -77,30 +67,10 @@ madn <- function(x, center = c("median", "mean"), factors = c("AA", "CR"),
     return(bn * .Call(mad_c, x, sum(x) / n, 1.4826))
   }
 
-  bnMadMedCR <- c(NA_real_,
-                     1.196,
-                     1.495,
-                     1.363,
-                     1.206,
-                     1.2,
-                     1.14,
-                     1.129,
-                     1.107)
-
-  bnMadMedAA <- c(NA_real_,
-                     1.19561,
-                     1.48701,
-                     1.36067,
-                     1.217,
-                     1.18973,
-                     1.13773,
-                     1.12735,
-                     1.10113)
-
   if (factors == "CR") {
-    bn <- if (n <= 9L) bnMadMedCR[n] else n / (n - 0.8)
+    bn <- if (n <= 9L) .revssConst$bnMadMedCR[n] else n / (n - 0.8)
   } else {
-    bn <- if (n <= 9L) bnMadMedAA[n] else no / (no - 0.786)
+    bn <- if (n <= 9L) .revssConst$bnMadMedAA[n] else no / (no - 0.786)
   }
 
   bn * .Call(mad_c, x, medianR(x), 1.4826)

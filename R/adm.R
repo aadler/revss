@@ -96,35 +96,16 @@ admn <- function(x, center = c("median", "mean"), na.rm = FALSE) {
   const <- 1.2533141373155001
 
   if (center == "mean") {
-    an_adm_mean <- c(NA_real_,
-                     1.41434,
-                     1.22469,
-                     1.15468,
-                     1.11797,
-                     1.09558,
-                     1.08009,
-                     1.06914,
-                     1.06072)
     if (n <= 9L) {
-      an <- an_adm_mean[n]
+      an <- .revssConst$anAdmMean[n]
     } else {
       an <- n / (n - 0.508)
     }
     centerV <- sum(x) / n
   } else {
     ne <- 2 * (n %/% 2) # Even floor length
-    an_adm_med <- c(NA_real_,
-                    1.41434,
-                    1.41434,
-                    1.20307,
-                    1.20307,
-                    1.13420,
-                    1.13420,
-                    1.10014,
-                    1.10014)
-
     if (n <= 9L) {
-      an <- an_adm_med[n]
+      an <- .revssConst$anAdmMed[n]
     } else {
       an <- ne / (ne - 0.756)
     }
