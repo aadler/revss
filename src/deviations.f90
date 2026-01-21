@@ -1,6 +1,6 @@
 !-------------------------------------------------------------------------------
 !
-! MODULE: madadm
+! MODULE: deviations
 !
 ! AUTHOR: Avraham Adler <Avraham.Adler@gmail.com>
 !
@@ -9,6 +9,8 @@
 ! HISTORY:
 !          Version 1.0: 2026-01-11
 !                       Ported from C
+!          Version 2.0: 2026-01-20
+!                       Move median here and clean up code a bit
 ! LICENSE:
 !   Copyright (c) 2026, Avraham Adler
 !   All rights reserved.
@@ -34,19 +36,40 @@
 !   POSSIBILITY OF SUCH DAMAGE.
 !-------------------------------------------------------------------------------
 
-module madadm
+module deviations
     use, intrinsic :: iso_c_binding
     use, intrinsic :: iso_fortran_env
-    use median
+    use sorting
 
     implicit none
     private
-    public         :: adm_f, mad_f
+    public         :: median_f, adm_f, mad_f
 
 contains
 
 !-------------------------------------------------------------------------------
-! FUNCTION: adm_f
+! SUBROUTINE: median_f
+!
+! DESCRIPTION: Find the median of a 1-D vector
+!-------------------------------------------------------------------------------
+
+
+    pure subroutine median_f(x, nx, ret) bind(C, name="median_f_")
+
+    integer(kind = c_int), intent(in), value :: nx
+    real(kind = c_double), intent(inout)     :: x(nx)
+    real(kind = c_double), intent(out)       :: ret
+
+        call OQS(x, 1, nx)
+        ret = x(nx / 2 + 1)
+        if (mod(nx, 2) == 0) then
+            ret = (ret + x(nx / 2)) / 2._c_double
+        end if
+
+    end subroutine median_f
+
+!-------------------------------------------------------------------------------
+! SUBROUTINE: adm_f
 !
 ! DESCRIPTION: Mean Absolute Deviation from Center
 !-------------------------------------------------------------------------------
@@ -56,14 +79,13 @@ contains
     integer(kind = c_int), intent(in), value :: nx
     real(kind = c_double), intent(in)        :: x(nx), ct, co
     real(kind = c_double), intent(out)       :: ret
-    real(kind = c_double)                    :: nxr
 
         ret = co * sum(abs(x - ct)) / real(nx, c_double)
 
     end subroutine adm_f
 
 !-------------------------------------------------------------------------------
-! FUNCTION: mad_f
+! SUBROUTINE: mad_f
 !
 ! DESCRIPTION: Median Absolute Deviation from Center
 !-------------------------------------------------------------------------------
@@ -81,4 +103,4 @@ contains
 
     end subroutine mad_f
 
-end module madadm ! # nocov covr often misses the last line, apparently.
+end module deviations ! # nocov covr often misses the last line, apparently.
