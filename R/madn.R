@@ -40,17 +40,8 @@ madn <- function(x, center = c("median", "mean"), factors = c("AA", "CR"),
     stop("There needs to be at least two values for a robust measure.")
   }
 
-  if (missing(center)) {
-    center <- "median"
-  } else {
-    center <- match.arg(center)
-  }
-
-  if (missing(factors)) {
-    factors <- "AA"
-  } else {
-    factors <- match.arg(factors)
-  }
+  center <- match.arg(center)
+  factors <- match.arg(factors)
 
   ne <- 2 * (n %/% 2)             # Even floor length.
   no <- 2 * ((n + 1) %/% 2) - 1   # Odd floor length.
