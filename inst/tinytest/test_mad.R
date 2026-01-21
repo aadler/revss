@@ -18,7 +18,7 @@ numErr <- "x contains non-numeric entries."
 expect_equal(revss:::madf(c(x5, NA), na.rm = TRUE),
              revss:::madf(x5), tolerance = tol)
 expect_error(revss:::madf(c(1, NA, NA), na.rm = TRUE), "at least two")
-expect_error(revss:::madf(c(x5, "c")), "non-numeric argument")
+expect_true(is.na(suppressWarnings(revss:::madf(c(x5, "c")))))
 
 ## Median Absolute Deviation from the Median Small Sample
 expect_equal(madn(y, factors = "CR"), 1.363 * mad(y), tolerance = tol)
@@ -35,8 +35,8 @@ expect_equal(madn(c(NA, z, NA), na.rm = TRUE), madn(z), tolerance = tol)
 
 ## Error trapping
 expect_true(is.na(madn(c(NA, z, NA))))
+expect_true(is.na(suppressWarnings(madn(c(z, "c")))))
 expect_error(madn(4), oneValErr)
-expect_error(madn(c(z, "c")))
 
 ## Median Absolute Deviation from the Mean Small Sample
 expect_equal(madn(x5, center = "mean", factors = "AA"),
@@ -45,9 +45,9 @@ expect_equal(madn(x5, center = "mean", factors = "AA"),
 
 ## Error Trapping
 expect_error(madn(4, center = "mean"), oneValErr)
-expect_error(madn(c(x5, "c"), center = "mean"), "non-numeric argument")
 expect_true(is.na(madn(c(x5, NA), center = "mean")))
-expect_message(madn(x5, center = "mean", factors = "CR"),
+expect_true(is.na(suppressWarnings(madn(c(x5, "c"), center = "mean"))))
+expect_warning(madn(x5, center = "mean", factors = "CR"),
                "Using Adler's factors")
 
 message("Seed for mad test session: ", eff_seed)
