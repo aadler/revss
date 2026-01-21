@@ -52,22 +52,6 @@ module sorting
 contains
 
 !-------------------------------------------------------------------------------
-! SUBROUTINE: swap
-!
-! DESCRIPTION: Swaps i and j
-!-------------------------------------------------------------------------------
-
-    pure subroutine swap(a, b)
-    real(kind = c_double), intent(inout)                   :: a, b
-    real(kind = c_double)                                  :: tmp
-
-        tmp = a
-        a = b
-        b = tmp
-
-    end subroutine swap
-
-!-------------------------------------------------------------------------------
 ! SUBROUTINE: NBIS (No-Branch Insertion Sort)
 !
 ! DESCRIPTION: Insertion Sort for small vectors (length <= 16)
@@ -107,17 +91,30 @@ contains
     real(kind = c_double), intent(inout)                   :: v(:)
     integer(kind = c_int), intent(in)                      :: l, r
     integer(kind = c_int)                                  :: i, j, mid
-    real(kind = c_double)                                  :: pivot
+    real(kind = c_double)                                  :: pivot, tmp
 
         if ((r - l) <= shortV) then
             call NBIS(v, l, r)
             return
         end if
 
+        ! Median-of-three with inlined swaps
         mid = (l + r) / 2
-        if (v(l) > v(mid)) call swap(v(l), v(mid))
-        if (v(mid) > v(r)) call swap(v(mid), v(r))
-        if (v(l) > v(mid)) call swap(v(l), v(mid))
+        if (v(l) > v(mid)) then
+            tmp = v(l)
+            v(l) = v(mid)
+            v(mid) = tmp
+        end if
+        if (v(mid) > v(r)) then
+            tmp = v(mid)
+            v(mid) = v(r)
+            v(r) = tmp
+        end if
+        if (v(l) > v(mid)) then
+            tmp = v(l)
+            v(l) = v(mid)
+            v(mid) = tmp
+        end if
 
         pivot = v(mid)
         i = l
@@ -133,7 +130,9 @@ contains
             end do
 
             if (i <= j) then
-                call swap(v(i), v(j))
+                tmp = v(i)
+                v(i) = v(j)
+                v(j) = tmp
                 i = i + 1
                 j = j - 1
             end if
