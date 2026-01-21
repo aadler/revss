@@ -55,7 +55,7 @@ robScale <- function(x, loc = NULL, implbound = 1e-4, na.rm = FALSE,
     }
   }
 
-  rS <- .Call(robScale_c, x, t, as.double(s), as.integer(maxit), tol)
+  rS <- .Call(robScale_c, x, t, s, as.integer(maxit), tol)
   if (usefctrs && is.null(loc)) {
     if (n <= 9L) {
       rn <- .revssConst$robScaleF[n]
