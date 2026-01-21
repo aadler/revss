@@ -46,14 +46,23 @@ madn <- function(x, center = c("median", "mean"), factors = c("AA", "CR"),
     stop("There needs to be at least two values for a robust measure.")
   }
 
-  center <- match.arg(center)
-  factors <- match.arg(factors)
+  center <- center[1L]
+  is_mean <- center == "mean"
+  if (!is_mean && center != "median") {
+    stop("center must be 'median' or 'mean'", call. = FALSE)
+  }
+
+  factors <- factors[1L]
+  isCR <- factors == "CR"
+  if (!isCR && factors != "AA") {
+    stop("factors must be 'AA' or 'CR'", call. = FALSE)
+  }
 
   ne <- 2 * (n %/% 2)             # Even floor length.
   no <- 2 * ((n + 1) %/% 2) - 1   # Odd floor length.
 
-  if (center == "mean") {
-    if (factors == "CR") {
+  if (is_mean) {
+    if (isCR) {
       warning("There are no factors in Croux & Rousseeuw for median absolute ",
               "deviation from the mean. Using Adler's factors.", call. = FALSE)
     }
@@ -67,7 +76,7 @@ madn <- function(x, center = c("median", "mean"), factors = c("AA", "CR"),
     return(bn * .Call(mad_c, x, sum(x) / n, 1.4826))
   }
 
-  if (factors == "CR") {
+  if (isCR) {
     bn <- if (n <= 9L) .revssConst$bnMadMedCR[n] else n / (n - 0.8)
   } else {
     bn <- if (n <= 9L) .revssConst$bnMadMedAA[n] else no / (no - 0.786)

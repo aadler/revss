@@ -7,17 +7,21 @@ robScale <- function(x, loc = NULL, implbound = 1e-4, na.rm = FALSE,
                      maxit = 80L, tol = NULL, madfctrs = c("AA", "CR"),
                      usefctrs = FALSE) {
 
-  if (!is.numeric(x)) {
-    stop("x contains non-numeric entries.")
-  }
-
-  if (na.rm) {
-    x <- x[!is.na(x)]
-  } else if (anyNA(x)) {
-    stop("There are NAs in the data yet na.rm is FALSE.")
+  if (length(x) == 0L) {
+    return(NA_real_)
   }
 
   x <- as.double(x)
+
+  if (na.rm) {
+    x <- x[!is.na(x)]
+    if (length(x) == 0L) {
+      return(NA_real_)
+    }
+  } else if (anyNA(x)) {
+    return(NA_real_)
+  }
+
   n <- length(x)
 
   if (is.null(tol)) {
@@ -30,6 +34,12 @@ robScale <- function(x, loc = NULL, implbound = 1e-4, na.rm = FALSE,
     madfctrs <- "AA"
   } else {
     madfctrs <- match.arg(madfctrs)
+  }
+
+  madfctrs <- madfctrs[1L]
+  isCR <- madfctrs == "CR"
+  if (!isCR && madfctrs != "AA") {
+    stop("madfctrs must be 'AA' or 'CR'", call. = FALSE)
   }
 
   if (!is.null(loc)) {
@@ -53,17 +63,11 @@ robScale <- function(x, loc = NULL, implbound = 1e-4, na.rm = FALSE,
 
   rS <- .Call(robScale_c, x, t, as.double(s), as.integer(maxit), tol)
   if (usefctrs && is.null(loc)) {
-    nc <- as.character(n)
-    rn <- switch(nc,
-                 "2" = 1,
-                 "3" = 1,
-                 "4" = 1.30827,
-                 "5" = 1.31918,
-                 "6" = 1.21614,
-                 "7" = 1.20221,
-                 "8" = 1.16041,
-                 "9" = 1.14768,
-                 n / (n - 1.126))
+    if (n <= 9L) {
+      rn <- .revssConst$robScaleF[n]
+    } else {
+      rn <- n / (n - 1.126)
+    }
   } else {
     rn <- 1
   }

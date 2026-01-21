@@ -6,29 +6,32 @@
 robLoc <- function(x, scale = NULL, na.rm = FALSE, maxit = 80L, tol = NULL,
                    factors = c("AA", "CR")) {
 
+  if (length(x) == 0L) {
+    return(NA_real_)
+  }
+
+  x <- as.double(x)
+
+  if (na.rm) {
+    x <- x[!is.na(x)]
+    if (length(x) == 0L) {
+      return(NA_real_)
+    }
+  } else if (anyNA(x)) {
+    return(NA_real_)
+  }
+
+  factors <- factors[1L]
+  isCR <- factors == "CR"
+  if (!isCR && factors != "AA") {
+    stop("factors must be 'AA' or 'CR'", call. = FALSE)
+  }
+
   if (is.null(tol)) {
     tol <- sqrt(.Machine$double.eps)
   } else {
     tol <- as.double(tol)
   }
-
-  if (missing(factors)) {
-    factors <- "AA"
-  } else {
-    factors <- match.arg(factors)
-  }
-
-  if (!is.numeric(x)) {
-    stop("x contains non-numeric entries.")
-  }
-
-  if (na.rm) {
-    x <- x[!is.na(x)]
-  } else if (anyNA(x)) {
-    stop("There are NAs in the data yet na.rm is FALSE.")
-  }
-
-  x <- as.double(x)
 
   if (!is.null(scale)) {
     minobs <- 3L

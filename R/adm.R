@@ -89,13 +89,17 @@ admn <- function(x, center = c("median", "mean"), na.rm = FALSE) {
     stop("There needs to be at least two values for a robust measure.")
   }
 
-  center <- match.arg(center)
+  center <- center[1L]
+  is_mean <- center == "mean"
+  if (!is_mean && center != "median") {
+    stop("center must be 'median' or 'mean'", call. = FALSE)
+  }
 
   # Asymptotic constant for both mean absolute deviation from the mean and mean
   # absolute deviation from the median is sqrt(pi / 2)
   const <- 1.2533141373155001
 
-  if (center == "mean") {
+  if (is_mean) {
     if (n <= 9L) {
       an <- .revssConst$anAdmMean[n]
     } else {
