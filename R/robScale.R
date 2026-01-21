@@ -38,12 +38,12 @@ robScale <- function(x, loc = NULL, implbound = 1e-4, na.rm = FALSE,
 
   if (!is.null(loc)) {
     x <- x - loc
-    s <- 1.4826 * medianR(abs(x)) # MDZ in paper. Use 4 digits like mad.
+    s <- 1.4826 * .Call(median_c, abs(x)) # MDZ in paper. Already protected
     t <- 0                        # nolint object_overwrite_linter
     minobs <- 3L
   } else {
     s <- madn(x, factors = madfctrs)
-    t <- medianR(x)              # nolint object_overwrite_linter
+    t <- .Call(median_c, x)   # nolint object_overwrite_linter Already protected
     minobs <- 4L
   }
 
@@ -56,6 +56,7 @@ robScale <- function(x, loc = NULL, implbound = 1e-4, na.rm = FALSE,
   }
 
   rS <- .Call(robScale_c, x, t, s, as.integer(maxit), tol)
+
   if (usefctrs && is.null(loc)) {
     if (n <= 9L) {
       rn <- .revssConst$robScaleF[n]
