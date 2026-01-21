@@ -110,7 +110,7 @@ admn <- function(x, center = c("median", "mean"), na.rm = FALSE) {
     } else {
       an <- n / (n - 0.508)
     }
-    rawAnswer <- adm(x, sum(x) / n, 1)
+    centerV <- sum(x) / n
   } else {
     ne <- 2 * (n %/% 2) # Even floor length
     an_adm_med <- c(NA_real_,
@@ -126,10 +126,10 @@ admn <- function(x, center = c("median", "mean"), na.rm = FALSE) {
     if (n <= 9L) {
       an <- an_adm_med[n]
     } else {
-      ne / (ne - 0.756)
+      an <- ne / (ne - 0.756)
     }
-    rawAnswer <- adm(x, medianR(x), 1)
+    centerV <- medianR(x)
   }
 
-  const * an * rawAnswer
+  const * an * .Call(adm_c, x, centerV, 1)
 }

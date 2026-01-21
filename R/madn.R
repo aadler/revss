@@ -74,7 +74,7 @@ madn <- function(x, center = c("median", "mean"), factors = c("AA", "CR"),
       ne / (ne - 0.18)
     }
 
-    return(bn * madf(x, center = sum(x) / n))
+    return(bn * .Call(mad_c, x, sum(x) / n, 1.4826))
   }
 
   bn_mad_med_CR <- c(NA_real_,
@@ -103,6 +103,5 @@ madn <- function(x, center = c("median", "mean"), factors = c("AA", "CR"),
     bn <- if (n <= 9L) bn_mad_med_AA[n] else no / (no - 0.786)
   }
 
-  bn * madf(x)
-
+  bn * .Call(mad_c, x, medianR(x), 1.4826)
 }
