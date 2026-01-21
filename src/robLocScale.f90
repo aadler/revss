@@ -42,6 +42,7 @@ module robLocScale
     public         :: robLoc_f, robScale_f
 
     real(kind = c_double), parameter :: HALF = 0.5_c_double
+    real(kind = c_double), parameter :: ZERO = 0._c_double
     real(kind = c_double), parameter :: ONE = 1._c_double
     real(kind = c_double), parameter :: TWO = 2._c_double
     real(kind = c_double), parameter :: FORTY = 40._c_double
@@ -78,16 +79,23 @@ contains
     real(kind = c_double), intent(inout)     :: t
     real(kind = c_double), intent(out)       :: ret
     real(kind = c_double), parameter         :: bt = 0.413241928283814_c_double
-    real(kind = c_double)                    :: v, nxr
-    integer                                  :: k
+    real(kind = c_double)                    :: v, nxr, recips, a
+    integer                                  :: i, k
 
         v = TWO * tol
+        recips = ONE / s
         k = 0
         nxr = real(nx, c_double)
 
         do while (abs(v) > tol .and. k < maxit)
             k = k + 1
-            v = s * sum(psi((x - t) / s)) / (bt * nxr)
+            a = ZERO
+
+            do i = 1, nx
+                a = a + psi((x(i) - t) * recips)
+            end do
+
+            v = (s * a) / (bt * nxr)
             t = t + v
         end do
 
@@ -110,8 +118,8 @@ contains
     real(kind = c_double), intent(inout)    :: s
     real(kind = c_double), intent(out)      :: ret
     real(kind = c_double), parameter        :: bt = 0.37394112142347236_c_double
-    real(kind = c_double)                   :: v, nxr
-    integer                                 :: k
+    real(kind = c_double)                   :: v, nxr, recipsbt, a, z
+    integer                                 :: i, k
 
         v = TWO + tol
         k = 0
@@ -119,7 +127,15 @@ contains
 
         do while (abs(v - ONE) > tol .and. k < maxit)
             k = k + 1
-            v = sqrt(TWO * (sum(psi((x - t) / (s * bt)) ** 2) / nxr))
+            recipsbt = ONE / (s * bt)
+            a = ZERO
+
+            do i = 1, nx
+                z = psi((x(i) - t) * recipsbt)
+                a = a + z * z
+            end do
+
+            v = sqrt(TWO * a / nxr)
             s = s * v
         end do
 
