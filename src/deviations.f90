@@ -81,10 +81,17 @@ contains
     integer(kind = c_int), intent(in), value :: nx
     real(kind = c_double), intent(in)        :: x(nx), ct, co
     real(kind = c_double), intent(out)       :: ret
-    real(kind = c_double)                    :: conx
+    real(kind = c_double)                    :: conx, a
+    integer                                  :: i
 
         conx = co / real(nx, c_double)
-        ret = conx * sum(abs(x - ct))
+        a = ZERO
+
+        do i = 1, nx
+           a = a + abs(x(i) - ct)
+        end do
+
+        ret = conx * a
 
     end subroutine adm_f
 
@@ -100,8 +107,12 @@ contains
     real(kind = c_double), intent(in)        :: x(nx), ct, co
     real(kind = c_double), intent(out)       :: ret
     real(kind = c_double)                    :: v(nx)
+    integer                                  :: i
 
-        v = abs(x - ct)
+        do i = 1, nx
+           v(i) = abs(x(i) - ct)
+        end do
+
         call median_f(v, nx, ret)
         ret = co * ret
 
