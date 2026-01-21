@@ -4,8 +4,10 @@
 madf <- function(x, center = NULL, constant = 1.4826, na.rm = FALSE) {
   # Internal fast Median Absolute Deviation from Center coded in Fortran
 
-  if (!all(is.numeric(x))) {
-      stop("x contains a non-numeric argument.")
+  x <- as.double(x)
+
+  if (!na.rm && anyNA(x)) {
+    return(NA_real_)
   }
 
   if (na.rm) x <- x[!is.na(x)]
@@ -14,15 +16,13 @@ madf <- function(x, center = NULL, constant = 1.4826, na.rm = FALSE) {
     stop("There needs to be at least two values for a robust measure.")
   }
 
-  x <- as.double(x)
-
   if (is.null(center)) {
     center <- medianR(x)
   } else {
-    center <- as.double(center)
+    center <- as.double(center)[1L]
   }
 
-  .Call(mad_c, x, center, as.double(constant))
+  .Call(mad_c, x, center, as.double(constant)[1L])
 }
 
 # Median Absolute Deviation with small-sample bias correction. CR parameters
@@ -32,6 +32,12 @@ madf <- function(x, center = NULL, constant = 1.4826, na.rm = FALSE) {
 
 madn <- function(x, center = c("median", "mean"), factors = c("AA", "CR"),
                  na.rm = FALSE) {
+
+  x <- as.double(x)
+
+  if (!na.rm && anyNA(x)) {
+    return(NA_real_)
+  }
 
   if (na.rm) x <- x[!is.na(x)]
 
@@ -48,8 +54,8 @@ madn <- function(x, center = c("median", "mean"), factors = c("AA", "CR"),
 
   if (center == "mean") {
     if (factors == "CR") {
-      message("There are no factors in Croux & Rousseeuw for median absolute ",
-              "deviation from the mean. Using Adler's factors.")
+      warning("There are no factors in Croux & Rousseeuw for median absolute ",
+              "deviation from the mean. Using Adler's factors.", call. = FALSE)
     }
 
     bn_mad_mean_AA <- c(NA_real_,
@@ -91,18 +97,10 @@ madn <- function(x, center = c("median", "mean"), factors = c("AA", "CR"),
                      1.12735,
                      1.10113)
 
-  bn <- if (factors == "CR") {
-    if (n <= 9) {
-      bn_mad_med_CR[n]
-    } else {
-      n / (n - 0.8)
-    }
+  if (factors == "CR") {
+    bn <- if (n <= 9) bn_mad_med_CR[n] else n / (n - 0.8)
   } else {
-    if (n <= 9) {
-      bn_mad_med_AA[n]
-    } else {
-      no / (no - 0.786)
-    }
+    bn <- if (n <= 9) bn_mad_med_AA[n] else no / (no - 0.786)
   }
 
   bn * madf(x)

@@ -3,36 +3,54 @@
 
 medianR <- function(x, na.rm = FALSE) {
 
-  if (length(x) == 0 || (!na.rm && anyNA(x))) {
+  if (length(x) == 0) {
     return(NA_real_)
   }
 
-  if (na.rm) x <- x[!is.na(x)]
+  x <- as.double(x)
 
-  if (!all(is.numeric(x))) {
-    stop("x contains a non-numeric argument.")
+  if (na.rm) {
+    x <- x[!is.na(x)]
+    if (length(x) == 0) {
+      return(NA_real_)
+    }
+  } else if (anyNA(x)) {
+    return(NA_real_)
   }
 
-  .Call(median_c, as.double(x))
+  .Call(median_c, x)
 
 }
 
 adm <- function(x, center = NULL, constant = NULL, na.rm = FALSE) {
-  if (!all(is.numeric(x))) {
-    stop("x contains a non-numeric argument.")
+
+  if (length(x) == 0) {
+    return(NA_real_)
   }
 
-  if (na.rm) x <- x[!is.na(x)]
+  x <- as.double(x)
+
+  if (na.rm) {
+    x <- x[!is.na(x)]
+    if (length(x) == 0) {
+      return(NA_real_)
+    }
+  } else if (anyNA(x)) {
+    return(NA_real_)
+  }
+
   n <- length(x)
   if (n <= 1) {
     stop("There needs to be at least two values for a robust measure.")
   }
 
-  x <- as.double(x)
   if (is.null(center)) {
     center <- medianR(x)
   } else {
-    center <- as.double(center)
+    center <- as.double(center)[1L]
+    if (is.na(center)) {
+      return(NA_real_)
+    }
   }
 
   # Asymptotic constant for both mean absolute deviation from the mean and mean
@@ -40,7 +58,7 @@ adm <- function(x, center = NULL, constant = NULL, na.rm = FALSE) {
   if (is.null(constant)) {
     constant <- 1.2533141373155001 # sqrt(pi / 2)
   } else {
-    constant <- as.double(constant)
+    constant <- as.double(constant)[1L]
   }
 
   .Call(adm_c, x, center, constant)
@@ -51,17 +69,26 @@ adm <- function(x, center = NULL, constant = NULL, na.rm = FALSE) {
 
 admn <- function(x, center = c("median", "mean"), na.rm = FALSE) {
 
-  if (!all(is.numeric(x))) {
-    stop("x contains a non-numeric argument.")
+  if (length(x) == 0) {
+    return(NA_real_)
   }
 
-  if (na.rm) x <- x[!is.na(x)]
+  x <- as.double(x)
+
+  if (na.rm) {
+    x <- x[!is.na(x)]
+    if (length(x) == 0) {
+      return(NA_real_)
+    }
+  } else if (anyNA(x)) {
+    return(NA_real_)
+  }
+
   n <- length(x)
   if (n <= 1) {
     stop("There needs to be at least two values for a robust measure.")
   }
 
-  x <- as.double(x)
   nc <- as.character(n)
 
   if (missing(center)) {
