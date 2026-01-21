@@ -43,6 +43,7 @@
 module sorting
     use, intrinsic :: iso_c_binding
     use, intrinsic :: iso_fortran_env
+
     implicit none
     private
     public         :: OQS
@@ -57,7 +58,8 @@ contains
 ! DESCRIPTION: Insertion Sort for small vectors (length <= 16)
 !              Branchless. Interestingly, the extra call saves time because
 !              merge can be implemented much more efficiently than the branching
-!              on v(j) > test
+!              on v(j) > test. Testing shows almost no difference betweem this
+!              and a version which uses sentinals, cycles, and exits.
 !-------------------------------------------------------------------------------
 
     pure subroutine NBIS(v, l, r)
@@ -85,6 +87,8 @@ contains
 !
 ! DESCRIPTION: Semi-Optimized Quicksort. Uses branchless insertion sort for 16
 !              or fewer elements and uses median-of-three to select pivot.
+!              Three-way Dutch Partitioning did not help even in the presence
+!              of duplicates for reasonable sized inputs.
 !-------------------------------------------------------------------------------
 
     pure recursive subroutine OQS(v, l, r)
