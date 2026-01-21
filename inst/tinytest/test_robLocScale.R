@@ -12,6 +12,8 @@ adm5 <- mean(abs(x5 - t5))
 mad5 <- median(abs(x5 - t5))
 y <- c(9, 2, 14, 4)
 oneValErr <- "There needs to be at least two values for a robust measure."
+lZero <- double(0)
+factErr <- "must be 'AA' or 'CR'"
 
 ## RobLoc Tests
 robLocTest <- function(x, na.rm = FALSE, tol = sqrt(.Machine$double.eps)) {
@@ -71,6 +73,9 @@ expect_equal(robLoc(c(5L, 8L, 19L)), robLoc(c(5, 8, 19)), tolerance = tol)
 expect_true(is.na(robLoc(c(x5, NA))))
 expect_true(is.na(suppressWarnings(robLoc(c(x5, "A")))))
 expect_equal(robLoc(c(x5, NA), na.rm = TRUE), robLoc(x5), tolerance = tol)
+expect_true(is.na(robLoc(lZero)))
+expect_true(is.na(robLoc(c(NA, NA), na.rm = TRUE)))
+expect_error(robLoc(1:5, factors = "ZZ"), factErr)
 
 ## RobScale Tests
 psif <- function(x) {
@@ -105,6 +110,9 @@ expect_equal(robScale(y, usefctrs = TRUE),
 expect_equal(robScale(y[1:3]), madn(y[1:3]), tolerance = tol)
 expect_equal(robScale(c(1e-5, 0, 4)), admn(c(1e-5, 0, 4)), tolerance = tol)
 expect_equal(robScale(c(0.0001, 0, 4)), madn(c(0.0001, 0, 4)), tolerance = tol)
+expect_true(is.na(robScale(lZero)))
+expect_true(is.na(robScale(c(NA, NA), na.rm = TRUE)))
+expect_error(robScale(1:5, madfctrs = "ZZ"), factErr)
 
 # Test passing factors which only matters for length(x) < minobs
 expect_equal(robScale(y[1:3], madfctrs = "AA"),
@@ -118,6 +126,9 @@ expect_equal(robScale(c(1e-4, 0, 0, 4)), 0.0001015301155129359,
              tolerance = 1e-7)
 expect_equal(robScale(c(1L, 0L, 3L, 5L)),
              robScale(c(1, 0, 3, 5)),
+             tolerance = tol)
+expect_equal(robScale(3:21, usefctrs = TRUE),
+             robScale(3:21) * 19 / (19 - 1.126),
              tolerance = tol)
 
 robScaleLocTest <- function(x, loc) {
