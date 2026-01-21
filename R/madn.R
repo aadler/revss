@@ -12,7 +12,7 @@ madf <- function(x, center = NULL, constant = 1.4826, na.rm = FALSE) {
 
   if (na.rm) x <- x[!is.na(x)]
 
-  if (length(x) <= 1) {
+  if (length(x) <= 1L) {
     stop("There needs to be at least two values for a robust measure.")
   }
 
@@ -42,7 +42,7 @@ madn <- function(x, center = c("median", "mean"), factors = c("AA", "CR"),
   if (na.rm) x <- x[!is.na(x)]
 
   n <- length(x)
-  if (n <= 1) {
+  if (n <= 1L) {
     stop("There needs to be at least two values for a robust measure.")
   }
 
@@ -68,7 +68,7 @@ madn <- function(x, center = c("median", "mean"), factors = c("AA", "CR"),
                          1.01958,
                          1.02468)
 
-    bn <- if (n <= 9) {
+    bn <- if (n <= 9L) {
       bn_mad_mean_AA[n]
     } else {
       ne / (ne - 0.18)
@@ -98,9 +98,9 @@ madn <- function(x, center = c("median", "mean"), factors = c("AA", "CR"),
                      1.10113)
 
   if (factors == "CR") {
-    bn <- if (n <= 9) bn_mad_med_CR[n] else n / (n - 0.8)
+    bn <- if (n <= 9L) bn_mad_med_CR[n] else n / (n - 0.8)
   } else {
-    bn <- if (n <= 9) bn_mad_med_AA[n] else no / (no - 0.786)
+    bn <- if (n <= 9L) bn_mad_med_AA[n] else no / (no - 0.786)
   }
 
   bn * madf(x)
