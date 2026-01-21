@@ -12,7 +12,6 @@ adm5 <- mean(abs(x5 - t5))
 mad5 <- median(abs(x5 - t5))
 y <- c(9, 2, 14, 4)
 oneValErr <- "There needs to be at least two values for a robust measure."
-numErr <- "x contains non-numeric entries."
 
 ## Internal madf error trapping
 expect_equal(revss:::madf(c(x5, NA), na.rm = TRUE),

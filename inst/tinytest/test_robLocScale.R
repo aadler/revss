@@ -11,9 +11,7 @@ t5 <- median(x5)
 adm5 <- mean(abs(x5 - t5))
 mad5 <- median(abs(x5 - t5))
 y <- c(9, 2, 14, 4)
-naErr <- "There are NAs in the data yet na.rm is FALSE"
 oneValErr <- "There needs to be at least two values for a robust measure."
-numErr <- "x contains non-numeric entries."
 
 ## RobLoc Tests
 robLocTest <- function(x, na.rm = FALSE, tol = sqrt(.Machine$double.eps)) {
@@ -70,9 +68,9 @@ expect_false(isTRUE(all.equal(robLoc(c(1, 8, 12), scale = 5),
 expect_equal(robLoc(c(5L, 8L, 19L)), robLoc(c(5, 8, 19)), tolerance = tol)
 
 # RobLoc Error Trapping
-expect_error(robLoc(c(x5, NA)), pattern = naErr)
+expect_true(is.na(robLoc(c(x5, NA))))
+expect_true(is.na(suppressWarnings(robLoc(c(x5, "A")))))
 expect_equal(robLoc(c(x5, NA), na.rm = TRUE), robLoc(x5), tolerance = tol)
-expect_error(robLoc(c(x5, "A")), pattern = numErr)
 
 ## RobScale Tests
 psif <- function(x) {
@@ -144,8 +142,8 @@ expect_false(isTRUE(all.equal(robScale(1:3), robScaleLocTest(1:3, loc = 0))))
 expect_equal(robScale(1:3), madn(1:3), tolerance = tol)
 
 # Test Error Trapping
-expect_error(robScale(c(x5, NA)), pattern = naErr)
+expect_true(is.na(robScale(c(x5, NA))))
+expect_true(is.na(suppressWarnings(robScale(c(x5, "A")))))
 expect_equal(robScale(c(x5, NA), na.rm = TRUE), robScale(x5), tolerance = tol)
-expect_error(robScale(c(x5, "A")), pattern = numErr)
 
 message("Seed for robLocScale test session: ", eff_seed)
