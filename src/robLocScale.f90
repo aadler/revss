@@ -58,7 +58,7 @@ contains
     real(kind = c_double), intent(in)                   :: x
     real(kind = c_double)                               :: y
 
-        if (x .gt. 37.43) then ! becomes 1 in double precision at 37.43
+        if (x > 37.43) then ! becomes 1 in double precision at 37.43
             y = ONE
         else
             y = exp(x)
@@ -68,7 +68,7 @@ contains
     end function psi
 
 !-------------------------------------------------------------------------------
-! FUNCTION: robLoc_f
+! SUBROUTINE: robLoc_f
 !
 ! DESCRIPTION: Calculation for robust location of Rousseeuw & Verboven (2002)
 !-------------------------------------------------------------------------------
@@ -100,7 +100,7 @@ contains
     end subroutine robLoc_f
 
 !-------------------------------------------------------------------------------
-! FUNCTION: robScale_f
+! SUBROUTINE: robScale_f
 !
 ! DESCRIPTION: Calculation for robust scale of Rousseeuw & Verboven (2002)
 !-------------------------------------------------------------------------------
