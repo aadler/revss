@@ -67,7 +67,6 @@ contains
 
     end subroutine swap
 
-
 !-------------------------------------------------------------------------------
 ! SUBROUTINE: NBIS (No-Branch Insertion Sort)
 !
@@ -83,7 +82,6 @@ contains
     integer(kind = c_int)                                  :: i, j
     real(kind = c_double)                                  :: test, tmp
 
-
         do i = l + 1, r
             test = v(i)
             j = i - 1
@@ -95,6 +93,7 @@ contains
             end do
             v(l) = test
         end do
+
     end subroutine NBIS
 
 !-------------------------------------------------------------------------------
@@ -109,8 +108,6 @@ contains
     integer(kind = c_int), intent(in)                      :: l, r
     integer(kind = c_int)                                  :: i, j, mid
     real(kind = c_double)                                  :: pivot
-
-
 
         if ((r - l) <= shortV) then
             call NBIS(v, l, r)

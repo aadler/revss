@@ -53,7 +53,6 @@ contains
 ! DESCRIPTION: Find the median of a 1-D vector
 !-------------------------------------------------------------------------------
 
-
     pure subroutine median_f(x, nx, ret) bind(C, name="median_f_")
 
     integer(kind = c_int), intent(in), value :: nx
