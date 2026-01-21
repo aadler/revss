@@ -39,7 +39,6 @@ madn <- function(x, center = c("median", "mean"), factors = c("AA", "CR"),
   if (n <= 1) {
     stop("There needs to be at least two values for a robust measure.")
   }
-  nc <- as.character(n)
 
   if (missing(center)) {
     center <- "median"
@@ -53,47 +52,68 @@ madn <- function(x, center = c("median", "mean"), factors = c("AA", "CR"),
     factors <- match.arg(factors)
   }
 
+  ne <- 2 * (n %/% 2)             # Even floor length.
+  no <- 2 * ((n + 1) %/% 2) - 1   # Odd floor length.
+
   if (center == "mean") {
     if (factors == "CR") {
       message("There are no factors in Croux & Rousseeuw for median absolute ",
               "deviation from the mean. Using Adler's factors.")
     }
-    ne <- 2 * (n %/% 2) # Even floor length; constants have step behavior.
-    bn <- switch(nc,
-                 "2" = 1.19561,
-                 "3" = 0.94279,
-                 "4" = 1.01703,
-                 "5" = 1.07511,
-                 "6" = 1.03119,
-                 "7" = 1.02084,
-                 "8" = 1.01958,
-                 "9" = 1.02468,
-                 ne / (ne - 0.18))
+
+    bn_mad_mean_AA <- c(NA_real_,
+                        1.19561,
+                        0.94279,
+                         1.01703,
+                         1.07511,
+                         1.03119,
+                         1.02084,
+                         1.01958,
+                         1.02468)
+
+    bn <- if (n <= 9) {
+      bn_mad_mean_AA[n]
+    } else {
+      ne / (ne - 0.18)
+    }
+
     return(bn * madf(x, center = sum(x) / n))
   }
 
-  no <- 2 * ((n + 1) %/% 2) - 1
-  bn <- switch(factors,
-               CR = switch(nc,
-                           "2" = 1.196,
-                           "3" = 1.495,
-                           "4" = 1.363,
-                           "5" = 1.206,
-                           "6" = 1.2,
-                           "7" = 1.14,
-                           "8" = 1.129,
-                           "9" = 1.107,
-                           n / (n - 0.8)),
-               AA = switch(nc,
-                           "2" = 1.19561,
-                           "3" = 1.48701,
-                           "4" = 1.36067,
-                           "5" = 1.217,
-                           "6" = 1.18973,
-                           "7" = 1.13773,
-                           "8" = 1.12735,
-                           "9" = 1.10113,
-                           no / (no - 0.786)))
+  bn_mad_med_CR <- c(NA_real_,
+                     1.196,
+                     1.495,
+                     1.363,
+                     1.206,
+                     1.2,
+                     1.14,
+                     1.129,
+                     1.107)
+
+  bn_mad_med_AA <- c(NA_real_,
+                     1.19561,
+                     1.48701,
+                     1.36067,
+                     1.217,
+                     1.18973,
+                     1.13773,
+                     1.12735,
+                     1.10113)
+
+  bn <- if (factors == "CR") {
+    if (n <= 9) {
+      bn_mad_med_CR[n]
+    } else {
+      n / (n - 0.8)
+    }
+  } else {
+    if (n <= 9) {
+      bn_mad_med_AA[n]
+    } else {
+      no / (no - 0.786)
+    }
+  }
+
   bn * madf(x)
 
 }
