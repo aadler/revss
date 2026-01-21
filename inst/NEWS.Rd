@@ -25,8 +25,8 @@
       \item \strong{Breaking:} Rewrite of most of the code base including
       tightening \R code and porting \code{adm}, the heavier parts of
       \code{robLoc} and \code{robScale}, and a new simplified median algorithm
-      based on quicksort to Fortran. New parameter options were added and some
-      positions moved, so this change is considered breaking.
+      based on an optimized quicksort to Fortran. New parameter options were
+      added and some positions moved, so this change is considered breaking.
       \item \strong{Breaking:} Rousseeuw & Verboven (2002) actually use a
       small sample bias-corrected version of \code{mad} found in Croux &
       Rousseeuw (1992). The package now implements this as a new function,
