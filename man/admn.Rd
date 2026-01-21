@@ -44,10 +44,9 @@ requested central tendency adjusted by the asymptotic normality constant and the
 small-sample bias-reduction constant.
 }
 \references{
-Croux, Christophe and Rousseeuw, Peter J. (1992)
-\href{https://wis.kuleuven.be/stat/robust/papers/publications-1992/crouxrousseeuw-timeeffalgosnqn-compstat-1992.pdf}{
-"Time-Efficient Algorithms for Two Highly Robust Estimators of Scale"},
-\emph{Computational Statistics}, Vol. 1, 411--428
+Croux, Christophe and Rousseeuw, Peter J. (1992) "Time-Efficient Algorithms for
+Two Highly Robust Estimators of Scale", \emph{Computational Statistics}, Vol. 1,
+411--428. \doi{10.1007/978-3-662-26811-7_58}
 }
 \author{Avraham Adler \email{Avraham.Adler@gmail.com}}
 \seealso{
