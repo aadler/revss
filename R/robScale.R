@@ -30,12 +30,6 @@ robScale <- function(x, loc = NULL, implbound = 1e-4, na.rm = FALSE,
     tol <- as.double(tol)
   }
 
-  if (missing(madfctrs)) {
-    madfctrs <- "AA"
-  } else {
-    madfctrs <- match.arg(madfctrs)
-  }
-
   madfctrs <- madfctrs[1L]
   isCR <- madfctrs == "CR"
   if (!isCR && madfctrs != "AA") {
