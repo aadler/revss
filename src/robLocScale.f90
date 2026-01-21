@@ -79,13 +79,14 @@ contains
     real(kind = c_double), intent(inout)     :: t
     real(kind = c_double), intent(out)       :: ret
     real(kind = c_double), parameter         :: bt = 0.413241928283814_c_double
-    real(kind = c_double)                    :: v, nxr, recips, a
+    real(kind = c_double)                    :: v, nxr, recipbtnxr, recips, a
     integer                                  :: i, k
 
         v = TWO * tol
         recips = ONE / s
         k = 0
         nxr = real(nx, c_double)
+        recipbtnxr = ONE / (bt * nxr)
 
         do while (abs(v) > tol .and. k < maxit)
             k = k + 1
@@ -95,7 +96,7 @@ contains
                 a = a + psi((x(i) - t) * recips)
             end do
 
-            v = (s * a) / (bt * nxr)
+            v = s * a * recipbtnxr
             t = t + v
         end do
 
@@ -118,12 +119,13 @@ contains
     real(kind = c_double), intent(inout)    :: s
     real(kind = c_double), intent(out)      :: ret
     real(kind = c_double), parameter        :: bt = 0.37394112142347236_c_double
-    real(kind = c_double)                   :: v, nxr, recipsbt, a, z
+    real(kind = c_double)                   :: v, Tnxr, nxr, recipsbt, a, z
     integer                                 :: i, k
 
         v = TWO + tol
         k = 0
         nxr = real(nx, c_double)
+        Tnxr = TWO / nxr
 
         do while (abs(v - ONE) > tol .and. k < maxit)
             k = k + 1
@@ -135,7 +137,7 @@ contains
                 a = a + z * z
             end do
 
-            v = sqrt(TWO * a / nxr)
+            v = sqrt(a * Tnxr)
             s = s * v
         end do
 
