@@ -45,6 +45,9 @@ module deviations
     private
     public         :: median_f, adm_f, mad_f
 
+    real(kind = c_double), parameter :: ZERO = 0._c_double
+    real(kind = c_double), parameter :: HALF = 0.5_c_double
+
 contains
 
 !-------------------------------------------------------------------------------
@@ -62,7 +65,7 @@ contains
         call OQS(x, 1, nx)
         ret = x(nx / 2 + 1)
         if (mod(nx, 2) == 0) then
-            ret = (ret + x(nx / 2)) / 2._c_double
+            ret = (ret + x(nx / 2)) * HALF
         end if
 
     end subroutine median_f
@@ -78,8 +81,10 @@ contains
     integer(kind = c_int), intent(in), value :: nx
     real(kind = c_double), intent(in)        :: x(nx), ct, co
     real(kind = c_double), intent(out)       :: ret
+    real(kind = c_double)                    :: conx
 
-        ret = co * sum(abs(x - ct)) / real(nx, c_double)
+        conx = co / real(nx, c_double)
+        ret = conx * sum(abs(x - ct))
 
     end subroutine adm_f
 
