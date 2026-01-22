@@ -20,6 +20,9 @@ madf <- function(x, center = NULL, constant = 1.4826, na.rm = FALSE) {
     center <- .Call(median_c, x)
   } else {
     center <- as.double(center)[1L]
+    if (is.na(center)) {
+      return(NA_real_)
+    }
   }
 
   .Call(mad_c, x, center, as.double(constant)[1L])
