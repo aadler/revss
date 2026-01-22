@@ -19,7 +19,6 @@ medianR <- function(x, na.rm = FALSE) {
   }
 
   .Call(median_c, x)
-
 }
 
 adm <- function(x, center = NULL, constant = NULL, na.rm = FALSE) {
@@ -45,7 +44,7 @@ adm <- function(x, center = NULL, constant = NULL, na.rm = FALSE) {
   }
 
   if (is.null(center)) {
-    center <- medianR(x)
+    center <- .Call(median_c, x)
   } else {
     center <- as.double(center)[1L]
     if (is.na(center)) {
@@ -113,7 +112,7 @@ admn <- function(x, center = c("median", "mean"), na.rm = FALSE) {
     } else {
       an <- ne / (ne - 0.756)
     }
-    centerV <- medianR(x)
+    centerV <- .Call(median_c, x)
   }
 
   const * an * .Call(adm_c, x, centerV, 1)

@@ -41,9 +41,11 @@ robLoc <- function(x, scale = NULL, na.rm = FALSE, maxit = 80L, tol = NULL,
     s <- madn(x, factors = factors)
   }
 
+  med <- .Call(median_c, x)
+
   if (length(x) < minobs) {
-    return(medianR(x))
+    return(med)
   }
 
-  .Call(robLoc_c, x, medianR(x), s, as.integer(maxit), tol)
+  .Call(robLoc_c, x, med, s, as.integer(maxit), tol)
 }

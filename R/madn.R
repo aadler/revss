@@ -17,7 +17,7 @@ madf <- function(x, center = NULL, constant = 1.4826, na.rm = FALSE) {
   }
 
   if (is.null(center)) {
-    center <- medianR(x)
+    center <- .Call(median_c, x)
   } else {
     center <- as.double(center)[1L]
   }
@@ -82,5 +82,5 @@ madn <- function(x, center = c("median", "mean"), factors = c("AA", "CR"),
     bn <- if (n <= 9L) .revssConst$bnMadMedAA[n] else no / (no - 0.786)
   }
 
-  bn * .Call(mad_c, x, medianR(x), 1.4826)
+  bn * .Call(mad_c, x, .Call(median_c, x), 1.4826)
 }
