@@ -45,7 +45,6 @@ module robLocScale
     real(kind = c_double), parameter :: ZERO = 0._c_double
     real(kind = c_double), parameter :: ONE = 1._c_double
     real(kind = c_double), parameter :: TWO = 2._c_double
-    real(kind = c_double), parameter :: FORTY = 40._c_double
 
 contains
 
