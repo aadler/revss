@@ -35,7 +35,7 @@ robLoc <- function(x, scale = NULL, na.rm = FALSE, maxit = 80L, tol = NULL,
 
   if (!is.null(scale)) {
     minobs <- 3L
-    s <- scale
+    s <- as.double(scale)[1L]
   } else {
     minobs <- 4L
     s <- madn(x, factors = factors)
@@ -45,5 +45,5 @@ robLoc <- function(x, scale = NULL, na.rm = FALSE, maxit = 80L, tol = NULL,
     return(medianR(x))
   }
 
-  .Call(robLoc_c, x, medianR(x), as.double(s), as.integer(maxit), tol)
+  .Call(robLoc_c, x, medianR(x), s, as.integer(maxit), tol)
 }
