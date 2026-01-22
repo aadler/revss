@@ -48,11 +48,8 @@ robScale <- function(x, loc = NULL, implbound = 1e-4, na.rm = FALSE,
   }
 
   if (n < minobs) {
-    if (madn(x) <= implbound) {
-      return(admn(x))
-    } else {
-      return(madn(x, factors = madfctrs))
-    }
+    m <- madn(x, factors = madfctrs)
+    return(if (m <= implbound) admn(x) else m)
   }
 
   rS <- .Call(robScale_c, x, t, s, as.integer(maxit), tol)
