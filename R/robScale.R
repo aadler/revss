@@ -25,9 +25,9 @@ robScale <- function(x, loc = NULL, implbound = 1e-4, na.rm = FALSE,
   n <- length(x)
 
   if (is.null(tol)) {
-    tol <- sqrt(.Machine$double.eps)
+    tol <- .revssConst$stdTol
   } else {
-    tol <- as.double(tol)
+    tol <- as.double(tol)[1L]
   }
 
   madfctrs <- madfctrs[1L]

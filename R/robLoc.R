@@ -28,9 +28,9 @@ robLoc <- function(x, scale = NULL, na.rm = FALSE, maxit = 80L, tol = NULL,
   }
 
   if (is.null(tol)) {
-    tol <- sqrt(.Machine$double.eps)
+    tol <- .revssConst$stdTol
   } else {
-    tol <- as.double(tol)
+    tol <- as.double(tol)[1L]
   }
 
   if (!is.null(scale)) {
