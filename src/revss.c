@@ -6,7 +6,7 @@
 
 extern void median_f_(double *x, int nx, double *ret);
 
-extern SEXP median_c (SEXP x) {
+SEXP median_c (SEXP x) {
   const int nx = LENGTH(x);
   SEXP ret = PROTECT(allocVector(REALSXP, 1));
   median_f_(REAL(x), nx, REAL(ret));
@@ -16,7 +16,7 @@ extern SEXP median_c (SEXP x) {
 
 extern void adm_f_(double *x, int nx, double *ct, double *co, double *ret);
 
-extern SEXP adm_c (SEXP x, SEXP ct_, SEXP co_) {
+SEXP adm_c (SEXP x, SEXP ct_, SEXP co_) {
   const int nx = LENGTH(x);
   SEXP ret = PROTECT(allocVector(REALSXP, 1));
   adm_f_(REAL(x), nx, REAL(ct_), REAL(co_), REAL(ret));
@@ -26,7 +26,7 @@ extern SEXP adm_c (SEXP x, SEXP ct_, SEXP co_) {
 
 extern void mad_f_(double *x, int nx, double *ct, double *co, double *ret);
 
-extern SEXP mad_c (SEXP x, SEXP ct_, SEXP co_) {
+SEXP mad_c (SEXP x, SEXP ct_, SEXP co_) {
   const int nx = LENGTH(x);
   SEXP ret = PROTECT(allocVector(REALSXP, 1));
   mad_f_(REAL(x), nx, REAL(ct_), REAL(co_), REAL(ret));
@@ -37,7 +37,7 @@ extern SEXP mad_c (SEXP x, SEXP ct_, SEXP co_) {
 extern void robLoc_f_(double *x, int nx, double *t, double *s, int *maxit,
               double *tol, double *ret);
 
-extern SEXP robLoc_c (SEXP x, SEXP t_, SEXP s_, SEXP maxit_, SEXP tol_) {
+SEXP robLoc_c (SEXP x, SEXP t_, SEXP s_, SEXP maxit_, SEXP tol_) {
   const int nx = LENGTH(x);
   SEXP ret = PROTECT(allocVector(REALSXP, 1));
   robLoc_f_(REAL(x), nx, REAL(t_), REAL(s_), INTEGER(maxit_), REAL(tol_),
@@ -49,7 +49,7 @@ extern SEXP robLoc_c (SEXP x, SEXP t_, SEXP s_, SEXP maxit_, SEXP tol_) {
 extern void robScale_f_(double *x, int nx, double *t, double *s, int *maxit,
               double *tol, double *ret);
 
-extern SEXP robScale_c (SEXP x, SEXP t_, SEXP s_, SEXP maxit_, SEXP tol_) {
+SEXP robScale_c (SEXP x, SEXP t_, SEXP s_, SEXP maxit_, SEXP tol_) {
   const int nx = LENGTH(x);
   SEXP ret = PROTECT(allocVector(REALSXP, 1));
   robScale_f_(REAL(x), nx, REAL(t_), REAL(s_), INTEGER(maxit_), REAL(tol_),
