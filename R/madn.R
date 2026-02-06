@@ -3,6 +3,7 @@
 
 madf <- function(x, center = NULL, constant = 1.4826, na.rm = FALSE) {
   # Internal fast Median Absolute Deviation from Center coded in Fortran
+  # Constant is the same as stats::mad; a truncation of 1 / qnorm(0.75)
 
   x <- as.double(x)
 
@@ -32,6 +33,7 @@ madf <- function(x, center = NULL, constant = 1.4826, na.rm = FALSE) {
 # based on Croux & Rousseeuw (1992). AA parameters based on Monte Carlo by the
 # package owner, paper forthcoming.
 # Can replace 'mad' in stats for small samples.
+# Constant of 1.4826 is the same as stats::mad; a truncation of 1 / qnorm(0.75)
 
 madn <- function(x, center = c("median", "mean"), factors = c("AA", "CR"),
                  na.rm = FALSE) {
