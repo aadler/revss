@@ -54,6 +54,7 @@
                   1.20221,
                   1.16041,
                   1.14768),
-    stdTol = sqrt(.Machine$double.eps)
+    stdTol = sqrt(.Machine$double.eps),
+    sqrthalfpi = 1.2533141373155001
   )
 })

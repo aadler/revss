@@ -14,4 +14,4 @@ $(SHLIB): $(FT_OBJS) $(C_OBJS)
 deviations.o: sorting.o
 
 clean:
-	@rm -f *.mod *.o
+	@rm -f *.mod *.o *.so *.dll

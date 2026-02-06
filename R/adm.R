@@ -55,7 +55,7 @@ adm <- function(x, center = NULL, constant = NULL, na.rm = FALSE) {
   # Asymptotic constant for both mean absolute deviation from the mean and mean
   # absolute deviation from the median is sqrt(pi / 2)
   if (is.null(constant)) {
-    constant <- 1.2533141373155001 # sqrt(pi / 2)
+    constant <- .revssConst$sqrthalfpi
   } else {
     constant <- as.double(constant)[1L]
   }
@@ -94,10 +94,6 @@ admn <- function(x, center = c("median", "mean"), na.rm = FALSE) {
     stop("center must be 'median' or 'mean'", call. = FALSE)
   }
 
-  # Asymptotic constant for both mean absolute deviation from the mean and mean
-  # absolute deviation from the median is sqrt(pi / 2)
-  const <- 1.2533141373155001
-
   if (is_mean) {
     if (n <= 9L) {
       an <- .revssConst$anAdmMean[n]
@@ -115,5 +111,7 @@ admn <- function(x, center = c("median", "mean"), na.rm = FALSE) {
     centerV <- .Call(median_c, x)
   }
 
-  const * an * .Call(adm_c, x, centerV, 1)
+  # Asymptotic constant for both mean absolute deviation from the mean and mean
+  # absolute deviation from the median is sqrt(pi / 2)
+  .revssConst$sqrthalfpi * an * .Call(adm_c, x, centerV, 1)
 }
