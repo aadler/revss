@@ -58,7 +58,7 @@ contains
 ! DESCRIPTION: Insertion Sort for small vectors (length <= 16)
 !              Branchless. Interestingly, the extra call saves time because
 !              merge can be implemented much more efficiently than the branching
-!              on v(j) > test. Testing shows almost no difference betweem this
+!              on v(j) > test. Testing shows almost no difference between this
 !              and a version which uses sentinals, cycles, and exits.
 !-------------------------------------------------------------------------------
 
