@@ -58,7 +58,7 @@ robScale <- function(x, loc = NULL, implbound = 1e-4, na.rm = FALSE,
     if (n <= 9L) {
       rn <- .revssConst$robScaleF[n]
     } else {
-      rn <- n / (n - 1.126)
+      rn <- n / (n - .revssConst$robScaleF[10L])
     }
   } else {
     rn <- 1

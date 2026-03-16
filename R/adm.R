@@ -98,7 +98,7 @@ admn <- function(x, center = c("median", "mean"), na.rm = FALSE) {
     if (n <= 9L) {
       an <- .revssConst$anAdmMean[n]
     } else {
-      an <- n / (n - 0.508)
+      an <- n / (n - .revssConst$anAdmMean[10L])
     }
     centerV <- sum(x) / n
   } else {
@@ -106,7 +106,7 @@ admn <- function(x, center = c("median", "mean"), na.rm = FALSE) {
     if (n <= 9L) {
       an <- .revssConst$anAdmMed[n]
     } else {
-      an <- ne / (ne - 0.756)
+      an <- n / (n - .revssConst$anAdmMed[10L])
     }
     centerV <- .Call(median_c, x)
   }
