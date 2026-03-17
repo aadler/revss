@@ -96,17 +96,17 @@ admn <- function(x, center = c("median", "mean"), na.rm = FALSE) {
 
   if (is_mean) {
     if (n <= 9L) {
-      an <- .revssConst$anAdmMean[n]
+      an <- .revssConst$anMADM[n]
     } else {
-      an <- n / (n - .revssConst$anAdmMean[10L])
+      an <- n / (n - .revssConst$anMADM[10L])
     }
     centerV <- sum(x) / n
   } else {
     ne <- 2 * (n %/% 2) # Even floor length
     if (n <= 9L) {
-      an <- .revssConst$anAdmMed[n]
+      an <- .revssConst$anMADMd[n]
     } else {
-      an <- n / (n - .revssConst$anAdmMed[10L])
+      an <- n / (n - .revssConst$anMADMd[10L])
     }
     centerV <- .Call(median_c, x)
   }
