@@ -92,12 +92,12 @@ madn(x, center = "mean")
 # The length 5 CR correction constant is 1.206
 all.equal(madn(x, factors = "CR"), 1.206 * mad(x))
 
-# The length 5 AA constant for deviation from median is 1.2158502434732232
-all.equal(madn(x), 1.2158502434732232 * mad(x))
+# The length 5 AA constant for deviation from median is 1.2167
+all.equal(madn(x), 1.2167 * mad(x))
 
-# The length 5 AA constant for deviation from mean is 1.074608827423805
+# The length 5 AA constant for deviation from mean is 1.0750
 all.equal(madn(x, center = "mean"),
-          mad(x, center = mean(x)) * 1.074608827423805)
+          mad(x, center = mean(x)) * 1.0750)
 }
 
 \keyword{univar}

@@ -3,6 +3,12 @@
 
 tol <- sqrt(.Machine$double.eps)
 
+# Bias Factors
+RS4 <- 1.3082
+RSL <- 1.1256
+MdASMd3AA <- 1.4872 # nolint object_name_linter
+MdASMd3CR <- 1.495  # nolint object_name_linter
+
 ## Generate Test Data
 eff_seed <- sample.int(65536, 1)
 set.seed(eff_seed)
@@ -51,11 +57,9 @@ expect_equal(robLoc(x5), robLocTest(x5), tolerance = tol)
 expect_equal(robLoc(x5, tol = .Machine$double.eps),
              robLocTest(x5, .Machine$double.eps), tolerance = tol)
 expect_equal(robLoc(c(1, 9, 7)), median(c(1, 9, 7)), tolerance = tol)
-
 expect_equal(robLoc(x5, factors = "AA"), robLoc(x5), tolerance = tol)
 expect_false(isTRUE(all.equal(robLoc(x5, factors = "CR"),
-                              robLoc(x5),
-                              tolerance = tol)))
+                              robLoc(x5), tolerance = tol)))
 
 # Known Scale
 expect_equal(robLoc(y, scale = 5), robLocScaleTest(y, scale = 5),
@@ -102,24 +106,26 @@ expect_equal(robScale(y), robScaleTest(y), tolerance = tol)
 expect_equivalent(robScale(y, tol = 100 * .Machine$double.eps),
                   robScaleTest(y, tol = 100 * .Machine$double.eps),
                   tolerance = 100 * .Machine$double.eps)
+expect_equal(robScale(y, usefctrs = TRUE), RS4 * robScaleTest(y),
+             tolerance = tol)
 
-expect_equal(robScale(y, usefctrs = TRUE),
-             1.30827 * robScaleTest(y), tolerance = tol)
-
-# Test Exception Handling
+# Test "minobs" Handling
 expect_equal(robScale(y[1:3]), madn(y[1:3]), tolerance = tol)
 expect_equal(robScale(c(1e-5, 0, 4)), admn(c(1e-5, 0, 4)), tolerance = tol)
 expect_equal(robScale(c(0.0001, 0, 4)), madn(c(0.0001, 0, 4)), tolerance = tol)
+
+# Test Exception Handling
 expect_true(is.na(robScale(lZero)))
 expect_true(is.na(robScale(c(NA, NA), na.rm = TRUE)))
 expect_error(robScale(1:5, madfctrs = "ZZ"), factErr)
 
 # Test passing factors which only matters for length(x) < minobs
 expect_equal(robScale(y[1:3], madfctrs = "AA"),
-             robScale(y[1:3]),
-             tolerance = tol)
+             robScale(y[1:3]), tolerance = tol)
 expect_false(isTRUE(all.equal(robScale(y[1:3], madfctrs = "CR"),
-                    1.30827 * robScale(y[1:3]), tolerance = tol)))
+                    robScale(y[1:3]), tolerance = tol)))
+expect_equal(robScale(y[1:3], madfctrs = "CR"),
+             robScale(y[1:3]) * MdASMd3CR / MdASMd3AA, tolerance = tol)
 
 # Excel precision probably lacking here.
 expect_equal(robScale(c(1e-4, 0, 0, 4)), 0.0001015301155129359,
@@ -128,7 +134,7 @@ expect_equal(robScale(c(1L, 0L, 3L, 5L)),
              robScale(c(1, 0, 3, 5)),
              tolerance = tol)
 expect_equal(robScale(3:21, usefctrs = TRUE),
-             robScale(3:21) * 19 / (19 - 1.126),
+             robScale(3:21) * 19 / (19 - RSL),
              tolerance = tol)
 
 robScaleLocTest <- function(x, loc) {
@@ -150,7 +156,6 @@ expect_equal(robScale(y, loc = 7), robScaleLocTest(y, loc = 7), tolerance = tol)
 expect_equal(robScale(1:3, loc = 3), robScaleLocTest(1:3, loc = 3),
              tolerance = tol)
 expect_false(isTRUE(all.equal(robScale(1:3), robScaleLocTest(1:3, loc = 0))))
-expect_equal(robScale(1:3), madn(1:3), tolerance = tol)
 
 # Test Error Trapping
 expect_true(is.na(robScale(c(x5, NA))))

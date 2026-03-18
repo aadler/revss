@@ -59,25 +59,31 @@ expect_true(is.na(adm(lZero)))
 expect_true(is.na(adm(NA, na.rm = TRUE)))
 expect_true(is.na(adm(1:5, center = "", na.rm = TRUE)))
 
-# ADMN
+# Bias reduction factors:
+anMADM5 <- 1.1180
+anMADML <- 0.5074
+anMADMd5 <- 1.2031
+anMADMdL <- 0.7558
+tstSeq <- 3:20
+tstL <- length(tstSeq)
+tstM <- mean(tstSeq)
+tstMd <- median(tstSeq)
+
 ## Mean Absolute Deviation from the Mean
-expect_equal(admn(x5, center = "mean"),
-             adm(x5, center = mean(x5)) * 1.11797,
+expect_equal(admn(x5, center = "mean"), adm(x5, center = mean(x5)) * anMADM5,
              tolerance = tol)
-expect_equal(admn(3:20, center = "mean"),
-             adm(3:20, center = mean(3:20)) * 18 / (18 - 0.508),
+expect_equal(admn(tstSeq, center = "mean"),
+             adm(tstSeq, center = tstM) * tstL / (tstL - anMADML),
              tolerance = tol)
 
 ## Mean Absolute Deviation from the Median
 expect_equal(admn(x5, center = "median"),
-             adm(x5, center = median(x5)) * 1.20307,
+             adm(x5, center = median(x5)) * anMADMd5, tolerance = tol)
+expect_equal(admn(tstSeq),
+             adm(tstSeq, center = tstMd) *  tstL / (tstL - anMADMdL),
              tolerance = tol)
-expect_equal(admn(3:20),
-             adm(3:20, center = median(3:20)) * 18 / (18 - 0.756),
-             tolerance = tol)
-
-expect_equal(admn(3:21),
-             adm(3:21, center = median(3:21)) * 18 / (18 - 0.756),
+expect_equal(admn(3:21), # test odd > even
+             adm(3:21, center = median(3:21)) * 18 / (18 - anMADMdL),
              tolerance = tol)
 
 expect_error(admn(4), oneValErr)

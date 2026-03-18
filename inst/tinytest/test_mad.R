@@ -22,33 +22,43 @@ expect_error(revss:::madf(c(1, NA, NA), na.rm = TRUE), "at least two")
 expect_true(is.na(suppressWarnings(revss:::madf(c(x5, "c")))))
 expect_true(is.na(revss:::madf(1:5, center = "")))
 
+# Bias reduction factors:
+bnMdADM5 <- 1.0750
+bnMdADML <- 0.1786
+bnMdADMdCR4 <- 1.363
+bnMdADMdCRL <- 0.8
+bnMdADMdAA4 <- 1.3606
+bnMdADMdAAL <- 0.7852
+tstSeq <- 3:21
+tstL <- length(tstSeq)
+tstLE <- 2 * (tstL %/% 2)
+tstM <- mean(tstSeq)
+
 ## Median Absolute Deviation from the Median Small Sample
-expect_equal(madn(y, factors = "CR"), 1.363 * mad(y), tolerance = tol)
-expect_equal(madn(y), 1.36067 * mad(y), tolerance = tol)
+expect_equal(madn(y, factors = "CR"), bnMdADMdCR4 * mad(y), tolerance = tol)
+expect_equal(madn(y), bnMdADMdAA4 * mad(y), tolerance = tol)
 expect_equal(madn(y, center = "median"),
              madn(y, factors = "AA"),
              tolerance = tol)
 
 z <- runif(12)
-expect_equal(madn(z, factors = "CR"), 12 / (12 - 0.8) * mad(z), tolerance = tol)
-expect_equal(madn(z, factors = "AA"), 11 / (11 - 0.786) * mad(z),
+expect_equal(madn(z, factors = "CR"), 12 / (12 - bnMdADMdCRL) * mad(z),
+             tolerance = tol)
+expect_equal(madn(z, factors = "AA"), 11 / (11 - bnMdADMdAAL) * mad(z),
              tolerance = tol)
 expect_equal(madn(c(NA, z, NA), na.rm = TRUE), madn(z), tolerance = tol)
+
+## Median Absolute Deviation from the Mean Small Sample
+expect_equal(madn(x5, center = "mean", factors = "AA"),
+             mad(x5, center = mean(x5)) * bnMdADM5, tolerance = tol)
+expect_equal(madn(tstSeq, center = "mean"),
+             mad(tstSeq, center = tstM) * tstLE / (tstLE - bnMdADML),
+             tolerance = tol)
 
 ## Error trapping
 expect_true(is.na(madn(c(NA, z, NA))))
 expect_true(is.na(suppressWarnings(madn(c(z, "c")))))
 expect_error(madn(4), oneValErr)
-
-## Median Absolute Deviation from the Mean Small Sample
-expect_equal(madn(x5, center = "mean", factors = "AA"),
-             mad(x5, center = mean(x5)) * 1.07511,
-             tolerance = tol)
-expect_equal(madn(3:21, center = "mean"),
-             mad(3:21, center = mean(3:21)) * 18 / (18 - 0.18),
-             tolerance = tol)
-
-## Error Trapping
 expect_error(madn(4, center = "mean"), oneValErr)
 expect_true(is.na(madn(c(x5, NA), center = "mean")))
 expect_true(is.na(suppressWarnings(madn(c(x5, "c"), center = "mean"))))
