@@ -6,7 +6,7 @@
 \title{Robust Estimate of Scale}
 \description{Compute the robust estimate of scale for very small samples.}
 \usage{
-function(x, loc = NULL, na.rm = FALSE, opts = list())
+robScale(x, loc = NULL, na.rm = FALSE, opts = list())
 }
 \arguments{
   \item{x}{\strong{numeric}; A vector of values.}
