@@ -5,7 +5,7 @@
 \alias{NEWS}
 \title{NEWS file for the revss package}
 
-\section{Version 3.0.0 (2026-01-07)}{
+\section{Version 3.0.0 (2026-03-20)}{
   \subsection{Added}{
     \itemize{
       \item Added small-sample bias-corrected version of \code{mad}---called
@@ -17,7 +17,7 @@
       \href{https://github.com/filiporn}{@filiporn}).
       \item Added small-sample bias-corrected version of \code{adm}---called
       \code{admn}---with factors based on a Monte Carlo simulation run by the
-      package author  which is intended to be published in the future.
+      package author which is intended to be published in the future.
     }
   }
   \subsection{Changed}{
