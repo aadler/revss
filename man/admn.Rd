@@ -32,10 +32,10 @@ to differentiate it from the more standard \eqn{\textrm{ADM}}, given the
 
 This function differs from its larger-scale version, \code{\link{adm}}, in other
 ways. First, it only accepts \code{"median"} or \code{"mean"} as its central
-tendency, and not a scalar value or any other scalar-valued function, as the
-factors were only calculated for those two functions. Also, it does not allow
-passing a user-defined constant, as the intent is to return the unbiased
-estimate assuming normality.
+tendency---not a scalar value or any other scalar-valued function---as the
+factors were only calculated for those two central tendencies. Also, \code{admn}
+does not allow passing a user-defined constant, as the intent is to return the
+unbiased estimate assuming normality.
 
 If \code{na.rm} is \code{TRUE} then \code{NA} values are stripped from \code{x}
 before computation takes place. If this is not done then an \code{NA} value in
