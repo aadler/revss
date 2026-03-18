@@ -57,16 +57,26 @@
                       1.1274,
                       1.1012,
                       0.7852),
-       robScaleF = c(NA_real_,
-                     NA_real_,         # Should never be called
-                     0.9401,           # Only called if loc is known so from loc
-                     1.3082,
-                     1.3190,
-                     1.2160,
-                     1.2024,
-                     1.1605,
-                     1.1477,
-                     1.1256),
+       bnRobScl = c(NA_real_,
+                    NA_real_,      # Should never be called
+                    NA_real_,      # Should never be called
+                    1.3082,
+                    1.3190,
+                    1.2160,
+                    1.2024,
+                    1.1605,
+                    1.1477,
+                    1.1256),
+       bnRobSclKL = c(NA_real_,
+                      NA_real_,    # Should never be called
+                      0.9401,
+                      0.9547,
+                      0.9639,
+                      0.9696,
+                      0.9741,
+                      0.9773,
+                      0.9798,
+                      -0.1851),
        stdTol = sqrt(.Machine$double.eps),
        sqrthalfpi = 1.2533141373155001
   )

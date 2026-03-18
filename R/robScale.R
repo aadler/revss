@@ -36,7 +36,9 @@ robScale <- function(x, loc = NULL, implbound = 1e-4, na.rm = FALSE,
     stop("madfctrs must be 'AA' or 'CR'", call. = FALSE)
   }
 
-  if (!is.null(loc)) {
+  haveLoc <- !is.null(loc)
+
+  if (haveLoc) {
     x <- x - loc
     s <- 1.4826 * .Call(median_c, abs(x)) # MDZ in paper. Already protected
     t <- 0                        # nolint object_overwrite_linter
@@ -54,11 +56,19 @@ robScale <- function(x, loc = NULL, implbound = 1e-4, na.rm = FALSE,
 
   rS <- .Call(robScale_c, x, t, s, as.integer(maxit), tol)
 
-  if (usefctrs && is.null(loc)) {
-    if (n <= 9L) {
-      rn <- .revssConst$robScaleF[n]
+  if (usefctrs) {
+    if (haveLoc) {
+      if (n <= 9L) {
+        rn <- .revssConst$bnRobSclKL[n]
+      } else {
+        rn <- n / (n - .revssConst$bnRobSclKL[10L])
+      }
     } else {
-      rn <- n / (n - .revssConst$robScaleF[10L])
+      if (n <= 9L) {
+        rn <- .revssConst$bnRobScl[n]
+      } else {
+        rn <- n / (n - .revssConst$bnRobScl[10L])
+      }
     }
   } else {
     rn <- 1

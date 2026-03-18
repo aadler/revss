@@ -4,8 +4,10 @@
 tol <- sqrt(.Machine$double.eps)
 
 # Bias Factors
-RS4 <- 1.3082
-RSL <- 1.1256
+bnRobScl4 <- 1.3082
+bnRobSclL <- 1.1256
+bnRobSclKL6 <- 0.9696
+bnRobSclKLL <- -0.1851
 MdASMd3AA <- 1.4872 # nolint object_name_linter
 MdASMd3CR <- 1.495  # nolint object_name_linter
 
@@ -106,7 +108,7 @@ expect_equal(robScale(y), robScaleTest(y), tolerance = tol)
 expect_equivalent(robScale(y, tol = 100 * .Machine$double.eps),
                   robScaleTest(y, tol = 100 * .Machine$double.eps),
                   tolerance = 100 * .Machine$double.eps)
-expect_equal(robScale(y, usefctrs = TRUE), RS4 * robScaleTest(y),
+expect_equal(robScale(y, usefctrs = TRUE), bnRobScl4 * robScaleTest(y),
              tolerance = tol)
 
 # Test "minobs" Handling
@@ -134,7 +136,7 @@ expect_equal(robScale(c(1L, 0L, 3L, 5L)),
              robScale(c(1, 0, 3, 5)),
              tolerance = tol)
 expect_equal(robScale(3:21, usefctrs = TRUE),
-             robScale(3:21) * 19 / (19 - RSL),
+             robScale(3:21) * 19 / (19 - bnRobSclL),
              tolerance = tol)
 
 robScaleLocTest <- function(x, loc) {
@@ -156,6 +158,12 @@ expect_equal(robScale(y, loc = 7), robScaleLocTest(y, loc = 7), tolerance = tol)
 expect_equal(robScale(1:3, loc = 3), robScaleLocTest(1:3, loc = 3),
              tolerance = tol)
 expect_false(isTRUE(all.equal(robScale(1:3), robScaleLocTest(1:3, loc = 0))))
+z <- rnorm(6) + 1
+expect_equal(robScale(z, loc = 1, usefctrs = TRUE),
+             robScale(z, loc = 1) * bnRobSclKL6, tolerance = tol)
+z <- rnorm(12) + 3
+expect_equal(robScale(z, loc = 3, usefctrs = TRUE),
+             robScale(z, loc = 3) * 12 / (12 - bnRobSclKLL), tolerance = tol)
 
 # Test Error Trapping
 expect_true(is.na(robScale(c(x5, NA))))
