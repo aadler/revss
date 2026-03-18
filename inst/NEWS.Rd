@@ -17,7 +17,8 @@
       by default. Testing shows that the improvement is measurable and
       significant.
       \item \strong{Breaking}: \code{robLoc} and \code{robScale} refactored to
-      move lesser-used options into an \code{opts} list.
+      move lesser-used options into an \code{opts} list and have a consistent
+      parameter order across the package.
       \item Function examples now better demonstrate their usefulness.
       \item Refactored and updated unit tests.
     }
@@ -25,6 +26,12 @@
   \subsection{Fixed}{
     \itemize{
       \item Corrected minor errors in documentation.
+    }
+  }
+  \subsection{Removed}{
+    \itemize{
+      \item Removed unused, unexposed functions \code{medianR} and \code{madf}
+      carried over from older development.
     }
   }
 }
