@@ -11,7 +11,7 @@ title: Package revss
 <!-- badges: end -->
 
 ## Description
-**revss** is an `R` package which implements and builds on the estimation
+**revss** is an `R` package which implements and enhances the estimation
 techniques described in [Rousseeuw & Verboven (2002)](https://www.researchgate.net/publication/223864903_Robust_estimation_in_very_small_samples#fullTextFileContent)
 for the location and scale of very small samples.
 
