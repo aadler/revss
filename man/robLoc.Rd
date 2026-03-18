@@ -39,10 +39,6 @@ before computation takes place.  If this is not done then an \code{NA} value in
 
 The tolerance and number of iterations are similar to those in existing base \R
 functions.
-
-Rousseeuw & Verboven suggest using this function when there are 3--8 samples.
-It is implied that having more than 8 samples allows the use of more standard
-estimators.
 }
 \value{
 Solves for the robust estimate of location, \eqn{T_n}{Tn}, which is the solution
@@ -50,7 +46,7 @@ to
 \deqn{\frac{1}{n}\sum_{i = 1}^n\psi\left(\frac{x_i - T_n}{S_n}\right) = 0}{
 mean(\psi((xi - Tn)/Sn)) = 0}
 
-where \eqn{S_n}{Sn} is fixed at \code{mad(x)}. The \eqn{\psi}-function selected
+where \eqn{S_n}{Sn} is fixed at \code{madn(x)}. The \eqn{\psi}-function selected
 by Rousseeuw & Verboven is:
 
 \deqn{\psi_{log}(x) = \frac{e^x - 1}{e^x + 1}}{\psi(x) = (exp(x) - 1) /

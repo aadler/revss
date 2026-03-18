@@ -5,7 +5,7 @@
 
 robScale <- function(x, loc = NULL, implbound = 1e-4, na.rm = FALSE,
                      maxit = 80L, tol = NULL, madfctrs = c("AA", "CR"),
-                     usefctrs = FALSE) {
+                     usefctrs = TRUE) {
 
   if (length(x) == 0L) {
     return(NA_real_)

@@ -7,7 +7,7 @@
 \description{Compute the robust estimate of scale for very small samples.}
 \usage{
 robScale(x, loc = NULL, implbound = 1e-4, na.rm = FALSE, maxit = 80L,
-         tol = NULL, madfctrs = c("AA", "CR"), usefctrs = FALSE)
+         tol = NULL, madfctrs = c("AA", "CR"), usefctrs = TRUE)
 }
 \arguments{
   \item{x}{\strong{numeric}; A vector of values.}
@@ -25,24 +25,22 @@ robScale(x, loc = NULL, implbound = 1e-4, na.rm = FALSE, maxit = 80L,
   \item{madfctrs}{\strong{character}; when passing data to \code{madn},
   \code{"CR"} will use the factors calculated in Croux & Rousseeuw (1992) while
   \code{"AA"} (default) will use the factors calculated by the package author.}
-  \item{usefctrs}{\strong{logical}; If \code{TRUE}, then bias factors for
-  \code{robScale} itself will be used. If \code{FALSE}, the default, or if
-  \code{loc} is passed, no factors will be used.}
+  \item{usefctrs}{\strong{logical}; If \code{TRUE}, the default, then bias
+  factors for \code{robScale} itself will be used. If \code{FALSE}, no factors
+  will be used.}
 }
 \details{
 Computes the M-estimator for scale using a smooth \eqn{\rho}-function defined as
 the square of the logistic \eqn{\psi} function used in location estimation
 (Rousseeuw & Verboven, 2002, 4.2). When the sequence of observations is too
-short for a robust estimate, the scale estimate will default to \code{mad} so
-long as \code{mad} has not \dQuote{imploded}, i.e. it is greater than
+short for a robust estimate, the scale estimate will default to \code{madn} so
+long as \code{madn} has not \dQuote{imploded}, i.e. it is greater than
 \code{implbound} which defaults to 0.0001. When \code{mad} has imploded,
-\code{adm} is used instead.
+\code{admn} is used instead.
 
 If the location is known and passed through \code{loc}, the algorithm uses the
 suggestion in Rousseeuw & Verboven section 5 (2002) converting the observations
-to distances from 0 and iterating on the adjusted sequence. In this case, the
-large-scale simulation indicated that there was no bias, so \code{usefctrs} is
-ignored.
+to distances from 0 and iterating on the adjusted sequence.
 
 If \code{na.rm} is \code{TRUE} then \code{NA} values are stripped from \code{x}
 before computation takes place. If this is not done then an \code{NA} value in
@@ -50,10 +48,6 @@ before computation takes place. If this is not done then an \code{NA} value in
 
 The tolerance and number of iterations are similar to those in existing base \R
 functions.
-
-Rousseeuw & Verboven suggest using this function when there are 3--8 samples.
-It is implied that having more than 8 samples allows the use of more standard
-estimators.
 }
 \value{
 Solves for the robust estimate of scale, \eqn{S_n}{Sn}, which is the solution
