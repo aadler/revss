@@ -22,13 +22,18 @@ admn(x, center = c("median", "mean"), na.rm = FALSE)
 }
 \details{
 \deqn{ADM = a_n\sqrt{\frac{\pi}{2}}\frac{1}{n}\sum_{i=1}^n{|x_i -
-\textrm{center}(x)|}}{ADM = a_n * sqrt(pi / 2) * mean(abs(x - center(x)))}
+ \underset{j}{\textrm{center}}\;x_j|}}{ADM = a_n * sqrt(pi / 2) *
+ mean(abs(x - center(x)))}
 
-Similar to Croux & Rousseeuw (1992), a large-scale Monte-Carlo simulation was
-performed to calculate correction factors to make the standard \acronym{ADM}
-estimate more unbiased for small samples. It is called \eqn{\textrm{ADM}_n},
-to differentiate it from the more standard \eqn{\textrm{ADM}}, given the
-\eqn{a_n} multiplier is dependent on \eqn{n}---the size of the sample.
+where \eqn{a_n} is calculated by Adler (2026) and \code{center} is either
+\code{median} or \code{mean}.
+
+Inspired by Croux & Rousseeuw (1992), a large-scale Monte-Carlo simulation was
+performed (2026) to calculate correction factors to make the standard
+\acronym{ADM} estimate more unbiased for small samples. It is called
+\eqn{\textrm{ADM}_n} to differentiate it from the more standard
+\eqn{\textrm{ADM}}, given the \eqn{a_n} multiplier is dependent on \eqn{n}---the
+size of the sample.
 
 This function differs from its larger-scale version, \code{\link{adm}}, in other
 ways. First, it only accepts \code{"median"} or \code{"mean"} as its central
@@ -50,6 +55,9 @@ small-sample bias-reduction constant.
 Croux, Christophe and Rousseeuw, Peter J. (1992) "Time-Efficient Algorithms for
 Two Highly Robust Estimators of Scale", \emph{Computational Statistics}, Vol. 1,
 411--428. \doi{10.1007/978-3-662-26811-7_58}
+
+Adler, Avraham (2026) "Reducing the Bias in the Robust Estimation of Very Small
+Samples with the revss package for R", Manuscript in preparation
 }
 \author{Avraham Adler \email{Avraham.Adler@gmail.com}}
 \seealso{

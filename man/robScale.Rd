@@ -48,6 +48,11 @@ If the location is known and passed through \code{loc}, the algorithm uses the
 suggestion in Rousseeuw & Verboven section 5 (2002) converting the observations
 to distances from 0 and iterating on the adjusted sequence.
 
+Inspired by Croux & Rousseeuw, the package author (2026) ran a large Monte-Carlo
+simulation to estimate bias-reduction factors for both the known and unknown
+location versions of \code{robScale}. This function uses those factors by
+default, but they may be turned off through the \code{usefctrs} option.
+
 If \code{na.rm} is \code{TRUE} then \code{NA} values are stripped from \code{x}
 before computation takes place. If this is not done then an \code{NA} value in
 \code{x} will return an error.
@@ -66,6 +71,9 @@ square of the \eqn{\psi}-function used in \code{\link{robLoc}}. Specifically
 }{\rho(x) = \psi^2(x / 0.37394112142347236)}
 The constant 0.37394112142347236 is necessary so that
 \deqn{\beta = \int\rho(u)\;d\Phi(u)=0.5}{\beta = Int\rho(u)d\Phi(u)=0.5}
+
+The calculated value is then adjusted by the appropriate bias-reduction factor
+unless \code{usefctrs} is set to \code{FALSE} in the \code{opts} list.
 }
 \references{
 Croux, Christophe and Rousseeuw, Peter J. (1992) "Time-Efficient Algorithms for
@@ -75,6 +83,9 @@ Two Highly Robust Estimators of Scale", \emph{Computational Statistics}, Vol. 1,
 Rousseeuw, Peter J. and Verboven, Sabine (2002) Robust estimation in very small
 samples. \emph{Computational Statistics & Data Analysis}, \bold{40}, (4),
 741--758. \doi{10.1016/S0167-9473(02)00078-6}
+
+Adler, Avraham (2026) "Reducing the Bias in the Robust Estimation of Very Small
+Samples with the revss package for R", Manuscript in preparation
 }
 \author{Avraham Adler \email{Avraham.Adler@gmail.com}}
 \seealso{
