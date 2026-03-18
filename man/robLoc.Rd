@@ -6,23 +6,26 @@
 \title{Robust Estimate of Location}
 \description{Compute the robust estimate of location for very small samples.}
 \usage{
-robLoc(x, scale = NULL, na.rm = FALSE, maxit = 80L, tol = NULL,
-       factors = c("AA", "CR"))
+robLoc(x, scale = NULL, factors = c("AA", "CR"), na.rm = FALSE, opts = list())
 }
 \arguments{
   \item{x}{\strong{numeric}; A vector of values.}
   \item{scale}{\strong{numeric}; The scale, if known, can be used to enhance the
   estimate for the location. Defaults to unknown.}
+  \item{factors}{\strong{character}; \code{"CR"} will use the small-sample bias
+  factors calculated in Croux & Rousseeuw (1992) while \code{"AA"} (default)
+  will use the factors calculated by the package author.}
   \item{na.rm}{\strong{logical}; If \code{TRUE} then \code{NA} values are
   stripped from \code{x} before computation takes place.}
-  \item{maxit}{\strong{numeric}; The maximum number of iterations. Defaults to
-  80.}
-  \item{tol}{\strong{numeric}; The desired numeric tolerance. Defaults to the
-  square root of \code{.Machine$double.eps} or roughly
-  \eqn{1.49\times 10^{-8}}{1.49e-8}.}
-  \item{factors}{\strong{character}; \code{"CR"} will use the factors calculated
-  in Croux & Rousseeuw (1992) while \code{"AA"} (default) will use the factors
-  calculated by the package author.}
+  \item{opts}{\link{list}; Configuration options including:
+    \itemize{
+      \item \code{maxit}: \strong{integer}; The maximum number of iterations.
+      Defaults to 80.
+      \item \code{tol}: \strong{numeric}; The desired numeric tolerance for
+      algorithmic convergence. Defaults to the square root of
+      \code{.Machine$double.eps} or roughly \eqn{1.49\times 10^{-8}}{1.49e-8}.
+    }
+  }
 }
 \details{
 Computes the M-estimator for location using the logistic \eqn{\psi} function of
@@ -31,10 +34,10 @@ function defaults to the \code{median}.
 
 If the scale is known and passed through \code{scale}, the algorithm uses the
 suggestion in Rousseeuw & Verboven section 5 (2002), substituting the known
-scale for the \code{mad}.
+scale for the \code{madn}.
 
 If \code{na.rm} is \code{TRUE} then \code{NA} values are stripped from \code{x}
-before computation takes place.  If this is not done then an \code{NA} value in
+before computation takes place. If this is not done then an \code{NA} value in
 \code{x} will return an error.
 
 The tolerance and number of iterations are similar to those in existing base \R
@@ -69,9 +72,12 @@ samples. \emph{Computational Statistics & Data Analysis}, \bold{40}, (4),
 \code{\link{median}}
 }
 \examples{
-robLoc(c(1:9))
-x <- c(1,2,3,5,7,8)
-robLoc(x)
+set.seed(19L)
+z <- rnorm(7, 8, 3)
+mean(z); mean(z) / 8 - 1
+median(z); median(z) / 8 - 1
+robLoc(z); robLoc(z) / 8 - 1
+robLoc(z, factors = "CR"); robLoc(z, factors = "CR") / 8 - 1
 }
 
 \keyword{univar}

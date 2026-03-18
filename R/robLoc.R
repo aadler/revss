@@ -3,9 +3,10 @@
 
 # Robust Location Estimator found in Rousseeuw & Verboven (2002)
 
-robLoc <- function(x, scale = NULL, na.rm = FALSE, maxit = 80L, tol = NULL,
-                   factors = c("AA", "CR")) {
+robLoc <- function(x, scale = NULL, factors = c("AA", "CR"), na.rm = FALSE,
+                   opts = list()) {
 
+  # Handle quick error returns first
   if (length(x) == 0L) {
     return(NA_real_)
   }
@@ -21,16 +22,26 @@ robLoc <- function(x, scale = NULL, na.rm = FALSE, maxit = 80L, tol = NULL,
     return(NA_real_)
   }
 
+  # Handle options
+  nopts <- names(opts)
+
+  if (!("maxit" %in% nopts)) {
+    opts$maxit <- 80L
+  } else {
+    opts$maxit <- as.integer(opts$maxit)[1L]
+  }
+
+  if (!("tol" %in% nopts)) {
+    opts$tol <- .revssConst$stdTol
+  } else {
+    opts$tol <- as.double(opts$tol)[1L]
+  }
+
+  # Handle passed variables
   factors <- factors[1L]
   isCR <- factors == "CR"
   if (!isCR && factors != "AA") {
     stop("factors must be 'AA' or 'CR'", call. = FALSE)
-  }
-
-  if (is.null(tol)) {
-    tol <- .revssConst$stdTol
-  } else {
-    tol <- as.double(tol)[1L]
   }
 
   if (!is.null(scale)) {
@@ -47,5 +58,5 @@ robLoc <- function(x, scale = NULL, na.rm = FALSE, maxit = 80L, tol = NULL,
     return(med)
   }
 
-  .Call(robLoc_c, x, med, s, as.integer(maxit), tol)
+  .Call(robLoc_c, x, med, s, opts$maxit, opts$tol)
 }

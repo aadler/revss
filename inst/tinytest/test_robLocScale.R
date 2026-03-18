@@ -56,7 +56,8 @@ robLocScaleTest <- function(x, scale, na.rm = FALSE,
 }
 
 expect_equal(robLoc(x5), robLocTest(x5), tolerance = tol)
-expect_equal(robLoc(x5, tol = .Machine$double.eps),
+expect_equal(robLoc(x5), robLoc(x5, opts = list(maxit = 100L)), tolerance = tol)
+expect_equal(robLoc(x5, opts = list(tol = .Machine$double.eps)),
              robLocTest(x5, .Machine$double.eps), tolerance = tol)
 expect_equal(robLoc(c(1, 9, 7)), median(c(1, 9, 7)), tolerance = tol)
 expect_equal(robLoc(x5, factors = "AA"), robLoc(x5), tolerance = tol)

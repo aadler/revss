@@ -3,10 +3,9 @@
 
 # Robust Scale Estimator found in Rousseeuw & Verboven (2002)
 
-robScale <- function(x, loc = NULL, implbound = 1e-4, na.rm = FALSE,
-                     maxit = 80L, tol = NULL, madfctrs = c("AA", "CR"),
-                     usefctrs = TRUE) {
+robScale <- function(x, loc = NULL, na.rm = FALSE, opts = list()) {
 
+  # Handle quick error returns first
   if (length(x) == 0L) {
     return(NA_real_)
   }
@@ -24,16 +23,41 @@ robScale <- function(x, loc = NULL, implbound = 1e-4, na.rm = FALSE,
 
   n <- length(x)
 
-  if (is.null(tol)) {
-    tol <- .revssConst$stdTol
+  # Handle options
+  nopts <- names(opts)
+
+  if (!("maxit" %in% nopts)) {
+    opts$maxit <- 80L
   } else {
-    tol <- as.double(tol)[1L]
+    opts$maxit <- as.integer(opts$maxit)[1L]
   }
 
-  madfctrs <- madfctrs[1L]
-  isCR <- madfctrs == "CR"
-  if (!isCR && madfctrs != "AA") {
-    stop("madfctrs must be 'AA' or 'CR'", call. = FALSE)
+  if (!("tol" %in% nopts)) {
+    opts$tol <- .revssConst$stdTol
+  } else {
+    opts$tol <- as.double(opts$tol)[1L]
+  }
+
+  if (!("usefctrs" %in% nopts)) {
+    opts$usefctrs <- TRUE
+  } else {
+    opts$usefctrs <- as.logical(opts$usefctrs)[1L]
+  }
+
+  if (!("madfctrs" %in% nopts)) {
+    opts$madfctrs <- "AA"
+  } else {
+    opts$madfctrs <- opts$madfctrs[1L]
+    isCR <- opts$madfctrs == "CR"
+    if (!isCR && opts$madfctrs != "AA") {
+      stop("madfctrs must be 'AA' or 'CR'", call. = FALSE)
+    }
+  }
+
+  if (!("implbound" %in% nopts)) {
+    opts$implbound <- 1e-4
+  } else {
+    opts$implbound <- as.double(opts$implbound)[1L]
   }
 
   haveLoc <- !is.null(loc)
@@ -44,19 +68,21 @@ robScale <- function(x, loc = NULL, implbound = 1e-4, na.rm = FALSE,
     t <- 0                        # nolint object_overwrite_linter
     minobs <- 3L
   } else {
-    s <- madn(x, factors = madfctrs)
+    s <- madn(x, factors = opts$madfctrs)
     t <- .Call(median_c, x)   # nolint object_overwrite_linter Already protected
     minobs <- 4L
   }
 
   if (n < minobs) {
-    m <- madn(x, factors = madfctrs)
-    return(if (m <= implbound) admn(x) else m)
+    m <- madn(x, factors = opts$madfctrs)
+    return(if (m <= opts$implbound) admn(x) else m)
   }
 
-  rS <- .Call(robScale_c, x, t, s, as.integer(maxit), tol)
+  rS <- .Call(robScale_c, x, t, s, opts$maxit, opts$tol)
 
-  if (usefctrs) {
+  if (!opts$usefctrs) {
+    rn <- 1
+  } else {
     if (haveLoc) {
       if (n <= 9L) {
         rn <- .revssConst$bnRobSclKL[n]
@@ -70,8 +96,6 @@ robScale <- function(x, loc = NULL, implbound = 1e-4, na.rm = FALSE,
         rn <- n / (n - .revssConst$bnRobScl[10L])
       }
     }
-  } else {
-    rn <- 1
   }
 
   rn * rS
