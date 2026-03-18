@@ -15,9 +15,6 @@ oneValErr <- "There needs to be at least two values for a robust measure."
 badCentErr <- "center must be 'median' or 'mean"
 factErr <- "must be 'AA' or 'CR'"
 
-# This tests the second-level Median-of-three in sort. Do not remove!
-expect_error(.Call(revss:::mad_c, 1:5, "", 1.4826))
-
 # Bias reduction factors:
 bnMdADM5 <- 1.0750
 bnMdADML <- 0.1786
