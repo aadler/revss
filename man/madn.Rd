@@ -12,8 +12,8 @@ Median Absolute Deviation from the Median or Mean for Small Sample Size
   1.4826 has been shown by Croux & Rousseeuw (1992) to be insufficient.
   This function can apply the \eqn{n}-specific \eqn{b_n} correction factors
   found in that paper. It also can apply factors found by a significantly larger
-  Monte-Carlo simulation for either the median absolute distance from the median
-  or from the mean.
+  Monte-Carlo simulation (2026) for either the median absolute distance from the
+  median or from the mean.
 }
 \usage{
 madn(x, center = c("median", "mean"), factors = c("AA", "CR"), na.rm = FALSE)
@@ -25,7 +25,7 @@ madn(x, center = c("median", "mean"), factors = c("AA", "CR"), na.rm = FALSE)
   which to measure the absolute deviations. Defaults to \code{"median"}.}
   \item{factors}{\strong{character}; \code{"CR"} will use the factors calculated
   in Croux & Rousseeuw (1992) while \code{"AA"} (the default) will use the
-  factors calculated by the package author. Note that if
+  factors calculated by the package author (2026). Note that if
   \code{center == "mean"}, there are no \code{CR} factors and the \code{AA}
   factors will be used.}
   \item{na.rm}{\strong{logical}; If \code{TRUE} then \code{NA} values are

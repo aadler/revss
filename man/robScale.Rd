@@ -27,7 +27,7 @@ robScale(x, loc = NULL, na.rm = FALSE, opts = list())
       \item \code{madfctrs}: \strong{character}; when passing data to
       \code{madn} because of too few observations, \code{"CR"} will use the
       factors calculated in Croux & Rousseeuw (1992) while \code{"AA"} (default)
-      will use the factors calculated by the package author.
+      will use the factors calculated by the package author (2026).
       \item \code{implbound}: \strong{numeric}; when passing data to
       \code{madn} because of too few observations, this is the smallest value
       \code{madn} is allowed before switching to \code{admn} due to implosion.

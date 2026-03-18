@@ -4,7 +4,7 @@
 \name{robLoc}
 \alias{robLoc}
 \title{Robust Estimate of Location}
-\description{Compute the robust estimate of location for very small samples.}
+\description{Compute a robust estimate of location for very small samples.}
 \usage{
 robLoc(x, scale = NULL, factors = c("AA", "CR"), na.rm = FALSE, opts = list())
 }
@@ -13,8 +13,9 @@ robLoc(x, scale = NULL, factors = c("AA", "CR"), na.rm = FALSE, opts = list())
   \item{scale}{\strong{numeric}; The scale, if known, can be used to enhance the
   estimate for the location. Defaults to unknown.}
   \item{factors}{\strong{character}; \code{"CR"} will use the small-sample bias
-  factors calculated in Croux & Rousseeuw (1992) while \code{"AA"} (default)
-  will use the factors calculated by the package author.}
+  factors for \code{madn} calculated in Croux & Rousseeuw (1992) while
+  \code{"AA"} (default) will use the factors calculated by the package author
+  (2026).}
   \item{na.rm}{\strong{logical}; If \code{TRUE} then \code{NA} values are
   stripped from \code{x} before computation takes place.}
   \item{opts}{\link{list}; Configuration options including:
@@ -49,8 +50,11 @@ to
 \deqn{\frac{1}{n}\sum_{i = 1}^n\psi\left(\frac{x_i - T_n}{S_n}\right) = 0}{
 mean(\psi((xi - Tn)/Sn)) = 0}
 
-where \eqn{S_n}{Sn} is fixed at \code{madn(x)}. The \eqn{\psi}-function selected
-by Rousseeuw & Verboven is:
+where \eqn{S_n}{Sn} is fixed at \code{madn(x)}. Which \eqn{b_n}{bn} factors are
+passed to \code{madn} for calculating \eqn{S_n}{Sn} is determined by the value
+of \code{factors}.
+
+The \eqn{\psi}-function selected by Rousseeuw & Verboven is:
 
 \deqn{\psi_{log}(x) = \frac{e^x - 1}{e^x + 1}}{\psi(x) = (exp(x) - 1) /
 (exp(x) + 1)}
@@ -65,6 +69,9 @@ Two Highly Robust Estimators of Scale", \emph{Computational Statistics}, Vol. 1,
 Rousseeuw, Peter J. and Verboven, Sabine (2002) Robust estimation in very small
 samples. \emph{Computational Statistics & Data Analysis}, \bold{40}, (4),
 741--758. \doi{10.1016/S0167-9473(02)00078-6}
+
+Adler, Avraham (2026) "Reducing the Bias in the Robust Estimation of Very Small
+Samples with the revss package for R", Manuscript in preparation
 }
 
 \author{Avraham Adler \email{Avraham.Adler@gmail.com}}
