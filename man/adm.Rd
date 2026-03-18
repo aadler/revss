@@ -46,8 +46,8 @@ being passed in the first position.
 
 Given the asymptotic behavior, the default is to multiple the results by the
 reciprocal---\eqn{\sqrt{\frac{\pi}{2}}}{\sqrt(\pi / 2)}. However, it is
-important to note that this asymptotic behavior may \strong{not} hold with the
-smaller sample sizes for which this package is intended.
+important to note that this asymptotic behavior often does \strong{not} hold
+with the smaller sample sizes for which this package is intended.
 
 If \code{na.rm} is \code{TRUE} then \code{NA} values are stripped from \code{x}
 before computation takes place. If this is not done then an \code{NA} value in
@@ -72,8 +72,9 @@ Pham-Gia, T. and Hung, T. L. (2001) "The mean and median absolute deviations,"
 \seealso{
 See \code{\link{admn}} for the small-sample bias-corrected version of this
 function, \code{\link[stats]{mad}} in \pkg{stats} for the median absolute
-deviation from the \code{\link{median}}, and \code{\link{madn}} for the
-small-sample bias-corrected version of \code{mad}.
+deviation from the \code{\link{median}}, \code{\link{madn}} for the
+small-sample bias-corrected version of \code{mad}, and \code{\link{robScale}}
+for a robust small-sample estimator of scale.
 }
 
 \examples{
