@@ -77,7 +77,7 @@
   \subsection{Changed}{
     \itemize{
       \item Add \acronym{SPDX} codes to source files.
-      \item Update \file{README}, Github actions, and unit tests.
+      \item Update \file{README}, GitHub actions, and unit tests.
     }
   }
 }
@@ -85,7 +85,7 @@
 \section{Version 1.0.5 (2023-02-01)}{
   \subsection{Added}{
     \itemize{
-      \item Explictly mention use case for package to be 3--8 samples.
+      \item Explicitly mention use case for package to be 3--8 samples.
       \item Note that asymptotic constant for \code{adm} may not apply with few
       samples.
     }
@@ -93,7 +93,7 @@
   \subsection{Changed}{
     \itemize{
       \item Update \file{README}.
-      \item Update Github actions.
+      \item Update GitHub actions.
       \item Make code more compliant with style guide.
       \item \file{CITATION} updated to use \code{bibentry} per \acronym{CRAN}
       request.
@@ -104,7 +104,7 @@
 \section{Version 1.0.4 (2022-04-03)}{
   \subsection{Changed}{
     \itemize{
-      \item Explictly use integers in count and lengths.
+      \item Explicitly use integers in count and lengths.
       \item Use singleton logical comparisons for short-circuit.
       \item Update \file{README} for Best Practice.
     }
@@ -135,7 +135,7 @@
     \itemize{
       \item Cleaned up help files and \file{README}.
       \item Cleaned up source code and added \acronym{SPDX} identifiers.
-      \item Moved continuous integration to Github Actions.
+      \item Moved continuous integration to GitHub Actions.
     }
   }
 }
