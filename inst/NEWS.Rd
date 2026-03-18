@@ -25,7 +25,7 @@
   }
   \subsection{Fixed}{
     \itemize{
-      \item Corrected minor errors in documentation.
+      \item Corrected and updated documentation.
     }
   }
   \subsection{Removed}{
