@@ -15,12 +15,8 @@ oneValErr <- "There needs to be at least two values for a robust measure."
 badCentErr <- "center must be 'median' or 'mean"
 factErr <- "must be 'AA' or 'CR'"
 
-## Internal madf error trapping
-expect_equal(revss:::madf(c(x5, NA), na.rm = TRUE),
-             revss:::madf(x5), tolerance = tol)
-expect_error(revss:::madf(c(1, NA, NA), na.rm = TRUE), "at least two")
-expect_true(is.na(suppressWarnings(revss:::madf(c(x5, "c")))))
-expect_true(is.na(revss:::madf(1:5, center = "")))
+# This tests the second-level Median-of-three in sort. Do not remove!
+expect_error(.Call(revss:::mad_c, 1:5, "", 1.4826))
 
 # Bias reduction factors:
 bnMdADM5 <- 1.0750

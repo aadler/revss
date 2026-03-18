@@ -1,34 +1,6 @@
 # Copyright (c) 2025, Avraham Adler All rights reserved
 # SPDX-License-Identifier: BSD-2-Clause
 
-madf <- function(x, center = NULL, constant = 1.4826, na.rm = FALSE) {
-  # Internal fast Median Absolute Deviation from Center coded in Fortran
-  # Constant is the same as stats::mad; a truncation of 1 / qnorm(0.75)
-
-  x <- as.double(x)
-
-  if (!na.rm && anyNA(x)) {
-    return(NA_real_)
-  }
-
-  if (na.rm) x <- x[!is.na(x)]
-
-  if (length(x) <= 1L) {
-    stop("There needs to be at least two values for a robust measure.")
-  }
-
-  if (is.null(center)) {
-    center <- .Call(median_c, x)
-  } else {
-    center <- as.double(center)[1L]
-    if (is.na(center)) {
-      return(NA_real_)
-    }
-  }
-
-  .Call(mad_c, x, center, as.double(constant)[1L])
-}
-
 # Median Absolute Deviation with small-sample bias correction. CR parameters
 # based on Croux & Rousseeuw (1992). AA parameters based on Monte Carlo by the
 # package owner, paper forthcoming.
