@@ -4,6 +4,30 @@
 \name{NEWS}
 \alias{NEWS}
 \title{NEWS file for the revss package}
+\encoding{UTF-8}
+
+\section{Version 3.1.0 (2026-03-18)}{
+  \itemize{
+    \item Version 3.0.0 was released prematurely. Version 3.1.0 is effectively
+    the second half of version 3.0.0.
+  }
+  \subsection{Changed}{
+    \itemize{
+      \item \strong{Breaking}: \code{robScale} uses the bias-corrections factors
+      by default. Testing shows that the improvement is measurable and
+      significant.
+      \item \strong{Breaking}: \code{robLoc} and \code{robScale} refactored to
+      move lesser-used options into an \code{opts} list.
+      \item Function examples now better demonstrate their usefulness.
+      \item Refactored and updated unit tests.
+    }
+  }
+  \subsection{Fixed}{
+    \itemize{
+      \item Corrected minor errors in documentation.
+    }
+  }
+}
 
 \section{Version 3.0.0 (2026-03-18)}{
   \subsection{Added}{
