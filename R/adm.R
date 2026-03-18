@@ -113,6 +113,5 @@ admn <- function(x, center = c("median", "mean"), na.rm = FALSE) {
 
   # Asymptotic constant for both mean absolute deviation from the mean and mean
   # absolute deviation from the median is sqrt(pi / 2)
-  const <- .revssConst$sqrthalfpi * an
-  .Call(adm_c, x, centerV, const)
+  .Call(adm_c, x, centerV, .revssConst$sqrthalfpi * an)
 }
