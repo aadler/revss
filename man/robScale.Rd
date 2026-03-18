@@ -35,7 +35,7 @@ the square of the logistic \eqn{\psi} function used in location estimation
 (Rousseeuw & Verboven, 2002, 4.2). When the sequence of observations is too
 short for a robust estimate, the scale estimate will default to \code{madn} so
 long as \code{madn} has not \dQuote{imploded}, i.e. it is greater than
-\code{implbound} which defaults to 0.0001. When \code{mad} has imploded,
+\code{implbound} which defaults to 0.0001. When \code{madn} has imploded,
 \code{admn} is used instead.
 
 If the location is known and passed through \code{loc}, the algorithm uses the
