@@ -25,16 +25,16 @@ robLoc <- function(x, scale = NULL, factors = c("AA", "CR"), na.rm = FALSE,
   # Handle options
   nopts <- names(opts)
 
-  if (!("maxit" %in% nopts)) {
-    opts$maxit <- 80L
-  } else {
+  if ("maxit" %in% nopts) {
     opts$maxit <- as.integer(opts$maxit)[1L]
+  } else {
+    opts$maxit <- 80L
   }
 
-  if (!("tol" %in% nopts)) {
-    opts$tol <- .revssConst$stdTol
-  } else {
+  if ("tol" %in% nopts) {
     opts$tol <- as.double(opts$tol)[1L]
+  } else {
+    opts$tol <- .revssConst$stdTol
   }
 
   # Handle passed variables

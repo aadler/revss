@@ -26,38 +26,38 @@ robScale <- function(x, loc = NULL, na.rm = FALSE, opts = list()) {
   # Handle options
   nopts <- names(opts)
 
-  if (!("maxit" %in% nopts)) {
-    opts$maxit <- 80L
-  } else {
+  if ("maxit" %in% nopts) {
     opts$maxit <- as.integer(opts$maxit)[1L]
+  } else {
+    opts$maxit <- 80L
   }
 
-  if (!("tol" %in% nopts)) {
-    opts$tol <- .revssConst$stdTol
-  } else {
+  if ("tol" %in% nopts) {
     opts$tol <- as.double(opts$tol)[1L]
+  } else {
+    opts$tol <- .revssConst$stdTol
   }
 
-  if (!("usefctrs" %in% nopts)) {
-    opts$usefctrs <- TRUE
-  } else {
+  if ("usefctrs" %in% nopts) {
     opts$usefctrs <- as.logical(opts$usefctrs)[1L]
+  } else {
+    opts$usefctrs <- TRUE
   }
 
-  if (!("madfctrs" %in% nopts)) {
-    opts$madfctrs <- "AA"
-  } else {
+  if ("madfctrs" %in% nopts) {
     opts$madfctrs <- opts$madfctrs[1L]
     isCR <- opts$madfctrs == "CR"
     if (!isCR && opts$madfctrs != "AA") {
       stop("madfctrs must be 'AA' or 'CR'", call. = FALSE)
     }
+  } else {
+    opts$madfctrs <- "AA"
   }
 
-  if (!("implbound" %in% nopts)) {
-    opts$implbound <- 1e-4
-  } else {
+  if ("implbound" %in% nopts) {
     opts$implbound <- as.double(opts$implbound)[1L]
+  } else {
+    opts$implbound <- 1e-4
   }
 
   haveLoc <- !is.null(loc)
@@ -80,22 +80,20 @@ robScale <- function(x, loc = NULL, na.rm = FALSE, opts = list()) {
 
   rS <- .Call(robScale_c, x, t, s, opts$maxit, opts$tol)
 
-  if (!opts$usefctrs) {
-    rn <- 1
-  } else {
+  if (opts$usefctrs) {
     if (haveLoc) {
       if (n <= 9L) {
         rn <- .revssConst$bnRobSclKL[n]
       } else {
         rn <- n / (n - .revssConst$bnRobSclKL[10L])
       }
+    } else if (n <= 9L) {
+      rn <- .revssConst$bnRobScl[n]
     } else {
-      if (n <= 9L) {
-        rn <- .revssConst$bnRobScl[n]
-      } else {
-        rn <- n / (n - .revssConst$bnRobScl[10L])
-      }
+      rn <- n / (n - .revssConst$bnRobScl[10L])
     }
+  } else {
+    rn <- 1
   }
 
   rn * rS
