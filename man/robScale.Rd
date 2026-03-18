@@ -89,13 +89,8 @@ Samples with the revss package for R", Manuscript in preparation
 }
 \author{Avraham Adler \email{Avraham.Adler@gmail.com}}
 \seealso{
-See \code{\link{adm}}, \code{\link[stats]{mad}}, and \code{\link{madn}} for more
-basic robust estimators of scale.
-
-See \code{\link[robustbase]{Qn}} and \code{\link[robustbase]{Sn}} in the
-\href{https://CRAN.R-project.org/package=robustbase}{\pkg{robustbase}} package
-for more specialized robust scale estimators for larger samples. These last two
-are based on code written by Peter Rousseeuw.
+See \code{\link{adm}}, \code{\link{admn}}, \code{\link[stats]{mad}}, and
+\code{\link{madn}} for more basic robust estimators of scale.
 }
 \examples{
 set.seed(19L)

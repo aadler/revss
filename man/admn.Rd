@@ -61,10 +61,11 @@ Samples with the revss package for R", Manuscript in preparation
 }
 \author{Avraham Adler \email{Avraham.Adler@gmail.com}}
 \seealso{
-See \code{\link{adm}} for the large-sample version of this function,
+See \code{\link{adm}} for the standard definition this function,
 \code{\link[stats]{mad}} in \pkg{stats} for the median absolute deviation
-from the \code{\link{median}}, and \code{\link{madn}} in this package for the
-small-sample bias-corrected version of \code{mad}.
+from the \code{\link{median}}, and \code{\link{madn}} for the small-sample
+bias-corrected version of \code{mad}. See \code{\link{robScale}} for a robust
+M-estimator of scale.
 }
 \examples{
 set.seed(19L)

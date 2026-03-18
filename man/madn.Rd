@@ -79,11 +79,9 @@ Samples with the revss package for R", Manuscript in preparation
 \author{Avraham Adler \email{Avraham.Adler@gmail.com}}
 
 \seealso{
-See \code{\link{adm}} in this package for the average/mean deviation from the
-\code{\link{median}}, \code{\link[stats]{mad}} from \pkg{stats} for the
-\dQuote{standard} median absolute deviation from the median, and
-\code{\link[robustbase]{Sn}} and \code{\link[robustbase]{Qn}} from
-\pkg{robustbase} for other robust measures of scale by Croux & Rousseeuw.
+See \code{\link{adm}}, \code{\link{admn}}, and \code{\link[stats]{mad}} for
+other basic robust estimators of scale. See \code{\link{robScale}} for a robust
+M-estimator of scale.
 }
 
 \examples{
