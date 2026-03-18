@@ -11,13 +11,13 @@ title: Package revss
 <!-- badges: end -->
 
 ## Description
-**revss** is an `R` package which implements the estimation techniques described
-in [Rousseeuw & Verboven (2002)](https://www.researchgate.net/publication/223864903_Robust_estimation_in_very_small_samples#fullTextFileContent)
+**revss** is an `R` package which implements and builds on the estimation
+techniques described in [Rousseeuw & Verboven (2002)](https://www.researchgate.net/publication/223864903_Robust_estimation_in_very_small_samples#fullTextFileContent)
 for the location and scale of very small samples.
 
 ## Citation
 If you use the package, please cite it as per
-[CITATION](https://CRAN.R-project.org/package=minimaxApprox/citation.html).
+[CITATION](https://CRAN.R-project.org/package=revss/citation.html).
 
 ## Acknowledgment
 The author is grateful Dr. Peter Rousseeuw for his response to this
