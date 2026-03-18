@@ -73,14 +73,29 @@ madn <- function(x, center = c("median", "mean"), factors = c("AA", "CR"),
     }
 
     bn <- if (n <= 9L) .revssConst$bnMdADM[n] else ne / (ne - .revssConst$bnMdADM[10L])
+    bn <- if (n <= 9L) {
+      .revssConst$bnMdADM[n]
+    } else {
+      ne / (ne - .revssConst$bnMdADM[10L])
+    }
 
     return(bn * .Call(mad_c, x, sum(x) / n, 1.4826))
   }
 
   if (isCR) {
     bn <- if (n <= 9L) .revssConst$bnMdADMdCR[n] else n / (n - .revssConst$bnMdADMdCR[10L])
+    bn <- if (n <= 9L) {
+      .revssConst$bnMdADMdCR[n]
+    } else {
+      n / (n - .revssConst$bnMdADMdCR[10L])
+    }
   } else {
     bn <- if (n <= 9L) .revssConst$bnMdADMdAA[n] else no / (no - .revssConst$bnMdADMdAA[10L])
+    bn <- if (n <= 9L) {
+      .revssConst$bnMdADMdAA[n]
+    } else {
+      no / (no - .revssConst$bnMdADMdAA[10L])
+    }
   }
 
   bn * .Call(mad_c, x, .Call(median_c, x), 1.4826)
