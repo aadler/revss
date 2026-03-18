@@ -85,19 +85,12 @@ See \code{\link{adm}} in this package for the average/mean deviation from the
 }
 
 \examples{
-x <- 1:5
-madn(x)
-madn(x, center = "mean")
-
-# The length 5 CR correction constant is 1.206
-all.equal(madn(x, factors = "CR"), 1.206 * mad(x))
-
-# The length 5 AA constant for deviation from median is 1.2167
-all.equal(madn(x), 1.2167 * mad(x))
-
-# The length 5 AA constant for deviation from mean is 1.0750
-all.equal(madn(x, center = "mean"),
-          mad(x, center = mean(x)) * 1.0750)
+set.seed(19L)
+z <- rnorm(7, 8, 3)
+sd(z); sd(z) / 3 - 1
+mad(z); mad(z) / 3 - 1
+madn(z); madn(z) / 3 - 1
+madn(z, factors = "CR"); madn(z, factors = "CR") / 3 - 1
 }
 
 \keyword{univar}

@@ -77,9 +77,10 @@ small-sample bias-corrected version of \code{mad}.
 }
 
 \examples{
-adm(c(1:9))
-x <- c(1,2,3,5,7,8)
-c(adm(x), adm(x, constant = 1))
+set.seed(19L)
+z <- rnorm(7, 8, 3)
+sd(z); sd(z) / 3 - 1
+adm(z); adm(z) / 3 - 1
 }
 
 \keyword{univar}

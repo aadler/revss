@@ -59,8 +59,11 @@ from the \code{\link{median}}, and \code{\link{madn}} in this package for the
 small-sample bias-corrected version of \code{mad}.
 }
 \examples{
-admn(c(1:9))
-admn(c(1:9), center = "mean")
+set.seed(19L)
+z <- rnorm(7, 8, 3)
+sd(z); sd(z) / 3 - 1
+adm(z); adm(z) / 3 - 1
+admn(z); admn(z) / 3 - 1
 }
 
 \keyword{univar}
