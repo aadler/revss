@@ -5,49 +5,47 @@
 \alias{NEWS}
 \title{NEWS file for the revss package}
 
-\section{Version 3.0.0 (2026-03-20)}{
+\section{Version 3.0.0 (2026-03-18)}{
   \subsection{Added}{
     \itemize{
-      \item Added small-sample bias-corrected version of \code{mad}---called
-      \code{madn}---found in Croux & Rousseeuw (1992). This has both the factors
-      from Croux & Rousseeuw as well as factors based on a larger Monte-Carlo
-      simulation run by the package author which is intended to be published in
-      the future.
-      (\href{https://github.com/aadler/revss/issues/1}{Issue #1}; thank you
-      \href{https://github.com/filiporn}{@filiporn}).
-      \item Added small-sample bias-corrected version of \code{adm}---called
-      \code{admn}---with factors based on a Monte Carlo simulation run by the
-      package author which is intended to be published in the future.
+      \item New functions \code{madn} and \code{admn} providing small-sample
+      bias-corrected versions of \code{mad} and \code{adm}.
+      \item New optional constants for bias reduction in \code{robScale}.
     }
   }
   \subsection{Changed}{
     \itemize{
-      \item \strong{Breaking:} Rewrite of most of the code base. Almost all of
-      the calculations were ported to Fortran, including a new simplified median
-      algorithm based on an optimized quicksort. The base \R code was
-      considerably tightened. \code{NA} handling is now much more in line with
-      base \R as well. New parameter options were added and some positions
-      moved, so this change is considered breaking.
-      \item \strong{Breaking:} Rousseeuw & Verboven (2002) actually use a
-      small sample bias-corrected version of \code{mad} found in Croux &
-      Rousseeuw (1992). The package now implements this as a new function,
-      \code{madn}, and uses a form of it inside \code{robLoc} and
-      \code{robScale}.
+      \item \strong{Major rewrite}: Almost the entire computational core was
+      ported to modern Fortran 90, including a new optimized quicksort-based
+      median algorithm for small \eqn{n}. This yields substantially better
+      performance, cleaner code, and improved \code{NA} handling in line with
+      base \R.
+      \item \strong{Breaking}: All small-sample \eqn{(n \le 9)} bias-correction
+      factors---for \code{madn} and \code{admn} from both mean and median and
+      for \code{robScale} for both known and unknown location---were recomputed
+      using 200 million Monte Carlo simulations under standard normality.
+      New 4-decimal constants are available as options to replace the Croux &
+      Rousseeuw values, which can still be used in \code{madn}. The revised
+      constant MCSEs range between \eqn{2.0 \times 10^{-5}}{2e-5} and
+      \eqn{9.1 \times 10^{-5}}{9.1e-5}.
+      \item \strong{Breaking}: Similarly, the asymptotic correction constants
+      \eqn{(n > 9)} for \code{madn}, \code{admn}, and \code{robScale} were
+      updated based on 16.5 million Monte Carlo simulations per sample size.
+      This keeps the MCSE for each strictly below \eqn{1.0 \times 10^{-4}}{1e-4}
+      as well.
+      \item \strong{Breaking}: \code{robLoc} and \code{robScale} now internally
+      use \code{madn} and \code{admn} with improved logic for very small samples
+      and allow users to choose between the original Croux & Rousseeuw factors
+      and the new higher-precision factors
       (\href{https://github.com/aadler/revss/issues/1}{Issue #1}; thank you
       \href{https://github.com/filiporn}{@filiporn}).
-      \item \strong{Breaking:} New function \code{admn} now used for
-      \code{robScale} branch with too few observations and where \code{madn}
-      appears to implode.
-      \item Similar to \code{madn}, both \code{robLoc} and \code{robScale} allow
-      for choosing which factors to use when they internally call \code{madn}.
-      \item Updated unit tests to cover new functionality and to be more
-      efficient and type safe.
-      \item Updated Github-related files and workflows.
-      \item Other spelling and punctuation errors addressed.
+      \item Unit tests expanded and modernized.
+      \item Documentation, GitHub workflows, and package metadata updated.
     }
   }
   \subsection{Fixed}{
     \itemize{
+      \item Various spelling, punctuation, and metadata issues.
       \item Corrected package metadata unit test.
     }
   }

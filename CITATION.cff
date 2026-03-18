@@ -36,7 +36,7 @@ preferred-citation:
 repository: https://CRAN.R-project.org/package=revss
 repository-code: https://github.com/aadler/revss
 url: https://github.com/aadler/revss
-date-released: '2026-03-20'
+date-released: '2026-03-18'
 contact:
 - family-names: Adler
   given-names: Avraham
