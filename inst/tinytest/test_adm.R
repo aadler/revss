@@ -25,19 +25,10 @@ admTest <- function(x, ct, co = NULL) {
   co * mean(abs(x - ct))
 }
 
-# medianR error trapping
-expect_true(is.na(revss:::medianR(lZero)))
-expect_true(is.na(revss:::medianR(c(NA, NA))))
-expect_true(is.na(revss:::medianR(c(NA, NA), na.rm = TRUE)))
-expect_true(is.na(suppressWarnings(revss:::medianR(c(x5, "c")))))
-expect_equal(revss:::medianR(c(x5, NA), na.rm = TRUE),
-             revss:::medianR(x5), tolerance = tol)
-expect_identical(revss:::medianR(c(4, 5, 3)), 4) # Catch all pivots
-
 # ADM
 ## Mean Absolute Deviation from the Median
 expect_equal(adm(x5), adm5 * sqrt(pi / 2), tolerance = tol)
-expect_equal(adm(x5), admTest(x5, revss:::medianR(x5)), tolerance = tol)
+expect_equal(adm(x5), admTest(x5, t5), tolerance = tol)
 expect_equal(adm(c(x5, NA), na.rm = TRUE), adm5 * sqrt(pi / 2), tolerance = tol)
 expect_equal(adm(x5, constant = 1), adm5, tolerance = tol)
 expect_equal(adm(c(x5, NA), constant = 1, na.rm = TRUE), adm5, tolerance = tol)

@@ -1,26 +1,6 @@
 # Copyright (c) 2020, Avraham Adler All rights reserved
 # SPDX-License-Identifier: BSD-2-Clause
 
-medianR <- function(x, na.rm = FALSE) {
-
-  if (length(x) == 0L) {
-    return(NA_real_)
-  }
-
-  x <- as.double(x)
-
-  if (na.rm) {
-    x <- x[!is.na(x)]
-    if (length(x) == 0L) {
-      return(NA_real_)
-    }
-  } else if (anyNA(x)) {
-    return(NA_real_)
-  }
-
-  .Call(median_c, x)
-}
-
 adm <- function(x, center = NULL, constant = NULL, na.rm = FALSE) {
 
   if (length(x) == 0L) {
