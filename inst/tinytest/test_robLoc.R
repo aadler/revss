@@ -72,4 +72,4 @@ expect_true(is.na(robLoc(lZero)))
 expect_true(is.na(robLoc(c(NA, NA), na.rm = TRUE)))
 expect_error(robLoc(1:5, factors = "ZZ"), factErr)
 
-message("Seed for robLoc test session: ", eff_seed)
+message("\nSeed for robLoc test session: ", eff_seed)

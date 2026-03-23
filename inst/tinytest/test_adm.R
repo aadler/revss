@@ -85,4 +85,4 @@ expect_true(is.na(admn(lZero)))
 expect_true(is.na(admn(NA, na.rm = TRUE)))
 expect_error(admn(1:5, center = "IQR"), badCentErr)
 
-message("Seed for adm test session: ", eff_seed)
+message("\nSeed for adm test session: ", eff_seed)

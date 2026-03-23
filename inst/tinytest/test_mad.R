@@ -60,4 +60,4 @@ expect_warning(madn(x5, center = "mean", factors = "CR"),
 expect_error(madn(1:5, center = "IQR"), badCentErr)
 expect_error(madn(1:5, factors = "ZZ"), factErr)
 
-message("Seed for mad test session: ", eff_seed)
+message("\nSeed for mad test session: ", eff_seed)

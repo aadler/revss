@@ -117,4 +117,4 @@ expect_true(is.na(robScale(c(y, NA))))
 expect_true(is.na(suppressWarnings(robScale(c(y, "A")))))
 expect_equal(robScale(c(y, NA), na.rm = TRUE), robScale(y), tolerance = tol)
 
-message("Seed for robScale test session: ", eff_seed)
+message("\nSeed for robScale test session: ", eff_seed)
