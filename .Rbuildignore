@@ -6,3 +6,5 @@
 ^SECURITY.md$
 ^CONTRIBUTING.md$
 ^inst/WORDLIST$
+^\.positai$
+^\.claude$
