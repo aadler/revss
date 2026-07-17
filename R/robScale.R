@@ -3,7 +3,7 @@
 
 # Robust Scale Estimator found in Rousseeuw & Verboven (2002)
 
-robScale <- function(x, loc = NULL, na.rm = FALSE, opts = list()) {
+robScale <- function(x, loc = NULL, na.rm = FALSE, opts = list()) { # nolint object_name_linter
 
   # Handle quick error returns first
   if (length(x) == 0L) {

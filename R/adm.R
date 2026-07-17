@@ -1,7 +1,7 @@
 # Copyright (c) 2020, Avraham Adler All rights reserved
 # SPDX-License-Identifier: BSD-2-Clause
 
-adm <- function(x, center = NULL, constant = NULL, na.rm = FALSE) {
+adm <- function(x, center = NULL, constant = NULL, na.rm = FALSE) { # nolint object_name_linter
 
   if (length(x) == 0L) {
     return(NA_real_)
@@ -46,7 +46,7 @@ adm <- function(x, center = NULL, constant = NULL, na.rm = FALSE) {
 # Mean Absolute Deviation from the Median (Average Deviation from the Mean) with
 # small-sample bias correction.
 
-admn <- function(x, center = c("median", "mean"), na.rm = FALSE) {
+admn <- function(x, center = c("median", "mean"), na.rm = FALSE) { # nolint object_name_linter
 
   if (length(x) == 0L) {
     return(NA_real_)
@@ -69,12 +69,12 @@ admn <- function(x, center = c("median", "mean"), na.rm = FALSE) {
   }
 
   center <- center[1L]
-  is_mean <- center == "mean"
-  if (!is_mean && center != "median") {
+  isMean <- center == "mean"
+  if (!isMean && center != "median") {
     stop("center must be 'median' or 'mean'", call. = FALSE)
   }
 
-  if (is_mean) {
+  if (isMean) {
     if (n <= 9L) {
       an <- .revssConst$anMADM[n]
     } else {

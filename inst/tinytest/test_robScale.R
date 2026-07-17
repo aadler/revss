@@ -8,12 +8,12 @@ bnRobScl4 <- 1.3082
 bnRobSclL <- 1.1256
 bnRobSclKL6 <- 0.9696
 bnRobSclKLL <- -0.1851
-MdASMd3AA <- 1.4872 # nolint object_name_linter
-MdASMd3CR <- 1.495  # nolint object_name_linter
+mdASMd3AA <- 1.4872
+mdASMd3CR <- 1.495
 
 ## Generate Test Data
-eff_seed <- sample.int(65536, 1)
-set.seed(eff_seed)
+effSeed <- sample.int(65536, 1)
+set.seed(effSeed)
 y <- c(9, 2, 14, 4)
 vSmall <- c(0, 1e-7, 1e-5)
 factErr <- "must be 'AA' or 'CR'"
@@ -63,7 +63,7 @@ expect_equal(robScale(y[1:3], opts = list(madfctrs = "AA")),
 expect_false(isTRUE(all.equal(robScale(y[1:3], opts = list(madfctrs = "CR")),
                               robScale(y[1:3]), tolerance = tol)))
 expect_equal(robScale(y[1:3], opts = list(madfctrs = "CR")),
-             robScale(y[1:3]) * MdASMd3CR / MdASMd3AA, tolerance = tol)
+             robScale(y[1:3]) * mdASMd3CR / mdASMd3AA, tolerance = tol)
 
 # Test other options
 expect_equal(robScale(y, opts = list(maxit = 1000L)), robScale(y),
@@ -93,7 +93,8 @@ robScaleLocTest <- function(x, loc) {
     converged <- abs(v - 1) <= sqrt(.Machine$double.eps)
     s <- s * v
   }
-  return(s)
+
+  s
 }
 
 # Test Known Location
@@ -117,4 +118,4 @@ expect_true(is.na(robScale(c(y, NA))))
 expect_true(is.na(suppressWarnings(robScale(c(y, "A")))))
 expect_equal(robScale(c(y, NA), na.rm = TRUE), robScale(y), tolerance = tol)
 
-message("\nSeed for robScale test session: ", eff_seed)
+message("\nSeed for robScale test session: ", effSeed)

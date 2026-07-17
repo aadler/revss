@@ -4,8 +4,8 @@
 tol <- sqrt(.Machine$double.eps)
 
 ## Generate Test Data
-eff_seed <- sample.int(65536, 1)
-set.seed(eff_seed)
+effSeed <- sample.int(65536, 1)
+set.seed(effSeed)
 x5 <- runif(5, 0, 100)
 t5 <- median(x5)
 adm5 <- mean(abs(x5 - t5))
@@ -60,4 +60,4 @@ expect_warning(madn(x5, center = "mean", factors = "CR"),
 expect_error(madn(1:5, center = "IQR"), badCentErr)
 expect_error(madn(1:5, factors = "ZZ"), factErr)
 
-message("\nSeed for mad test session: ", eff_seed)
+message("\nSeed for mad test session: ", effSeed)

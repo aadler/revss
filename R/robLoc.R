@@ -3,8 +3,8 @@
 
 # Robust Location Estimator found in Rousseeuw & Verboven (2002)
 
-robLoc <- function(x, scale = NULL, factors = c("AA", "CR"), na.rm = FALSE,
-                   opts = list()) {
+robLoc <- function(x, scale = NULL, factors = c("AA", "CR"),
+                   na.rm = FALSE, opts = list()) { # nolint object_name_linter
 
   # Handle quick error returns first
   if (length(x) == 0L) {

@@ -5,6 +5,8 @@
 # Asymptotic values (n > 9) based on 16.5M simulation Monte-Carlo study.
 # All MCSE < 1e-4
 
+# nolint start: indentation_linter
+
 .revssConst <- local({
   list(
        anMADM = c(NA_real_,        # MADM
@@ -81,3 +83,4 @@
        sqrthalfpi = 1.2533141373155001
   )
 })
+# nolint end

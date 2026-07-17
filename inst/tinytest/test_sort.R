@@ -2,4 +2,7 @@
 # SPDX-License-Identifier: BSD-2-Clause
 
 # This tests the median-of-three calls.
-expect_identical(.Call(revss:::median_c, as.double(sample.int(101, 101))), 51)
+
+nS <- getNamespace("revss")
+medianC <- get("median_c", nS, inherits = FALSE, mode = "list")
+expect_identical(.Call(medianC, as.double(sample.int(101, 101))), 51)

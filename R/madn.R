@@ -8,7 +8,7 @@
 # Constant of 1.4826 is the same as stats::mad; a truncation of 1 / qnorm(0.75)
 
 madn <- function(x, center = c("median", "mean"), factors = c("AA", "CR"),
-                 na.rm = FALSE) {
+                 na.rm = FALSE) { # nolint object_name_linter
 
   x <- as.double(x)
 
@@ -24,8 +24,8 @@ madn <- function(x, center = c("median", "mean"), factors = c("AA", "CR"),
   }
 
   center <- center[1L]
-  is_mean <- center == "mean"
-  if (!is_mean && center != "median") {
+  isMean <- center == "mean"
+  if (!isMean && center != "median") {
     stop("center must be 'median' or 'mean'", call. = FALSE)
   }
 
@@ -38,7 +38,7 @@ madn <- function(x, center = c("median", "mean"), factors = c("AA", "CR"),
   ne <- 2 * (n %/% 2)             # Even floor length.
   no <- 2 * ((n + 1) %/% 2) - 1   # Odd floor length.
 
-  if (is_mean) {
+  if (isMean) {
     if (isCR) {
       warning("There are no factors in Croux & Rousseeuw for median absolute ",
               "deviation from the mean. Using Adler's factors.", call. = FALSE)

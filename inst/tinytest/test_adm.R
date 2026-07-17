@@ -4,8 +4,8 @@
 tol <- sqrt(.Machine$double.eps)
 
 ## Generate Test Data
-eff_seed <- sample.int(65536, 1)
-set.seed(eff_seed)
+effSeed <- sample.int(65536, 1)
+set.seed(effSeed)
 x5 <- runif(5, 0, 100)
 t5 <- median(x5)
 adm5 <- mean(abs(x5 - t5))
@@ -17,7 +17,7 @@ lZero <- double(0)
 admTest <- function(x, ct, co = NULL) {
 
   if (is.null(co)) {
-    co <- 1.2533141373155001 # sqrt(pi / 2)
+    co <- 1.2533141373155001 # This is the square root of pi / 2
   } else {
     co <- as.double(co)
   }
@@ -85,4 +85,4 @@ expect_true(is.na(admn(lZero)))
 expect_true(is.na(admn(NA, na.rm = TRUE)))
 expect_error(admn(1:5, center = "IQR"), badCentErr)
 
-message("\nSeed for adm test session: ", eff_seed)
+message("\nSeed for adm test session: ", effSeed)

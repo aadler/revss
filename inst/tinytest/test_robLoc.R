@@ -4,43 +4,43 @@
 tol <- sqrt(.Machine$double.eps)
 
 ## Generate Test Data
-eff_seed <- sample.int(65536, 1)
-set.seed(eff_seed)
+effSeed <- sample.int(65536, 1)
+set.seed(effSeed)
 x5 <- runif(5, 0, 100)
 y <- c(9, 2, 14, 4)
 lZero <- double(0)
 factErr <- "must be 'AA' or 'CR'"
 
 ## RobLoc Tests
-robLocTest <- function(x, na.rm = FALSE, tol = sqrt(.Machine$double.eps)) {
-  if (na.rm) {
+robLocTest <- function(x, naRM = FALSE, tol = sqrt(.Machine$double.eps)) {
+  if (naRM) {
     x <- x[!is.na(x)]
   }
   if (length(x) <= 3) {
     return(median(x))
-  } else {
-    obj <- function(x, data) {
-      sum((2 * plogis((data - x) / madn(data)) - 1)) ^ 2
-    }
-    fit <- optimize(f = obj, interval = range(x), data = x, tol = tol)
-    return(fit$minimum)
   }
+  obj <- function(x, data) {
+    sum((2 * plogis((data - x) / madn(data)) - 1)) ^ 2
+
+  }
+  fit <- optimize(f = obj, interval = range(x), data = x, tol = tol)
+  fit$minimum
 }
 
-robLocScaleTest <- function(x, scale, na.rm = FALSE,
+robLocScaleTest <- function(x, scale, naRM = FALSE,
                             tol = sqrt(.Machine$double.eps)) {
-  if (na.rm) {
+  if (naRM) {
     x <- x[!is.na(x)]
   }
   if (length(x) <= 2) {
     return(median(x))
-  } else {
-    obj <- function(x, data) {
-      sum((2 * plogis((data - x) / scale) - 1)) ^ 2
-    }
-    fit <- optimize(f = obj, interval = range(x), data = x, tol = tol)
-    return(fit$minimum)
   }
+  obj <- function(x, data) {
+    sum((2 * plogis((data - x) / scale) - 1)) ^ 2
+
+  }
+  fit <- optimize(f = obj, interval = range(x), data = x, tol = tol)
+  fit$minimum
 }
 
 expect_equal(robLoc(x5), robLocTest(x5), tolerance = tol)
@@ -72,4 +72,4 @@ expect_true(is.na(robLoc(lZero)))
 expect_true(is.na(robLoc(c(NA, NA), na.rm = TRUE)))
 expect_error(robLoc(1:5, factors = "ZZ"), factErr)
 
-message("\nSeed for robLoc test session: ", eff_seed)
+message("\nSeed for robLoc test session: ", effSeed)
